@@ -1,0 +1,29 @@
+.my_header{
+    width: 100%;
+    height: 10rem;
+}
+.my_footer{
+    width: 100%;
+    height: 15rem;
+}
+#c1{
+    width: 100%;
+    height: 30rem;
+    background: url("../img/index/bg_index_c2.png") no-repeat 50% 50%;
+    background-size:cover;
+}
+#c1 .carousel-inner div img{
+    width: 15rem;
+    height: 20rem;
+}
+.carousel-caption{
+    width: 20%;
+}
+.carousel-caption a{
+    font-size: 1.5rem;
+    color: #ffffff;
+}
+.carousel-caption p.content{
+    color: #ffffff;
+}
+

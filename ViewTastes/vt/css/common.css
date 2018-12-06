@@ -1,0 +1,19 @@
+*{
+    maring:0;
+    padding: 0;
+}
+body{
+    background: #f0f0f0;
+}
+a{
+    text-decoration: none;
+    font-size: 1rem;
+    color: #888;
+}
+p,b{
+    color: #888;
+}
+a:hover{
+    text-decoration: none;
+    color: #333;
+}
