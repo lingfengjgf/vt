@@ -26,4 +26,13 @@
 .carousel-caption p.content{
     color: #ffffff;
 }
+div.row div.f6{
+    height: 30rem;
+    background: #ffffff;
+    border: 1px dotted #888;
+}
+div.row div.f6 a img{
+    width: 15rem;
+}
+
 

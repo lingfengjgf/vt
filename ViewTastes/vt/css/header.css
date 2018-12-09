@@ -42,7 +42,7 @@ div .btn{
         width: 12rem;
        margin-right: 1rem;
     }
-    div>h2{
+    div>a.text-lg-right{
         text-align: center;
     }
 }
