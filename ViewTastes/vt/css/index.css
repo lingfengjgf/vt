@@ -34,5 +34,15 @@ div.row div.f6{
 div.row div.f6 a img{
     width: 15rem;
 }
+#c1>div>a>img{  
+    width: 10rem
+}
+#c1 p.content,#c1>div>div>a{
+    width: 60rem;
+    display: none;
+}
+#c1>div.show>div>a,#c1>div.show>div>p.content{
+    display: block;
+}
 
 
