@@ -34,15 +34,31 @@ div.row div.f6{
 div.row div.f6 a img{
     width: 15rem;
 }
-#c1>div>a>img{  
-    width: 10rem
+#c1>div>a>img{
+    width: 10rem;
+    transition: all 1s;
 }
-#c1 p.content,#c1>div>div>a{
-    width: 60rem;
+#c1>div>a>img.show{
+    border: 1px solid #0083ec;
+    transform: scale(1.1);
+}
+#c1>article{
+    width: 60rem;    
     display: none;
+    margin: auto;
 }
-#c1>div.show>div>a,#c1>div.show>div>p.content{
+#c1>article>a{
+    font-size: 2rem;
+    color: #fff;
+}
+#c1>article>a:hover{
+    color: #0083ec;
+}
+#c1>article>p{color: #ddd}
+#c1>article.show{
     display: block;
+    text-align: center;
 }
+
 
 
