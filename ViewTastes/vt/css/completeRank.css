@@ -1,0 +1,62 @@
+section>div{
+    background: #fff;
+}
+div.content>div.top{
+    display: flex;
+    border-bottom: 1px solid #f0f0f0;    
+}
+div.content>div.top>div{
+    width: 380px;
+}
+div.content>div.top>div>p{
+    font-size: 20px;
+}
+div.content>div.top>div.publish>p{
+    color: rgb(248, 88, 88);
+}
+div.content>div.top>div.classics>p{
+    color: #0083ec;
+}
+div.content>div.top>div.foreign>p{
+    color: #fafa00;
+}
+div.content>div.top>div>div>b{
+    margin: 0 1rem;
+}
+div.content>div.top>div>div>a.show{
+    color: #0083ec;
+}
+div.content>ul>li{
+    display: flex;
+    padding: 0 14px;
+    height: 40px;
+}
+div.content>ul>li~li:hover{
+    background: #0083ec;
+}
+div.content>ul>li~li:hover p{
+    color: #fff;
+}
+div.content>ul>li:first-child{
+    background: #f0f0f0;
+}
+div.content>ul>li>a{
+    display: flex;
+}
+div.content>ul>li p{
+    display: block;
+    height: 100%;
+    margin: 0;
+    font-size: 16px;
+    line-height: 40px;
+    text-align: left;
+}
+div.content>ul>li p.num,div.content>ul>li p.read{
+    width: 50px;
+}
+div.content>ul>li p.name{
+    width: 490px;
+}
+div.content>ul>li p.author,div.content>ul>li p.classify{
+    width: 245px;
+}

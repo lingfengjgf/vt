@@ -1,0 +1,97 @@
+section>div{
+    background: #fff;
+}
+section>div>ul{
+    list-style: none;
+    padding: 20px 15px 10px;
+    display: flex;
+}
+section>div>ul>li{
+    display: flex;
+    padding: 0 15px;
+    margin-bottom: 10px;
+    width: 370px;
+} 
+section>div>ul>li>img{
+    width: 90px;
+    height: 120px;
+}
+section>div>ul>li>div{
+    width: 115px;
+    line-height: 30px;
+}
+section>div>ul>li>div>h4{
+    font-size: 16px;
+    margin: 15px 0 10px;
+    padding-left: 10px;
+    text-align: left;
+    white-space: nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+section>div>ul>li>div>p{
+    margin-bottom: 0px;
+    padding-left: 10px;
+    text-align: left;
+}
+section>div>ul>li>div>a{
+    display: block;
+    width: 100px;
+    height: 30px;
+    margin-bottom: 8px;
+    text-align: center;
+    border-radius: 2px;
+    background: #ddd;
+    color: #0083ec;
+}
+section>div>ul>li>div>a:first-child{
+    margin-top: 6px;
+}
+section>div>ul>li>div>a:hover{
+    background: #0083ec;
+    color: #fff !important;
+}
+section>div>ul>li>a{
+    display: block;
+    width: 40px;
+    height: 40px;
+    font-size: 36px;
+    text-align: center;
+    line-height: 32px;
+    margin: 0 auto;
+    padding-top: 40px;
+}
+.page-ul{
+    display: flex;
+    margin: 0;
+    margin-top: 5px;
+}
+.page-ul>li{
+    margin-left: 10px;
+}
+.page-ul>li>a{
+    display: block;
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+    text-align: center;
+    line-height: 30px;
+    background: #ddd;
+    border-radius: 2px;
+    color: #0083ec;
+}
+.page-ul>li>a:hover,.page-ul>li>a.active{
+    background: #0083ec !important;
+    color: #fff !important;
+}
+.page-ul>li>a.prev,.page-ul>li>a.next{
+    width: 40px;
+}
+.page-ul>li>p{
+    font-size: 14px;
+    margin: 0;
+    line-height: 30px;
+}
+.page-ul{
+    justify-content: center;
+}

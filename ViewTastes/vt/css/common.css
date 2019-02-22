@@ -1,9 +1,15 @@
 *{
-    maring:0;
+    margin:0;
     padding: 0;
 }
 body{
     background: #f0f0f0;
+}
+section{
+    width: 1140px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 2rem;
 }
 a{
     text-decoration: none;
@@ -16,4 +22,10 @@ p,b{
 a:hover{
     text-decoration: none;
     color: #0083ec !important;
+}
+.triangle{
+    display: inline-block;
+    width:0;
+    border:5px solid transparent;
+    border-top-color:#ddd;
 }
