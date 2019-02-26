@@ -1,0 +1,64 @@
+section{
+    margin-top: 0;
+}
+section>div.top{
+    width: 100%;
+    height: 240px;
+    background: url(../img/user/bg/user_bg.jpg) no-repeat;
+    background-size: cover;
+    text-align: left;
+    padding: 60px 0px 0px 20px;
+}
+section>div.top{
+    display: flex;
+}
+section>div.top>a{
+    display: block;
+    width: 109px;
+    height: 109px;
+    border: 5px solid #fff;
+    border-radius: 50%;
+    text-align: center;
+}
+section>div.top>a>img{
+    width: 100px;
+}
+section>div.top>div>h2{
+    color: #fff;
+    margin:30px 10px 10px;
+}
+section>div.top>div>a{
+    margin-left: 10px;
+    color: #fff;
+}
+section>div.content{
+    text-align: left; 
+    background: #fff;
+    margin-top: 20px;
+}
+section>div.content>ul{
+    width: 202px;
+}
+section>div.content>ul>li>a{
+    display: block;
+    width: 200px;
+    height: 50px;
+    background: #ddd;
+    color: #0083ec;
+    text-align: center;
+    line-height: 50px;
+    font-size: 20px;
+    border-left:2px solid #ddd;
+}
+section>div.content>ul>li>a:hover{
+    border-left:2px solid #0083ec;
+    background: #bbb;
+}
+section>div.content>ul>li>a.active{
+    background: #0083ec;
+    color: #fff;
+    border-left-color: #0083ec;
+}
+section>div.content>ul>li>a.active:hover{
+    color: #fff !important;
+}
