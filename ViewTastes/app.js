@@ -5,6 +5,7 @@ const mysql=require('mysql');
 const userRouter=require('./routes/user.js');
 const dataRouter=require('./routes/index_data.js');
 const bookRouter=require('./routes/book.js');
+const indexCarouselRouter=require('./routes/index_carousel.js');
 //引入body-parser中间件
 const bodyParser=require('body-parser');
 
@@ -25,3 +26,4 @@ app.use(bodyParser.urlencoded({
 app.use('/user',userRouter);
 app.use('/index_data',dataRouter);
 app.use('/book',bookRouter);
+app.use('/index',indexCarouselRouter);

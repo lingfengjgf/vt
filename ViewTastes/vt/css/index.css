@@ -8,23 +8,17 @@
 }
 #c1{
     width: 100%;
-    height: 30rem;
+    height: 480px;
+    padding-top: 50px;
+    margin-top:20px; 
     background: url("../img/index/bg_index_c2.png") no-repeat 50% 50%;
     background-size:cover;
 }
-#c1 .carousel-inner div img{
-    width: 15rem;
-    height: 20rem;
+#c1>div{
+    padding: 10px 0px 0px 50px;
 }
-.carousel-caption{
-    width: 20%;
-}
-.carousel-caption a{
-    font-size: 1.5rem;
-    color: #ffffff;
-}
-.carousel-caption p.content{
-    color: #ffffff;
+#c1>div>a{
+    padding-right: 50px;
 }
 div.row div.f6{
     height: 30rem;
@@ -59,6 +53,121 @@ div.row div.f6 a img{
     display: block;
     text-align: center;
 }
-
-
-
+#c1>div.showImg{
+    display: flex;
+    justify-content: center;
+}
+div.cNav{
+    position: relative;
+}
+section>div{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+section>div>h2{
+    width: 100%;
+}
+section>div>div.top{
+    width: 1140px;
+}
+section>div>div>ul>li>b{
+    margin: 0 5px;
+}
+section>div>div.content{
+    width: 840px;
+    background: #fff;
+}
+section>div>div.content>ul{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+}
+section>div>div.content>ul>li{
+    width: 280px;
+    padding-top: 20px;
+    border: 1px solid #f0f0f0;
+}
+section>div>div.content>ul>li>a>img{
+    width: 200px;
+}
+section>div>div.rank{
+    width: 300px;
+    background: #fff;
+}
+section>div>div.rank{
+    width: 300px;
+    height: 100%;
+    padding: 10px;
+}
+section>div>div.rank>a.top{
+    display: block;
+    width: 90px;
+    font-size: 18px;
+    font-weight: 400;
+    text-align: left;
+    padding-left: 0.5rem;
+}
+section>div>div.rank>ul{
+    margin-top: 1rem;
+    margin-bottom: 0;
+    text-align: left;
+}
+section>div>div.rank>ul>li{
+    display: flex;
+    margin-bottom: 0.5rem;
+}
+section>div>div.rank>ul>li>span{
+    color: #888;
+    font-size: 18px;
+    margin-right: 0.5rem;
+}
+section>div>div.rank>ul>li>div.book{
+    width: 100%;
+    border-bottom: 1px dashed #ddd;
+}
+section>div>div.rank>ul>li>div.book>div{
+    display: flex;
+}
+section>div>div.rank>ul>li>div.book>div>a{
+    display: block;
+    width: 180px;
+}
+section>div>div.rank>ul>li>div.book>div>div>img{
+    width: 25px;
+    margin-left: 0.5rem;
+}
+section>div>div.rank>ul>li>div.book>div>div>span{
+    color: #888;
+    font-size: 13px;
+}
+section>div>div.rank>ul>li.active>div.book{
+    display: flex;
+}
+section>div>div.rank>ul>li.active>div.book>a>img{
+    display:block !important;
+    width: 80px;
+}
+section>div>div.rank>ul>li.active>div.book>div{
+    flex-direction: column;
+    width: 180px;
+    padding:8px 0 0 8px;
+    margin-bottom: 20px;
+}
+section>div>div.rank>ul>li.active>div.book>div>a{
+    width: 100px;
+    margin-bottom: 10px;
+    color: #000;
+}
+section>div>div.rank>ul>li.active>div.book>div>p{
+    display: block !important;
+    margin-bottom: 10px;
+    font-size: 13px;
+}
+section>div>div.rank>ul>li.active>div.book>div>div>img{
+    margin: 0; 
+}
+section>div>div.rank>a.foot{
+    font-size: 13px;
+    margin-right: 0px; 
+}
