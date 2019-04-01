@@ -9,24 +9,17 @@
 #c1{
     width: 100%;
     height: 480px;
-    padding-top: 50px;
+    padding-top: 40px;
     margin-top:20px; 
-    background: url("../img/index/bg_index_c2.png") no-repeat 50% 50%;
+    background: url("../img/index/bg_index_c2.png") no-repeat;
     background-size:cover;
+    position: relative;
 }
 #c1>div{
     padding: 10px 0px 0px 50px;
 }
 #c1>div>a{
     padding-right: 50px;
-}
-div.row div.f6{
-    height: 30rem;
-    background: #ffffff;
-    border: 1px dotted #888;
-}
-div.row div.f6 a img{
-    width: 15rem;
 }
 #c1>div>a>img{
     width: 10rem;
@@ -37,7 +30,7 @@ div.row div.f6 a img{
     transform: scale(1.1);
 }
 #c1>article{
-    width: 60rem;    
+    width: 1140px;    
     display: none;
     margin: auto;
 }
@@ -48,17 +41,72 @@ div.row div.f6 a img{
 #c1>article>a:hover{
     color: #0083ec;
 }
-#c1>article>p{color: #ddd}
+#c1>article>p{
+    color: #ddd;
+    width: 960px;
+    height: 72px;
+    padding-left: 90px;
+    overflow: hidden;
+}
 #c1>article.show{
     display: block;
     text-align: center;
 }
 #c1>div.showImg{
-    display: flex;
-    justify-content: center;
+    width: 1140px;
+    margin: 0 auto;
+    padding-left: 175px;
+    display: flex;    
 }
-div.cNav{
-    position: relative;
+#c1>div.cNav{
+    width: 1140px;
+    margin: 0 auto;
+    margin-top: -130px;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    position: relative;   
+}
+#c1>div.cNav>a{
+    display: block;
+    width: 25px;
+    padding: 0;
+    height: 25px;
+}
+div.cNav>a.prev{
+    background: url(../img/index/left.png) no-repeat;
+}
+div.cNav>a.prev:hover{
+    background: url(../img/index/leftBlue.png) no-repeat;
+}
+div.cNav>a.next{
+    background: url(../img/index/right.png) no-repeat;
+}
+div.cNav>a.next:hover{
+    background: url(../img/index/rightBlue.png) no-repeat;
+}
+#c1>ul.cIndicators{
+    display: flex;
+    width: 1140px;
+    margin: 0 auto;
+    justify-content: center;
+    margin-top: 140px;
+}
+#c1>ul.cIndicators>li{
+    width: 10px;
+}
+#c1>ul.cIndicators>li+li{
+    margin-left: 10px;
+}
+#c1>ul.cIndicators>li>a{
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ddd;
+}
+#c1>ul.cIndicators>li>a.active{
+    background: #0083ec;
 }
 section>div{
     display: flex;
