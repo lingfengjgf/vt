@@ -174,10 +174,15 @@ CREATE TABLE vt_user(
 	phone VARCHAR(16),
 	email VARCHAR(32),
 	avatar VARCHAR(128), 
-	bg  VARCHAR(128) 
+	bg  VARCHAR(128),
+	readFontF SMALLINT,
+	readFontS SMALLINT,
+	readBg SMALLINT,
+	isVIP BOOL,
+	balance INT 
 );
 INSERT INTO vt_user VALUES
-(NULL,'aaa',md5('123456'),'13812345678','aaa@163.com','/img/user/icon/default.png','bg.jpg');
+(NULL,'aaa',md5('123456'),'13812345678','aaa@163.com','/img/user/icon/default.png','bg.jpg',0,18,0,0,0);
 
 #用户头像表
 CREATE TABLE vt_avatar(
@@ -206,6 +211,33 @@ INSERT INTO vt_bg VALUES
 (NULL,'bg05.jpg'),
 (NULL,'bg06.jpg');
 
+#充值金额表
+CREATE TABLE vt_money(
+	yid INT PRIMARY KEY AUTO_INCREMENT,
+	pay SMALLINT,
+	bookCoin INT,
+	give INT
+);
+INSERT INTO vt_money VALUES
+(NULL,20,2000,0),
+(NULL,50,5000,0),
+(NULL,100,10000,0),
+(NULL,200,20000,1000),
+(NULL,300,30000,2000),
+(NULL,500,50000,5000);
+
+#充值VIP表
+CREATE TABLE vt_vip(
+	vid INT PRIMARY KEY AUTO_INCREMENT,
+	pay SMALLINT,
+	buyTime VARCHAR(64),
+	vipGive INT
+);
+INSERT INTO vt_vip VALUES
+(NULL,20,'1月',0),
+(NULL,50,'3月',500),
+(NULL,188,'1年',1000);
+
 #创建书评表
 CREATE TABLE vt_comments(
 	cid INT PRIMARY KEY AUTO_INCREMENT,
@@ -226,15 +258,17 @@ INSERT INTO vt_comments VALUES
 CREATE TABLE vt_bookshelf(
 	sid INT PRIMARY KEY AUTO_INCREMENT,
 	uid INT,
-	bookId INT
+	bookId INT,
+	readed INT,
+	isBuy BOOL
 );
 INSERT INTO vt_bookshelf VALUES
-(NULL,1,3),
-(NULL,1,5),
-(NULL,1,6),
-(NULL,1,8),
-(NULL,1,2),
-(NULL,1,13);
+(NULL,1,3,0,0),
+(NULL,1,5,0,0),
+(NULL,1,6,0,1),
+(NULL,1,8,0,0),
+(NULL,1,2,0,1),
+(NULL,1,13,0,1);
 
 #创建书籍表
 CREATE TABLE vt_books(

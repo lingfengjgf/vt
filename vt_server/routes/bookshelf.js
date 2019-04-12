@@ -8,9 +8,9 @@ router.get("/",(req,res)=>{
         return;
     }
     var uid=req.session.uid;
-    var sql='SELECT b.bid,b.pic,b.title,b.author,b.label FROM vt_books b,';
-    sql+=' vt_bookshelf s WHERE s.uid=? AND s.bookId=b.bid ';
-    sql+=' ORDER BY s.sid DESC LIMIT 0,9';
+    var sql='SELECT b.bid,b.pic,b.title,b.author,b.label,s.readed '
+    sql+=' FROM vt_books b, vt_bookshelf s WHERE ';
+    sql+=' s.uid=? AND s.bookId=b.bid  ORDER BY s.sid DESC LIMIT 0,9';
     pool.query(sql,uid,(err,result)=>{
         if(err) throw err;
         if(result.length>0){
@@ -39,5 +39,6 @@ router.get("/delBook",(req,res)=>{
         }
     })
 })
+
 
 module.exports=router;

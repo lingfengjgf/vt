@@ -49,6 +49,7 @@ router.get('/',(req,res)=>{
 router.get('/comment',(req,res)=>{
 	var bid=parseInt(req.query.bid);
 	var pno=req.query.pno;
+	//console.log(bid);
 	var pageSize=req.query.pageSize;
 	if(!pno){pno=0};
 	if(!pageSize){pageSize=8};
@@ -73,18 +74,23 @@ router.get('/comment',(req,res)=>{
             output={pno,count,pageCount,comments};
 		}else{
             var pageCount=0;
-            var comments=[];
-            var output={pno,pageCount,books};
+			var comments=[];
+			var count=0;
+            output={count,comments,pageCount};
         }
 		res.send(output);		
 	})
 })
 
-//发表新闻评论
+//发表评论
 router.post('/addCom',(req,res)=>{
     var bid=req.body.bid;
 	var content=req.body.content;
-	var uid=1;
+	if(!req.session.uid){
+        res.send({code:-2,msg:"未登录"});
+        return;
+    }
+    var uid=req.session.uid;
     var sql='INSERT INTO vt_comments(cid,content,ctime,bookId,uid) VALUES(NULL,?,now(),?,?)';
     pool.query(sql,[content,bid,uid],(err,result)=>{
         if(err) throw err;
@@ -106,11 +112,10 @@ router.get("/addBook",(req,res)=>{
 	var sql="SELECT sid FROM vt_bookshelf WHERE uid=? AND bookId=?";
 	pool.query(sql,[uid,bid],(err,result)=>{
 		if(err) throw err;
-		console.log(result);
 		if(result.length>0){
 			res.send({code:-1,msg:"书架中已经有这本书啦!"});
 		}else{
-			var sql="INSERT INTO vt_bookshelf(sid,bookId,uid) VALUES(NULL,?,?)";
+			var sql="INSERT INTO vt_bookshelf(sid,bookId,uid,readed,isBuy) VALUES(NULL,?,?,0,0)";
 			pool.query(sql,[bid,uid],(err,result)=>{
 				if(err) throw err;
 				if(result.affectedRows>0)

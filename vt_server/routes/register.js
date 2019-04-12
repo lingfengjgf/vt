@@ -10,12 +10,18 @@ router.post('/',(req,res)=>{
     if(!uname||!upwd||!email||!phone){
         return;
     }
-    var sql='INSERT INTO vt_user(uid,uname,upwd,email,phone,avatar,bg) VALUES'
-    sql+=' (NULL,?,md5(?),?,?,"/img/user/icon/default.png","/img/user/bg/bg.jpg")';
+    var sql='INSERT INTO vt_user(uid,uname,upwd,email,phone,avatar,bg,readFontF,';
+    sql+=' readFontS,readBg,isVIP) VALUES  (NULL,?,md5(?),?,?, ';
+    sql+=' "/img/user/icon/default.png","bg.jpg",0,18,0,0)';
     pool.query(sql,[uname,upwd,email,phone],(err,result)=>{
         if(err) throw err;
         if(result.affectedRows>0){
-            res.send({code:1,msg:'注册成功'});
+            var sql='SELECT uid FROM vt_user WHERE uname=?';
+            pool.query(sql,uname,(err,result)=>{
+                if(err) throw err;
+                req.session.uid=result[0].uid;
+                res.send({code:1,msg:'注册成功'});
+            })
         }else{
             res.send({code:-1,msg:'注册失败'});
         }

@@ -7,7 +7,7 @@ router.get("/",(req,res)=>{
     var progress=0; //sql执行进度
     var sql="SELECT c.bookId,b.title,b.pic,b.intro FROM vt_carousel_item c,vt_books b WHERE c.bookId=b.bid";
     pool.query(sql,(err,result)=>{
-        if(err) console.log(err);
+        if(err) throw err;
         output.casels=result;
         progress+=1;
         if(progress==4)

@@ -16,6 +16,7 @@ const bookshelf=require('./routes/bookshelf.js');
 const catalog=require('./routes/catalog.js');
 const read=require('./routes/read.js');
 const userinfo=require('./routes/userinfo.js');
+const topup=require('./routes/topup.js');
 //引入body-parser中间件
 const bodyParser=require('body-parser');
 
@@ -55,3 +56,4 @@ app.use('/bookshelf',bookshelf);
 app.use('/catalog',catalog);
 app.use('/read',read);
 app.use('/userinfo',userinfo);
+app.use('/topup',topup);
