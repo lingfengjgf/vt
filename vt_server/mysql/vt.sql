@@ -238,6 +238,17 @@ INSERT INTO vt_vip VALUES
 (NULL,50,'3月',500),
 (NULL,188,'1年',1000);
 
+#小程序轮播图
+CREATE TABLE vt_wx_casel(
+	cid INT PRIMARY KEY AUTO_INCREMENT,
+	pic VARCHAR(256)
+);
+INSERT INTO vt_wx_casel VALUES
+(NULL,'/img/wx/wxcasel01.jpg'),
+(NULL,'/img/wx/wxcasel02.jpg'),
+(NULL,'/img/wx/wxcasel03.jpg'),
+(NULL,'/img/wx/wxcasel04.jpg');
+
 #创建书评表
 CREATE TABLE vt_comments(
 	cid INT PRIMARY KEY AUTO_INCREMENT,

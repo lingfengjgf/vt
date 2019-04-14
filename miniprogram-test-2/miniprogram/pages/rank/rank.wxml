@@ -1,0 +1,22 @@
+<!--miniprogram/pages/rank/rank.wxml-->
+<view class='container'>
+  <view class='nav-top'>
+    <text class='show'>出版</text>
+    <text>经典</text>
+    <text>国外</text>
+    <text>男生</text>
+    <text>女生</text>
+  </view>
+  <view class='nav-left'>
+    <text>畅销榜</text>
+    <text>畅销榜</text>
+    <text>畅销榜</text>
+    <text>畅销榜</text>
+    <text>畅销榜</text>
+  </view>
+  <view class='rank'>
+    <view class='book'>
+      
+    </view>
+  </view>
+</view>
