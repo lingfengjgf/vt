@@ -238,17 +238,6 @@ INSERT INTO vt_vip VALUES
 (NULL,50,'3月',500),
 (NULL,188,'1年',1000);
 
-#小程序轮播图
-CREATE TABLE vt_wx_casel(
-	cid INT PRIMARY KEY AUTO_INCREMENT,
-	pic VARCHAR(256)
-);
-INSERT INTO vt_wx_casel VALUES
-(NULL,'/img/wx/wxcasel01.jpg'),
-(NULL,'/img/wx/wxcasel02.jpg'),
-(NULL,'/img/wx/wxcasel03.jpg'),
-(NULL,'/img/wx/wxcasel04.jpg');
-
 #创建书评表
 CREATE TABLE vt_comments(
 	cid INT PRIMARY KEY AUTO_INCREMENT,
@@ -280,6 +269,39 @@ INSERT INTO vt_bookshelf VALUES
 (NULL,1,8,0,0),
 (NULL,1,2,0,1),
 (NULL,1,13,0,1);
+
+#小程序轮播图
+CREATE TABLE vt_wx_casel(
+	cid INT PRIMARY KEY AUTO_INCREMENT,
+	pic VARCHAR(256)
+);
+INSERT INTO vt_wx_casel VALUES
+(NULL,'/img/index/wxcasel01.jpg'),
+(NULL,'/img/index/wxcasel02.jpg'),
+(NULL,'/img/index/wxcasel03.jpg'),
+(NULL,'/img/index/wxcasel04.jpg');
+
+#小程序排行导航(上)
+CREATE TABLE vt_wx_rankTopNav(
+	nid INT PRIMARY KEY AUTO_INCREMENT,
+	title VARCHAR(8)
+);
+INSERT INTO vt_wx_rankTopNav VALUES
+(NULL,'出版'),
+(NULL,'经典'),
+(NULL,'国外'),
+(NULL,'男生'),
+(NULL,'女生');
+
+#小程序排行导航(左)
+CREATE TABLE vt_wx_rankLeftNav(
+	nid INT PRIMARY KEY AUTO_INCREMENT,
+	title VARCHAR(8)	
+);
+INSERT INTO vt_wx_rankLeftNav VALUES
+(NULL,'畅销榜'),
+(NULL,'新书榜'),
+(NULL,'推荐榜');
 
 #创建书籍表
 CREATE TABLE vt_books(
