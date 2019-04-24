@@ -4,8 +4,8 @@ const router=express.Router();
 
 router.get('/',(req,res)=>{
     var output={};
-    var sql='SELECT t.bookId,b.title,b.author,b.pic,b.watch,b.intro,b.label FROM vt_publish_best t,vt_books b WHERE b.bid=t.bookId ORDER BY t.sort';
     var progress=0;
+    var sql='SELECT t.bookId,b.title,b.author,b.pic,b.watch,b.intro,b.label FROM vt_publish_best t,vt_books b WHERE b.bid=t.bookId ORDER BY t.sort';
     pool.query(sql,(err,result)=>{
         if(err) throw err;
         output.best=result;
