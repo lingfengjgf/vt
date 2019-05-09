@@ -23,10 +23,21 @@ const bodyParser=require('body-parser');
 
 //创建服务器
 var app=express();
-app.use(cors({
-	origin:['http://127.0.0.1:3300','http://localhost:3300'],
-	credentials:true
-  }))
+// app.use(cors({
+// 	origin:['http://127.0.0.1:3300','http://localhost:3300'],
+// 	credentials:true
+//   }))
+app.all('*', (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", req.headers.origin || '*');
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
+  res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
+  res.header("Access-Control-Allow-Credentials", true); // 可以带cookies
+  if(req.method == 'OPTIONS') {
+      res.sendStatus(200);
+  } else {
+      next();
+  }
+});
 app.listen(3000);
 
 //托管静态资源

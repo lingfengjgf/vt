@@ -1,8 +1,5 @@
-#创建数据库
+
 SET NAMES UTF8;
-DROP DATABASE  IF EXISTS vt;
-CREATE DATABASE vt CHARSET=UTF8;
-USE vt;
 
 #网站基本信息
 CREATE TABLE vt_site_info(
