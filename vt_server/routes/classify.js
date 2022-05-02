@@ -1,7 +1,7 @@
 const express=require('express');
 const pool=require('../pool.js');
 const router=express.Router();
-router.get("/",(req,res)=>{
+router.post("/",(req,res)=>{
     var output={};
     var progress=0; //sql执行进度
     var sql="SELECT c.label FROM vt_classify c WHERE c.cname='频道'";
@@ -28,10 +28,10 @@ router.get("/",(req,res)=>{
         if(progress==4)
             res.send(output);
     });
-    var pno=parseInt(req.query.pno);
-    var pageSize=parseInt(req.query.pageSize);
-    var order=req.query.order;
-    var label=req.query.label;
+    var pno=parseInt(req.body.pno);
+    var pageSize=parseInt(req.body.pageSize);
+    var order=req.body.order;
+    var label=req.body.label;
     var sql='SELECT bid,title,author,watch,pic,intro FROM vt_books';
     if(label){
         label=label.split(/\s+/);
@@ -71,10 +71,10 @@ router.get("/",(req,res)=>{
     });   
 })
 
-router.get('/search',(req,res)=>{
-    var pno=parseInt(req.query.pno);
-    var pageSize=parseInt(req.query.pageSize);
-    var kwords=req.query.kwords;
+router.post('/search',(req,res)=>{
+    var pno=parseInt(req.body.pno);
+    var pageSize=parseInt(req.body.pageSize);
+    var kwords=req.body.kwords;
     if (!pno) pno=0;
     if(!pageSize) pageSize=9;
     var output={};

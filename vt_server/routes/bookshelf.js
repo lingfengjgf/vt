@@ -21,13 +21,13 @@ router.get("/",(req,res)=>{
     })
 })
 
-router.get("/delBook",(req,res)=>{
+router.post("/delBook",(req,res)=>{
     if(!req.session.uid){
         res.send({code:-1,msg:"未登录"});
         return;
     }
     var uid=req.session.uid;
-    var bid=req.query.bid;
+    var bid=req.body.bid;
     var sql="DELETE FROM vt_bookshelf WHERE uid=? AND bookId=?";
     pool.query(sql,[uid,bid],(err,result)=>{
         if(err) throw err;

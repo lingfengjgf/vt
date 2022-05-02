@@ -70,3 +70,7 @@ app.use('/read',read);
 app.use('/userinfo',userinfo);
 app.use('/topup',topup);
 app.use('/wx',wx);
+
+app.get('/index',(req,res)=>{
+	console.log("get /index",res)
+})

@@ -5,8 +5,8 @@ const pool=require('../pool.js');
 const router=express.Router();
 
 //查询书籍信息
-router.get('/',(req,res)=>{
-	var bid=parseInt(req.query.bid);
+router.post('/',(req,res)=>{
+	var bid=parseInt(req.body.bid);
 	var output={};
 	var sql='SELECT title,author,label,words,price,watch,pic,intro FROM vt_books WHERE bid=?';
 	pool.query(sql,[bid],(err,result)=>{
@@ -46,11 +46,11 @@ router.get('/',(req,res)=>{
 });
 
 //查询评论信息
-router.get('/comment',(req,res)=>{
-	var bid=parseInt(req.query.bid);
-	var pno=req.query.pno;
+router.post('/comment',(req,res)=>{
+	var bid=parseInt(req.body.bid);
+	var pno=req.body.pno;
 	//console.log(bid);
-	var pageSize=req.query.pageSize;
+	var pageSize=req.body.pageSize;
 	if(!pno){pno=0};
 	if(!pageSize){pageSize=8};
 	//正则验证
@@ -102,13 +102,13 @@ router.post('/addCom',(req,res)=>{
 });
 
 //加入书架
-router.get("/addBook",(req,res)=>{
+router.post("/addBook",(req,res)=>{
 	if(!req.session.uid){
         res.send({code:-1,msg:"未登录"});
         return;
     }
 	var uid=req.session.uid;
-	var bid=req.query.bid;
+	var bid=req.body.bid;
 	var sql="SELECT sid FROM vt_bookshelf WHERE uid=? AND bookId=?";
 	pool.query(sql,[uid,bid],(err,result)=>{
 		if(err) throw err;

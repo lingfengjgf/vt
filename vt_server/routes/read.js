@@ -2,8 +2,8 @@ const express=require('express');
 const pool=require('../pool.js');
 const router=express.Router();
 
-router.get("/book",(req,res)=>{
-    var bid=req.query.bid;
+router.post("/book",(req,res)=>{
+    var bid=req.body.bid;
     var output={};
     var progress=0;
     if(!req.session.uid){
@@ -39,14 +39,14 @@ router.get("/book",(req,res)=>{
     })
 })
 
-router.get("/pageSet",(req,res)=>{
+router.post("/pageSet",(req,res)=>{
     if(!req.session.uid){
         res.send({code:-1,msg:"未登录"});
         return;
     }
     var uid=req.session.uid;
-    var readed=parseInt(req.query.readed);
-    var bid=parseInt(req.query.bid);
+    var readed=parseInt(req.body.readed);
+    var bid=parseInt(req.body.bid);
     var sql="SELECT sid FROM vt_bookshelf WHERE uid=? AND bookId=?";
     pool.query(sql,[uid,bid],(err,result)=>{
         if(err) throw err;

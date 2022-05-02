@@ -2,8 +2,8 @@ const express=require("express");
 const pool=require('../pool.js');
 const router=express.Router();
 
-router.get('/',(req,res)=>{
-    var bid=parseInt(req.query.bid);
+router.post('/',(req,res)=>{
+    var bid=parseInt(req.body.bid);
     if(!bid){
         res.send({code:-1,msg:"请提供书籍id"});
         return;
@@ -16,13 +16,13 @@ router.get('/',(req,res)=>{
     })
 })
 
-router.get('/vip',(req,res)=>{
+router.post('/vip',(req,res)=>{
     if(!req.session.uid){
         res.send({code:-1,msg:"未登录"});
         return;
     }
     var uid=req.session.uid;
-    var bid=req.query.bid; 
+    var bid=req.body.bid; 
     var output={};
     var progress=0;
     var sql="SELECT isVIP FROM vt_user WHERE uid=?";

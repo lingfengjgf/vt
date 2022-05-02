@@ -25,9 +25,9 @@ router.post('/login',(req,res)=>{
 });
 
 //用户注册
-router.get('/register',(req,res)=>{
-	var $uname=req.query.uname;
-	var $upwd=req.query.upwd;
+router.post('/register',(req,res)=>{
+	var $uname=req.body.uname;
+	var $upwd=req.body.upwd;
 	var sql='INSERT INTO vt_user(uid,uname,upwd) VALUES(NULL,?,?)';
 	pool.query(sql,[$uname,$upwd],(err,result)=>{
 		if(err) throw err;

@@ -78,13 +78,13 @@ router.get("/info",(req,res)=>{
 })
 
 //用户阅读章节信息
-router.get("/readed",(req,res)=>{
+router.post("/readed",(req,res)=>{
     if(!req.session.uid){
         res.send({code:-1,msg:"未登录"});
         return;
     }
     var uid=req.session.uid;
-    var bid=parseInt(req.query.bid);
+    var bid=parseInt(req.body.bid);
     var sql="SELECT readed FROM vt_bookshelf WHERE uid=? AND bookId=?";
     pool.query(sql,[uid,bid],(err,result)=>{
         if(err) throw err;
