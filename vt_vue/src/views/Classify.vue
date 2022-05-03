@@ -4,13 +4,13 @@
             <div class="choose">
                 <span>频道</span>
                 <ul class="list-unstyled choose-ul">
-                    <li v-for='(c,i) of channel'><a href="javascript:;" @click='change' :data-i='i' data-id='1' class="choose-item" :class='{active:0==i}'>{{c.label}}</a></li>
+                    <li v-for='(c,i) of channel' :key="i"><a href="javascript:;" @click='change' :data-i='i' data-id='1' class="choose-item" :class='{active:0==i}'>{{c.label}}</a></li>
                 </ul>
             </div>
             <div class="choose">
                 <span>类型</span>
                 <ul class="list-unstyled choose-ul">
-                    <li v-for='(g,i) of genre'><a href="javascript:;" @click='change' :data-i='i' data-id='2' class="choose-item" :class='{active:0==i}'>{{g.label}}</a></li>
+                    <li v-for='(g,i) of genre' :key="i"><a href="javascript:;" @click='change' :data-i='i' data-id='2' class="choose-item" :class='{active:0==i}'>{{g.label}}</a></li>
                 </ul>
                 <a @click='showAll' href="javascript:;">
                     <span>{{span}}</span><span class='triangle' :class='{more:isShow}'></span>
@@ -19,7 +19,7 @@
             <div class="choose">
                 <span>其他</span>
                 <ul class="list-unstyled choose-ul">
-                    <li v-for='(o,i) of others'><a href="javascript:;" @click='change' :data-i='i' data-id='3' class="choose-item" :class='{active:0==i}'>{{o.label}}</a></li>
+                    <li v-for='(o,i) of others' :key="i"><a href="javascript:;" @click='change' :data-i='i' data-id='3' class="choose-item" :class='{active:0==i}'>{{o.label}}</a></li>
                 </ul>
             </div> 
         </div>   
@@ -37,8 +37,8 @@
             </div>
             <div class="showContent" :class="{firstLoad:progress==0}">
                 <ul class="list-unstyled content-ul" :class='{hide:pageCount==0}'>
-                    <li v-for='b of books'>
-                        <router-link :to='`/details/${b.bid}`'><img :src="`http://localhost:3000/${b.pic}`"></router-link>
+                    <li v-for='b of books' :key="b.bid">
+                        <router-link :to='`/details/${b.bid}`'><img :src="`${baseUrl}${b.pic}`"></router-link>
                         <div>
                             <router-link :to='`/details/${b.bid}`'>{{b.title}}</router-link>
                             <p>
@@ -46,7 +46,7 @@
                                 <router-link :to='`/read/${b.bid}/0`'>试读</router-link>
                             </p>
                             <div>
-                                <img src="http://localhost:3000/img/classify/eye.png">
+                                <img :src="`${baseUrl}img/classify/eye.png`">
                                 <span>{{b.watch}}</span>
                             </div>
                             <p class="intro">{{b.intro}}</p>
@@ -55,13 +55,13 @@
                 </ul>
                 <div class="noBook" :class='{showNoBook:pageCount==0&&progress>0}'>
                     <h2>没有找到相关书籍!</h2>
-                    <img src="http://localhost:3000/img/classify/sorry1.gif">
+                    <img :src="`${baseUrl}/img/classify/sorry1.gif`">
                 </div>
             </div>
             <div class="showBorder" :class='{new:order==1}'></div>
             <ul class="list-unstyled page-ul">
                 <li><a @click='goPrev' href="javascript:;" class="prev" :class='{disabled:pno==0,hide:pageCount<=1}'>上一页</a></li>
-                <li v-for='(p,i) of page'><a @click='changePage' :data-pno='i+minP-1' href="javascript:;" :class="{active:pno==i+minP-1}">{{i+minP}}</a></li>
+                <li v-for='(p,i) of page' :key="i"><a @click='changePage' :data-pno='i+minP-1' href="javascript:;" :class="{active:pno==i+minP-1}">{{i+minP}}</a></li>
                 <li><a @click='goNext' href="javascript:;" class="next"  :class='{disabled:pno==pageCount-1,hide:pageCount<=1}'>下一页</a></li>
                 <div class="jump">
                     <span :class='{hide:pageCount<=0}'>共{{pageCount}}页</span>
@@ -87,6 +87,7 @@
     export default {
         data() {
             return {
+                baseUrl:process.env.VUE_APP_IMGURL,
                 channel:[],
                 genre:[],
                 allGenre:[],

@@ -2,7 +2,7 @@
     <header id='header'>
         <div>
             <div class="logo">
-                <router-link to="/"><img data-i="0" src="http://127.0.0.1:3000/../img/index/logo.png" ></router-link>
+                <router-link to="/"><img data-i="0" src="../assets/img/icon/logo.png" ></router-link>
             </div>
             <div class="nav">
                 <ul class="list-unstyled">
@@ -16,12 +16,12 @@
             <div class="login">
                 <input type="text" v-model='kwords' @keyup.13='search()' placeholder="书名/作者"/>
                 <a @click='search()' class='search' href="javascript:;">
-                    <img src="http://127.0.0.1:3000/img/index/search.png">
+                    <img src="../assets/img/icon/search.png">
                 </a>
                 <router-link :class="{hide:$store.getters.optIsLogin==1}" to="/login">登录</router-link>
                 <router-link :class="{hide:$store.getters.optIsLogin==1}" to="/register">注册</router-link>
                 <router-link  to="/user" :class="{hide:$store.getters.optIsLogin==0}" class="avatar">
-                    <img :src="`http://localhost:3000${$store.getters.optUserAva}`">
+                    <img :src="`${baseUrl}${$store.getters.optUserAva}`">
                 </router-link>
                 <a @click='logoutClick' :class="{hide:$store.getters.optIsLogin==0}" href="javascript:;">注销</a>
             </div>
@@ -43,6 +43,7 @@
     export default {
         data(){
             return{
+                baseUrl:process.env.VUE_APP_IMGURL,
                 kwords:'',
                 isLogin:false
             }

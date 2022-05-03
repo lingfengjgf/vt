@@ -1,5 +1,9 @@
-import axios from 'axios'
+import service from '../utils/request';
 
 export function getRankInfo() {
-  return axios.get('/api/rank')
+  return service({
+    url:'/rank',
+    method:'get',
+    params:{}
+  })
 }

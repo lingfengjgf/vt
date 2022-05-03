@@ -1,33 +1,33 @@
 <template>
     <div>
         <section>
-            <router-link class="logo" to="/"><img src="http://127.0.0.1:3000/img/index/logo.png" ></router-link>
+            <router-link class="logo" to="/"><img src="../assets/img/icon/logo.png" ></router-link>
             <div class="reg">
                 <h2>用户注册</h2>
                 <p :class='{red:unameErr,green:unameSuc}'>
-                    <img src="http://localhost:3000/img/login/user.png">
+                    <img src="../assets/img/icon/user.png">
                     <input type="text" placeholder="昵称" @focus='fHint' v-model='uname' @blur='bHint' data-i='1'>
                     <span>{{unameSpan}}</span>
                 </p>
                 <p :class='{red:upwdErr,green:upwdSuc}'>
-                    <img src="http://localhost:3000/img/login/upwd.png">
+                    <img src="../assets/img/icon/upwd.png">
                     <input type="password" placeholder="密码" @focus='fHint' v-model='upwd' @blur='bHint' data-i='2'>
                     <span>{{upwdSpan}}</span>
                 </p>
                 <p :class='{red:emailErr,green:emailSuc}'>
-                    <img src="http://localhost:3000/img/login/email.png">
+                    <img src="../assets/img/icon/email.png">
                     <input type="text" placeholder="邮箱" @focus='fHint' v-model='email' @blur='bHint' data-i='3'>
                     <span>{{emailSpan}}</span>
                 </p>
                 <p :class='{red:phoneErr,green:phoneSuc}'>
-                    <img src="http://localhost:3000/img/login/phone.png">
+                    <img src="../assets/img/icon/phone.png">
                     <input type="text" placeholder="手机号码" @focus='fHint' v-model='phone' @blur='bHint' data-i='4'>
                     <span>{{phoneSpan}}</span>
                 </p>
                 <a class="goReg" @click='reg' href="javascript:;">立 即 注 册</a>
                 <router-link class="goLog" to="/login">已有账号,去登录>></router-link>
             </div>
-            <img src="http://localhost:3000/img/login/bookGirl1.png">
+            <img src="../assets/img/icon/bookGirl1.png">
         </section>
         <div @click='close' class="dialog" v-show='showMask'>
             <div class='mask'>
@@ -49,7 +49,6 @@
     export default{
         data(){
             return{
-                url:'http://localhost:3000/register',
                 uname:'',
                 upwd:'',
                 phone:'',

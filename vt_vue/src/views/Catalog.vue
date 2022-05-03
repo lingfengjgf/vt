@@ -14,7 +14,7 @@
             </div>
             <div class="content">
                 <ul class="list-unstyled">
-                    <li v-for="(l,i) of list.catalogs">
+                    <li v-for="(l,i) of list.catalogs" :key="i">
                         <a @click="goRead" :data-p="i" href="javascript:;">{{l}}</a>
                         <span v-show="num<i">V I P</span>
                     </li>

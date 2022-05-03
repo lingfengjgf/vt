@@ -1,4 +1,5 @@
 module.exports = {
+  publicPath :process.env.NODE_ENV === 'production' ? './' : '/',
   productionSourceMap: false,
   devServer: {
     host:"127.0.0.1",
@@ -6,7 +7,7 @@ module.exports = {
     open:true,
     proxy:{
       '^/api':{
-          target:'http://localhost:3000',
+          target:'http://127.0.0.1:3000',
           secure:false,
           changeOrigin:true,
           pathRewrite:{

@@ -8,15 +8,15 @@
                     <div class="recommend">
                         <a href="javascript:;" class="top">编辑推荐</a>
                         <ul class="list-unstyled">
-                            <li v-for='(r,i) of recommend' @mouseenter='showRank' :class='{active:0==i}'>
+                            <li v-for='(r,i) of recommend' @mouseenter='showRank' :class='{active:0==i}' :key="i">
                                 <span class="num">{{i+1}}</span>
                                 <div class="book">
-                                    <router-link :to='`/details/${r.bookId}`'><img class="d-none" :src="`http://localhost:3000/${r.pic}`"></router-link>
+                                    <router-link :to='`/details/${r.bookId}`'><img class="d-none" :src="`${baseUrl}${r.pic}`"></router-link>
                                     <div>
                                         <router-link :to='`/details/${r.bookId}`'>{{r.title}}</router-link>
                                         <p class="d-none">{{r.author}}</p>
                                         <div>
-                                            <img src="http://localhost:3000/img/classify/eye.png">
+                                            <img :src="`${baseUrl}/img/classify/eye.png`">
                                             <span>{{r.watch}}</span>
                                         </div>
                                         <p class="intro d-none">{{r.intro}}</p>
@@ -29,15 +29,15 @@
                     <div class="best">
                         <a href="javascript:;" class="top">观品热销</a>
                         <ul class="list-unstyled">
-                            <li v-for='(b,i) of best' @mouseenter='showRank' :class='{active:0==i}'>
+                            <li v-for='(b,i) of best' @mouseenter='showRank' :class='{active:0==i}' :key="i">
                                 <span class="num">{{i+1}}</span>
                                 <div class="book">
-                                    <router-link :to='`/details/${b.bookId}`'><img class="d-none" :src="`http://localhost:3000/${b.pic}`"></router-link>
+                                    <router-link :to='`/details/${b.bookId}`'><img class="d-none" :src="`${baseUrl}${b.pic}`"></router-link>
                                     <div>
                                         <router-link :to='`/details/${b.bookId}`'>{{b.title}}</router-link>
                                         <p class="d-none">{{b.author}}</p>
                                         <div>
-                                            <img src="http://localhost:3000/img/classify/eye.png">
+                                            <img :src="`${baseUrl}/img/classify/eye.png`">
                                             <span>{{b.watch}}</span>
                                         </div>
                                         <p class="intro d-none">{{b.intro}}</p>
@@ -50,15 +50,15 @@
                     <div class="new">
                         <a href="javascript:;" class="top">新书上榜</a>
                         <ul class="list-unstyled">
-                            <li v-for='(n,i) of news' @mouseenter='showRank' :class='{active:0==i}'>
+                            <li v-for='(n,i) of news' @mouseenter='showRank' :class='{active:0==i}' :key="i">
                                 <span class="num">{{i+1}}</span>
                                 <div class="book">
-                                    <router-link :to='`/details/${n.bookId}`'><img class="d-none" :src="`http://localhost:3000/${n.pic}`"></router-link>
+                                    <router-link :to='`/details/${n.bookId}`'><img class="d-none" :src="`${baseUrl}${n.pic}`"></router-link>
                                     <div>
                                         <router-link :to='`/details/${n.bookId}`'>{{n.title}}</router-link>
                                         <p class="d-none">{{n.author}}</p>
                                         <div>
-                                            <img src="http://localhost:3000/img/classify/eye.png">
+                                            <img :src="`${baseUrl}/img/classify/eye.png`">
                                             <span>{{n.watch}}</span>
                                         </div>
                                         <p class="intro d-none">{{n.intro}}</p>
@@ -78,15 +78,15 @@
                     <div class="recommend">
                         <a href="javascript:;" class="top">编辑推荐</a>
                         <ul class="list-unstyled">
-                            <li v-for='(r,i) of recommend' @mouseenter='showRank' :class='{active:0==i}'>
+                            <li v-for='(r,i) of recommend' @mouseenter='showRank' :class='{active:0==i}' :key="i">
                                 <span class="num">{{i+1}}</span>
                                 <div class="book">
-                                    <router-link :to='`/details/${r.bookId}`'><img class="d-none" :src="`http://localhost:3000/${r.pic}`"></router-link>
+                                    <router-link :to='`/details/${r.bookId}`'><img class="d-none" :src="`${baseUrl}${r.pic}`"></router-link>
                                     <div>
                                         <router-link :to='`/details/${r.bookId}`'>{{r.title}}</router-link>
                                         <p class="d-none">{{r.author}}</p>
                                         <div>
-                                            <img src="http://localhost:3000/img/classify/eye.png">
+                                            <img :src="`${baseUrl}/img/classify/eye.png`">
                                             <span>{{r.watch}}</span>
                                         </div>
                                         <p class="intro d-none">{{r.intro}}</p>
@@ -99,15 +99,15 @@
                     <div class="best">
                         <a href="javascript:;" class="top">观品热销</a>
                         <ul class="list-unstyled">
-                            <li v-for='(b,i) of best' @mouseenter='showRank' :class='{active:0==i}'>
+                            <li v-for='(b,i) of best' @mouseenter='showRank' :class='{active:0==i}' :key="i">
                                 <span class="num">{{i+1}}</span>
                                 <div class="book">
-                                    <router-link :to='`/details/${b.bookId}`'><img class="d-none" :src="`http://localhost:3000/${b.pic}`"></router-link>
+                                    <router-link :to='`/details/${b.bookId}`'><img class="d-none" :src="`${baseUrl}${b.pic}`"></router-link>
                                     <div>
                                         <router-link :to='`/details/${b.bookId}`'>{{b.title}}</router-link>
                                         <p class="d-none">{{b.author}}</p>
                                         <div>
-                                            <img src="http://localhost:3000/img/classify/eye.png">
+                                            <img :src="`${baseUrl}/img/classify/eye.png`">
                                             <span>{{b.watch}}</span>
                                         </div>
                                         <p class="intro d-none">{{b.intro}}</p>
@@ -120,15 +120,15 @@
                     <div class="new">
                         <a href="javascript:;" class="top">新书上榜</a>
                         <ul class="list-unstyled">
-                            <li v-for='(n,i) of news' @mouseenter='showRank' :class='{active:0==i}'>
+                            <li v-for='(n,i) of news' @mouseenter='showRank' :class='{active:0==i}' :key="i">
                                 <span class="num">{{i+1}}</span>
                                 <div class="book">
-                                    <router-link :to='`/details/${n.bookId}`'><img class="d-none" :src="`http://localhost:3000/${n.pic}`"></router-link>
+                                    <router-link :to='`/details/${n.bookId}`'><img class="d-none" :src="`${baseUrl}${n.pic}`"></router-link>
                                     <div>
                                         <router-link :to='`/details/${n.bookId}`'>{{n.title}}</router-link>
                                         <p class="d-none">{{n.author}}</p>
                                         <div>
-                                            <img src="http://localhost:3000/img/classify/eye.png">
+                                            <img :src="`${baseUrl}/img/classify/eye.png`">
                                             <span>{{n.watch}}</span>
                                         </div>
                                         <p class="intro d-none">{{n.intro}}</p>
@@ -148,15 +148,15 @@
                     <div class="recommend">
                         <a href="javascript:;" class="top">编辑推荐</a>
                         <ul class="list-unstyled">
-                            <li v-for='(r,i) of recommend' @mouseenter='showRank' :class='{active:0==i}'>
+                            <li v-for='(r,i) of recommend' @mouseenter='showRank' :class='{active:0==i}' :key="i">
                                 <span class="num">{{i+1}}</span>
                                 <div class="book">
-                                    <router-link :to='`/details/${r.bookId}`'><img class="d-none" :src="`http://localhost:3000/${r.pic}`"></router-link>
+                                    <router-link :to='`/details/${r.bookId}`'><img class="d-none" :src="`${baseUrl}${r.pic}`"></router-link>
                                     <div>
                                         <router-link :to='`/details/${r.bookId}`'>{{r.title}}</router-link>
                                         <p class="d-none">{{r.author}}</p>
                                         <div>
-                                            <img src="http://localhost:3000/img/classify/eye.png">
+                                            <img :src="`${baseUrl}/img/classify/eye.png`">
                                             <span>{{r.watch}}</span>
                                         </div>
                                         <p class="intro d-none">{{r.intro}}</p>
@@ -169,15 +169,15 @@
                     <div class="best">
                         <a href="javascript:;" class="top">观品热销</a>
                         <ul class="list-unstyled">
-                            <li v-for='(b,i) of best' @mouseenter='showRank' :class='{active:0==i}'>
+                            <li v-for='(b,i) of best' @mouseenter='showRank' :class='{active:0==i}' :key="i">
                                 <span class="num">{{i+1}}</span>
                                 <div class="book">
-                                    <router-link :to='`/details/${b.bookId}`'><img class="d-none" :src="`http://localhost:3000/${b.pic}`"></router-link>
+                                    <router-link :to='`/details/${b.bookId}`'><img class="d-none" :src="`${baseUrl}${b.pic}`"></router-link>
                                     <div>
                                         <router-link :to='`/details/${b.bookId}`'>{{b.title}}</router-link>
                                         <p class="d-none">{{b.author}}</p>
                                         <div>
-                                            <img src="http://localhost:3000/img/classify/eye.png">
+                                            <img :src="`${baseUrl}/img/classify/eye.png`">
                                             <span>{{b.watch}}</span>
                                         </div>
                                         <p class="intro d-none">{{b.intro}}</p>
@@ -190,15 +190,15 @@
                     <div class="new">
                         <a href="javascript:;" class="top">新书上榜</a>
                         <ul class="list-unstyled">
-                            <li v-for='(n,i) of news' @mouseenter='showRank' :class='{active:0==i}'>
+                            <li v-for='(n,i) of news' @mouseenter='showRank' :class='{active:0==i}' :key="i">
                                 <span class="num">{{i+1}}</span>
                                 <div class="book">
-                                    <router-link :to='`/details/${n.bookId}`'><img class="d-none" :src="`http://localhost:3000/${n.pic}`"></router-link>
+                                    <router-link :to='`/details/${n.bookId}`'><img class="d-none" :src="`${baseUrl}${n.pic}`"></router-link>
                                     <div>
                                         <router-link :to='`/details/${n.bookId}`'>{{n.title}}</router-link>
                                         <p class="d-none">{{n.author}}</p>
                                         <div>
-                                            <img src="http://localhost:3000/img/classify/eye.png">
+                                            <img :src="`${baseUrl}/img/classify/eye.png`">
                                             <span>{{n.watch}}</span>
                                         </div>
                                         <p class="intro d-none">{{n.intro}}</p>
@@ -218,6 +218,7 @@ import {getRankInfo} from '../api/rank'
 export default {
     data() {
         return {
+            baseUrl:process.env.VUE_APP_IMGURL,
             recommend:[],
             best:[],
             news:[]

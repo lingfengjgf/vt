@@ -3,21 +3,21 @@
         <div class='balance'>账户余额: <span>{{balance}}</span>书币</div>
         <div>选择充值金额:</div>
         <div class="money">
-            <a href="javascript:;" :class="{show:i==showM}" v-for='(m,i) of money'>
+            <a href="javascript:;" :class="{show:i==showM}" v-for='(m,i) of money' :key="i">
                 <p><b>{{m.pay}}</b> 元</p>
                 <p>{{m.bookCoin}}书币</p>
                 <p class="give" v-if='m.give!=0'>送<b>{{m.give}}</b>书币</p>
-                <img src="http://localhost:3000/img/user/icon/ok.png" alt="">
+                <img src="../assets/img/icon/ok.png" alt="">
                 <div class='mask-none' @click='showBuy' :data-i='i' data-id='m'></div> 
             </a>
         </div>
         <div>选择支付方式:</div>
         <div class="pay">
             <a href="javascript:;" class="alipay show" @click='showPay'>
-                <img src="http://localhost:3000/img/user/icon/ok.png" alt=""> 
+                <img src="../assets/img/icon/ok.png" alt=""> 
             </a>
             <a href="javascript:;" class="wechat" @click='showPay'>
-                <img src="http://localhost:3000/img/user/icon/ok.png" alt="">
+                <img src="../assets/img/icon/ok.png" alt="">
             </a>
         </div>
         <div class="goPay">
@@ -25,10 +25,10 @@
         </div>
         <div>VIP充值:</div>
         <div class="vip">
-            <a href="javascript:;" :class="{show:i==showV}" v-for='(v,i) of vip'>
+            <a href="javascript:;" :class="{show:i==showV}" v-for='(v,i) of vip' :key="i">
                 <p><b>{{v.pay}}</b> 元 /{{v.buyTime}}</p>
                 <p class="give" v-if='v.vipGive!=0'>送<b>{{v.vipGive}}</b>书币</p> 
-                <img src="http://localhost:3000/img/user/icon/ok.png" alt="">
+                <img src="../assets/img/icon/ok.png" alt="">
                 <div class='mask-none' @click='showBuy' :data-i='i' data-id='v'></div> 
             </a>                      
         </div>
@@ -157,7 +157,7 @@
         border-radius: 2px;
         display: inline-block;
         margin-left: 43px;       
-        background:url(http://localhost:3000/img/user/icon/pay.png) no-repeat 1px 0;
+        background:url('../assets/img/icon/pay.png') no-repeat 1px 0;
         position: relative;
     }
     div.main>div.pay>a.wechat{

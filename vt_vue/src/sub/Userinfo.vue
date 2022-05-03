@@ -29,7 +29,7 @@
                 </h3>
             </li>            
         </ul>
-        <img src="http://localhost:3000/img/user/bg/userinfo.png">
+        <img :src="`${baseUrl}/img/user/bg/userinfo.png`">
     </div>
 </template>
 
@@ -38,6 +38,7 @@ import {getUserInfo} from '../api/user'
 export default {
     data() {
         return {
+            baseUrl:process.env.VUE_APP_IMGURL,
             email:'',
             phone:''
         }

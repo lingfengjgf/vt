@@ -1,22 +1,33 @@
-import axios from 'axios';
-import qs from 'qs';
+import service from '../utils/request';
 
-export function register(postData) {
-  postData=qs.stringify(postData);
-  return axios.post('/api/register',postData)
+export function register(data) {
+  return service({
+    url:'/register',
+    method:'post',
+    data
+  })
 }
 
-export function checkUname(postData) {
-  postData=qs.stringify(postData);
-  return axios.post('/api/register/checkUname',postData)
+export function checkUname(data) {
+  return service({
+    url:'/register/checkUname',
+    method:'post',
+    data
+  })
 }
 
-export function checkEmail(postData) {
-  postData=qs.stringify(postData);
-  return axios.post('/api/register/checkEmail',postData)
+export function checkEmail(data) {
+  return service({
+    url:'/register/checkEmail',
+    method:'post',
+    data
+  })
 }
 
-export function checkPhone(postData) {
-  postData=qs.stringify(postData);
-  return axios.post('/api/register/checkPhone',postData)
+export function checkPhone(data) {
+  return service({
+    url:'/register/checkPhone',
+    method:'post',
+    data
+  })
 }

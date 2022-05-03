@@ -7,11 +7,11 @@
         </p>
         <p class="avatar">
             <b>修改头像：</b>
-            <a href="javascript:;" v-for="(ava,i) of avatar" :class="{show:avaShow==i}"><img @click="changeAva" :data-i="i" :data-src="ava.pic" :src="`http://localhost:3000${ava.pic}`"></a>
+            <a href="javascript:;" v-for="(ava,i) of avatar" :class="{show:avaShow==i}" :key="i"><img @click="changeAva" :data-i="i" :data-src="ava.pic" :src="`${baseUrl}${ava.pic}`"></a>
         </p>
         <p class="bg">
             <b>修改背景：</b>
-            <a href="javascript:;" v-for="(b,i) of bg" :class="{show:bgShow==i}"><img @click="changeBg" :data-i="i" :data-src="b.pic"  :src="`http://localhost:3000/img/user/bg/${b.pic}`"></a>
+            <a href="javascript:;" v-for="(b,i) of bg" :class="{show:bgShow==i}" :key="i"><img @click="changeBg" :data-i="i" :data-src="b.pic"  :src="`${baseUrl}/img/user/bg/${b.pic}`"></a>
         </p>
         <p class="email" :class='{red:emailErr,green:emailSuc}'>
             <b>修改邮箱：</b>
@@ -36,7 +36,7 @@ import {checkUname,checkEmail} from '../api/register'
 export default {
     data() {
         return {
-            url:'http://localhost:3000/register',
+            baseUrl:process.env.VUE_APP_IMGURL,
             avatar:[],
             bg:[],
             avaSrc:'',

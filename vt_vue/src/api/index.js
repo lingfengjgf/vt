@@ -1,5 +1,9 @@
-import axios from 'axios'
+import service from '../utils/request';
 
 export function getIndexInfo() {
-  return axios.get('/api/index')
+  return service({
+    url:'/index',
+    method:'get',
+    params:{}
+  })
 }

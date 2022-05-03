@@ -5,9 +5,9 @@
                 <li>书评
                     <span>共{{comCount}}条</span>
                 </li>
-                <li v-for='c of comments'>
+                <li v-for='(c,i) of comments' :key="i">
                     <div>
-                        <img :src="`http://localhost:3000${c.avatar}`">
+                        <img :src="`${baseUrl}${c.avatar}`">
                     </div>
                     <div>
                         <div>
@@ -48,6 +48,7 @@ export default {
     props:["bid"],
     data() {
         return {
+            baseUrl:process.env.VUE_APP_IMGURL,
             comments:[],
             comCount:0,
             fontCount:0,

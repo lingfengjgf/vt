@@ -1,25 +1,41 @@
-import axios from 'axios'
-import qs from 'qs';
+import service from '../utils/request';
 
 export function getUserInfo() {
-  return axios.get('/api/userinfo')
+  return service({
+    url:'/userinfo',
+    method:'get',
+    params:{}
+  })
 }
 
-export function setUserInfo(postData) {
-  postData=qs.stringify(postData);
-  return axios.post('/api/userinfo/set',postData)
+export function setUserInfo(data) {
+  return service({
+    url:'/userinfo/set',
+    method:'post',
+    data
+  })
 }
 
-export function readed(postData) {
-  postData=qs.stringify(postData);
-  return axios.post('/api/userinfo/readed',postData)
+export function readed(data) {
+  return service({
+    url:'/userinfo/readed',
+    method:'post',
+    data
+  })
 }
 
-export function pageSet(postData) {
-  postData=qs.stringify(postData);
-  return axios.post('/api/read/pageSet',postData)
+export function pageSet(data) {
+  return service({
+    url:'/userinfo/pageSet',
+    method:'post',
+    data
+  })
 }
 
 export function topup() {
-  return axios.get('/api/topup')
+  return service({
+    url:'/topup',
+    method:'get',
+    params:{}
+  })
 }

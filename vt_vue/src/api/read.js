@@ -1,26 +1,41 @@
-import axios from 'axios';
-import qs from 'qs';
+import service from '../utils/request';
 
-export function getReadBg(postData) {
-  postData=qs.stringify(postData);
-  return axios.post('/api/read/bg',postData)
+export function getReadBg(data) {
+  return service({
+    url:'/read/bg',
+    method:'post',
+    data
+  })
 }
 
-export function getReadFamily(postData) {
-  postData=qs.stringify(postData);
-  return axios.post('/api/read/family',postData)
+export function getReadFamily(data) {
+  return service({
+    url:'/read/family',
+    method:'post',
+    data
+  })
 }
 
-export function getReadSize(postData) {
-  postData=qs.stringify(postData);
-  return axios.post('/api/read/size',postData)
+export function getReadSize(data) {
+  return service({
+    url:'/read/size',
+    method:'post',
+    data
+  })
 }
 
-export function getReadBook(postData) {
-  postData=qs.stringify(postData);
-  return axios.post('/api/read/book',postData)
+export function getReadBook(data) {
+  return service({
+    url:'/read/book',
+    method:'post',
+    data
+  })
 }
 
 export function getReadSet() {
-  return axios.get('/api/read/getReadSet')
+  return service({
+    url:'/read/getReadSet',
+    method:'get',
+    params:{}
+  })
 }

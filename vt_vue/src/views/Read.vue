@@ -11,7 +11,7 @@
             </div>
             <div class="content">
                 <h3>{{catalogs[pno]}}</h3>
-                <p :class="{kai:f==1,xing:f==2}" :style="`fontSize:${parseInt($store.getters.optFontS)}px`" v-for="t of txt[pno]">{{t}}</p>
+                <p :class="{kai:f==1,xing:f==2}" :style="`fontSize:${parseInt($store.getters.optFontS)}px`" v-for="(t,i) of txt[pno]" :key="i">{{t}}</p>
             </div>
         </section>
         <nav>
@@ -107,7 +107,6 @@
         props:["bid","p"],
         data() {
             return {
-                url:'http://localhost:3000/read/',
                 txt:[],
                 catalogs:[],
                 title:'',
@@ -221,16 +220,16 @@
 
 <style scoped>
     div.main{
-        background: url(http://localhost:3000/img/read/bg1.png) repeat !important;
+        background: url('../assets/img/read/bg1.png') repeat !important;
     }
     div.main.style1{
-        background: url(http://localhost:3000/img/read/bg2.png) repeat !important;        
+        background: url('../assets/img/read/bg2.png') repeat !important;        
     }
     div.main.style2{
-        background: url(http://localhost:3000/img/read/bg3.png) repeat !important;        
+        background: url('../assets/img/read/bg3.png') repeat !important;        
     }
     div.main.style3{
-        background: url(http://localhost:3000/img/read/bg4.png) repeat !important;        
+        background: url('../assets/img/read/bg4.png') repeat !important;        
     }
     div.main.style4{
         background:  #ebcece !important;        
@@ -364,7 +363,7 @@
         display: block;
         width: 45px;
         height: 45px;
-        background: url(http://localhost:3000/img/read/icon_readpage.png) no-repeat;
+        background: url('../assets/img/read/icon_readpage.png') no-repeat;
         position: absolute;
         top: 0px;
         left: 0px;        

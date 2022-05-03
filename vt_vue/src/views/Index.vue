@@ -1,25 +1,23 @@
 <template>
     <main id="main">
         <div class="bg">
+            <img :src="`${baseUrl}/img/index/bg_index_c2.png`" class="bg-img">
             <div id="c1">
-                <article v-for='(c,i) of casels' v-show='ac==i'>
+                <article v-for='(c,i) of casels' v-show='ac==i' :key="i">
                     <a href="javascript:;" @click="jumpDal" :data-id="c.bookId" @mouseover='stopc' @mouseout='startc'>{{c.title}}</a>
                     <p @mouseover='stopc' @mouseout='startc' class="content">{{c.intro}}</p>
                 </article>        
                 <ul class="showImg list-unstyled">
                     <li v-for='(c,i) of casels' :class='{show:i>=p&&i<n}'>
-                        <a href="javascript:;"  @mouseover='stopi(i)' @mouseout='starti'><img @click="jumpDal" :data-id="c.bookId" :class='{active:ac==i}' :src="`http://127.0.0.1:3000/${c.pic}`"/></a>
+                        <a href="javascript:;"  @mouseover='stopi(i)' @mouseout='starti'><img @click="jumpDal" :data-id="c.bookId" :class='{active:ac==i}' :src="`${baseUrl}${c.pic}`"/></a>
                     </li>
                 </ul>             
-                <!-- <div class="showImg">
-                    <a  @mouseover='stopi(i)' @mouseout='starti' v-for='(c,i) of casels' v-show='i>=p&&i<n' href="javascript:;"><img :class='{active:ac==i}' :src="`http://127.0.0.1:3000/${c.pic}`"/></a>
-                </div>              -->
                 <div class="cNav">
                     <a @click='prev' href="javascript:;" class="prev"></a>
                     <a @click='next' href="javascript:;" class="next"></a>
                 </div>
                 <ul class="list-unstyled cIndicators">
-                    <li v-for='(a,i) of 4'><a :class='{active:p/4==i}' @click='change(i)'  href="javascpipt:;"></a></li>
+                    <li v-for='(a,i) of 4' :key="i"><a :class='{active:p/4==i}' @click='change(i)'  href="javascpipt:;"></a></li>
                 </ul> 
             </div>           
         </div>       
@@ -29,15 +27,15 @@
                 <h2>出版图书</h2>
                 <div class="top">
                     <ul>
-                        <li v-for='t of pubTop'><router-link to="/classify">{{t.label}}</router-link><b>|</b></li>
+                        <li v-for='(t,i) of pubTop' :key="i"><router-link to="/classify">{{t.label}}</router-link><b>|</b></li>
                         <li><router-link to="/classify">更多>></router-link></li>
                     </ul>
                 </div>                
                 <div class="content">
                     <ul class="list-unstyled">
-                        <li v-for='(b,i) of pubBooks'>
+                        <li v-for='(b,i) of pubBooks' :key="i">
                             <router-link :to='`/details/${b.bookId}`' class='book'>
-                                <img :src="`http://127.0.0.1:3000/${b.pic}`"/>
+                                <img :src="`${baseUrl}${b.pic}`"/>
                                 <div class='intro'>{{b.intro}}</div>     
                                 <div @mouseover='show' @mouseout='hide' class="intro-none"></div> 
                             </router-link>
@@ -49,15 +47,15 @@
                 <div class="rank">
                     <a href="javascript:;" class="top">观品热销</a>
                     <ul class="list-unstyled">
-                        <li v-for='(r,i) of bestRank' :class='{active:0==i}' @mouseenter='showRank'>
+                        <li v-for='(r,i) of bestRank' :class='{active:0==i}' @mouseenter='showRank' :key="i">
                             <span class="num">{{i+1}}</span>
                             <div class="book">
-                                <router-link  :to='`/details/${r.bookId}`' ><img :src="`http://127.0.0.1:3000/${r.pic}`"></router-link>
+                                <router-link  :to='`/details/${r.bookId}`' ><img :src="`${baseUrl}${r.pic}`"></router-link>
                                 <div>
                                     <router-link :to='`/details/${r.bookId}`'>{{r.title}}</router-link>
                                     <p>{{r.author}}</p>
                                     <div>
-                                        <img src="http://127.0.0.1:3000/img/classify/eye.png">
+                                        <img :src="`${baseUrl}/img/classify/eye.png`">
                                         <span>{{r.watch}}</span>
                                     </div>
                                 </div>
@@ -72,15 +70,15 @@
                 <h2>经典著作</h2>
                 <div class="top">
                     <ul>
-                        <li v-for='t of pubTop'><a href="javascript:;">{{t.label}}</a><b>|</b></li>
+                        <li v-for='(t,i) of pubTop' :key="i"><a href="javascript:;">{{t.label}}</a><b>|</b></li>
                         <li><a href="javascript:;">更多>></a></li>
                     </ul>
                 </div>
                 <div class="content">
                     <ul class="list-unstyled">
-                        <li v-for='(b,i) of pubBooks'>
+                        <li v-for='(b,i) of pubBooks' :key="i">
                             <router-link :to='`/details/${b.bookId}`' class='book'>
-                                <img :src="`http://127.0.0.1:3000/${b.pic}`"/>
+                                <img :src="`${baseUrl}${b.pic}`"/>
                                 <div class='intro'>{{b.intro}}</div>     
                                 <div @mouseover='show' @mouseout='hide' class="intro-none"></div>              
                             </router-link>
@@ -92,15 +90,15 @@
                 <div class="rank">
                     <a href="javascript:;" class="top">观品热销</a>
                     <ul class="list-unstyled">
-                        <li v-for='(r,i) of bestRank' :class='{active:0==i}' @mouseenter='showRank'>
+                        <li v-for='(r,i) of bestRank' :key="i" :class='{active:0==i}' @mouseenter='showRank'>
                             <span class="num">{{i+1}}</span>
                             <div class="book">
-                                <router-link  :to='`/details/${r.bookId}`'><img :src="`http://127.0.0.1:3000/${r.pic}`"></router-link>
+                                <router-link  :to='`/details/${r.bookId}`'><img :src="`${baseUrl}${r.pic}`"></router-link>
                                 <div>
                                     <router-link  :to='`/details/${r.bookId}`'>{{r.title}}</router-link>
                                     <p>{{r.author}}</p>
                                     <div>
-                                        <img src="http://127.0.0.1:3000/img/classify/eye.png">
+                                        <img :src="`${baseUrl}/img/classify/eye.png`">
                                         <span>{{r.watch}}</span>
                                     </div>
                                 </div>
@@ -115,15 +113,15 @@
                 <h2>国外名著</h2>
                 <div class="top">
                     <ul>
-                        <li v-for='t of pubTop'><a href="javascript:;">{{t.label}}</a><b>|</b></li>
+                        <li v-for='(t,i) of pubTop' :key="i"><a href="javascript:;">{{t.label}}</a><b>|</b></li>
                         <li><a href="javascript:;">更多>></a></li>
                     </ul>
                 </div>
                 <div class="content">
                     <ul class="list-unstyled">
-                        <li v-for='(b,i) of pubBooks'>
+                        <li v-for='(b,i) of pubBooks' :key="i">
                             <router-link :to='`/details/${b.bookId}`'  class='book'>
-                                <img :src="`http://127.0.0.1:3000/${b.pic}`"/>
+                                <img :src="`${baseUrl}${b.pic}`"/>
                                 <div class="intro">{{b.intro}}</div>     
                                 <div @mouseover='show' @mouseout='hide' class="intro-none"></div>              
                             </router-link>
@@ -135,15 +133,15 @@
                 <div class="rank">
                     <a href="javascript:;" class="top">观品热销</a>
                     <ul class="list-unstyled">
-                        <li v-for='(r,i) of bestRank' :class='{active:0==i}' @mouseenter='showRank'>
+                        <li v-for='(r,i) of bestRank' :key="i" :class='{active:0==i}' @mouseenter='showRank'>
                             <span class="num">{{i+1}}</span>
                             <div class="book">
-                                <router-link :to='`/details/${r.bookId}`'><img :src="`http://127.0.0.1:3000/${r.pic}`"></router-link>
+                                <router-link :to='`/details/${r.bookId}`'><img :src="`${baseUrl}${r.pic}`"></router-link>
                                 <div>
                                     <router-link  :to='`/details/${r.bookId}`'>{{r.title}}</router-link>
                                     <p>{{r.author}}</p>
                                     <div>
-                                        <img src="http://127.0.0.1:3000/img/classify/eye.png">
+                                        <img :src="`${baseUrl}/img/classify/eye.png`">
                                         <span>{{r.watch}}</span>
                                     </div>
                                 </div>
@@ -162,6 +160,7 @@
     export default {
         data() {
             return {
+                baseUrl:process.env.VUE_APP_IMGURL,
                 casels:[],
                 p:0,
                 n:4,
@@ -278,13 +277,20 @@
         height: 480px;
         padding-top: 40px;
         margin-top:20px; 
-        background: url("http://127.0.0.1:3000/../img/index/bg_index_c2.png") no-repeat;
-        background-size:cover;
+        position: relative;
+    }
+    .bg>.bg-img{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
     }
     #c1{
         width: 1140px;
         margin: 0 auto;
         position: relative;
+        z-index: 10;
     }
     #c1>div{
         padding: 30px 0px 0px 50px;
@@ -295,7 +301,7 @@
         position:absolute;
         top:175px;
         left:0px;
-        z-index: 1;         
+        z-index: 20;         
     }
     #c1>ul.showImg>li{
         margin-right: 50px;
@@ -351,16 +357,16 @@
         height: 25px;
     }
     div.cNav>a.prev{
-        background: url(http://127.0.0.1:3000/../img/index/left.png) no-repeat;
+        background: url('../assets/img/icon/left.png') no-repeat;
     }
     div.cNav>a.prev:hover{
-        background: url(http://127.0.0.1:3000/../img/index/leftBlue.png) no-repeat;
+        background: url('../assets/img/icon/leftBlue.png') no-repeat;
     }
     div.cNav>a.next{
-        background: url(http://127.0.0.1:3000/../img/index/right.png) no-repeat;
+        background: url('../assets/img/icon/right.png') no-repeat;
     }
     div.cNav>a.next:hover{
-        background: url(http://127.0.0.1:3000/../img/index/rightBlue.png) no-repeat;
+        background: url('../assets/img/icon/rightBlue.png') no-repeat;
     }
     #c1>ul.cIndicators{
         display: flex;

@@ -20,6 +20,7 @@ const topup=require('./routes/topup.js');
 const wx=require('./routes/wx.js');
 //引入body-parser中间件
 const bodyParser=require('body-parser');
+const pool = require("./pool.js");
 
 //创建服务器
 var app=express();
@@ -71,6 +72,7 @@ app.use('/userinfo',userinfo);
 app.use('/topup',topup);
 app.use('/wx',wx);
 
-app.get('/index',(req,res)=>{
-	console.log("get /index",res)
+pool.query("select * from vt_bg",function(err,res){
+	console.log("err:",err);
+	console.log("res:",res);
 })

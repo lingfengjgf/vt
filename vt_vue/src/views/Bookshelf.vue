@@ -2,8 +2,8 @@
     <section>
         <div>
             <ul :class="{hide:show==1}">
-                <li v-for='(b,i) of books'>
-                    <img :src="`http://localhost:3000/${b.pic}`">
+                <li v-for='(b,i) of books' :key="i">
+                    <img :src="`${baseUrl}${b.pic}`">
                     <div>
                         <h4>{{b.title}}</h4>
                         <p>{{b.author}}</p>
@@ -21,7 +21,7 @@
                 </li>
             </ul>
             <div class="noBook" :class="{show:show==1}">
-                <img src="http://localhost:3000/img/bookshelf/bookshelf-empty.png">
+                <img :src="`${baseUrl}/img/bookshelf/bookshelf-empty.png`">
                 <h3>书架都空啦</h3>
                 <router-link to="/classify">去找书</router-link>
             </div>
@@ -35,6 +35,7 @@
     export default{
         data() {
             return {
+                baseUrl:process.env.VUE_APP_IMGURL,
                 books:[],
                 show:0
             }

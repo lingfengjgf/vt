@@ -1,11 +1,18 @@
-import axios from 'axios';
-import qs from 'qs';
+import service from '../utils/request';
 
-export function login(postData) {
-  postData=qs.stringify(postData);
-  return axios.post('/api/login',postData)
+export function login(data) {
+  return service({
+    url:'/login',
+    method:'post',
+    data
+  })
 }
 
 export function logout() {
-  return axios.get('/api/login/logout')
+  return service({
+    url:'/login/logout',
+    method:'get',
+    params:{}
+  })
 }
+

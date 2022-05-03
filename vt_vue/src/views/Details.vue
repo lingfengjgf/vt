@@ -3,7 +3,7 @@
         <section>        
             <div class="top">
                 <div>
-                    <img :src="`http://localhost:3000/${book.pic}`">
+                    <img :src="`${baseUrl}${book.pic}`">
                 </div>
                 <div class='right'>
                     <span>{{book.title}}</span>
@@ -12,7 +12,7 @@
                         <span class="genre">类型：{{book.label}}</span>
                         <span class="words">字数：{{book.words}}万</span>
                         <div>
-                            <img src="http://localhost:3000/img/classify/eye.png">
+                            <img :src="`${baseUrl}/img/classify/eye.png`">
                             <span>{{book.watch}}</span>
                         </div>
                     </div>
@@ -34,14 +34,14 @@
                 <div class="recommend">
                     <h5>相关推荐</h5>
                     <ul class="list-unstyled">
-                        <li v-for='r of recommend'>
+                        <li v-for='r of recommend' :key="r.bid">
                             <a href="javascript:;">
-                                <img @click='change' :data-id="r.bid" :src="`http://localhost:3000/${r.pic}`">
+                                <img @click='change' :data-id="r.bid" :src="`${baseUrl}${r.pic}`">
                             </a>
                             <a href="javascript:;" @click='change' :data-id="r.bid" class="name">{{r.title}}</a>
                             <p class="author">{{r.author}}</p>
                             <div>
-                                <img src="http://localhost:3000/img/classify/eye.png">
+                                <img :src="`${baseUrl}/img/classify/eye.png`">
                                 <span>{{r.watch}}</span>
                             </div>
                         </li>
@@ -78,7 +78,8 @@ export default {
     props:['bid','readed'],
     data() {
         return {
-            book:{pic:'img/book/default.jpg'},
+            baseUrl:process.env.VUE_APP_IMGURL,
+            book:{pic:'/img/book/default.jpg'},
             uid:1,
             hideSpan:false,
             span:"展开",

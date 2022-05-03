@@ -26,7 +26,7 @@
                 <div class="foreign">
                     <p>国外名著</p>
                     <div>
-                        <a @click='change' data-k='forRecom'  :class="{show:kwords=='forRecom'}"href="javascript:;">推荐榜</a>
+                        <a @click='change' data-k='forRecom'  :class="{show:kwords=='forRecom'}" href="javascript:;">推荐榜</a>
                         <b>|</b>
                         <a @click='change' data-k='forBest' :class="{show:kwords=='forBest'}" href="javascript:;">畅销榜</a>
                         <b>|</b>
@@ -42,7 +42,7 @@
                     <p class="classify">分类</p>
                     <p class="read">读过</p>
                 </li>
-                <li v-for='(b,i) of books'>
+                <li v-for='(b,i) of books' :key="i">
                     <router-link :to='`/details/${b.bookId}`'>
                         <p class="num">{{i+1}}</p>
                         <p class="name">{{b.title}}</p>

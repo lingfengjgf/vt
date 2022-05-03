@@ -1,12 +1,17 @@
-import axios from 'axios'
-import qs from 'qs';
+import service from '../utils/request';
 
-export function catalogList(postData) {
-  postData=qs.stringify(postData);
-  return axios.post('/api/catalog',postData)
+export function catalogList(data) {
+  return service({
+    url:'/catalog',
+    method:'post',
+    data
+  })
 }
 
-export function readCheck(postData) {
-  postData=qs.stringify(postData);
-  return axios.post('/api/catalog/vip',postData)
+export function readCheck(data) {
+  return service({
+    url:'/catalog/vip',
+    method:'post',
+    data
+  })
 }

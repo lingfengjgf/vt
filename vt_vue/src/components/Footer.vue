@@ -22,7 +22,7 @@
                 <a href="javascript:;">网络出版服务许可证（总）网出证（京）字第541号</a>
                 <a href="javascript:;">京ICP证090851号</a>
                 <a href="javascript:;">
-                    <img src="http://127.0.0.1:3000/img/footer/web_record.png"/>
+                    <img src="../assets/img/icon/web_record.png"/>
                     京公网安备11012410035680
                 </a>
             </p>

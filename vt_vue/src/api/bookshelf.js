@@ -1,11 +1,17 @@
-import axios from 'axios'
-import qs from 'qs';
+import service from '../utils/request';
 
 export function bookshelfList() {
-  return axios.get('/api/bookshelf')
+  return service({
+    url:'/bookshelf',
+    method:'get',
+    params:{}
+  })
 }
 
-export function delBook(postData) {
-  postData=qs.stringify(postData);
-  return axios.post('/api/delBook',postData)
+export function delBook(data) {
+  return service({
+    url:'/delBook',
+    method:'post',
+    data
+  })
 }

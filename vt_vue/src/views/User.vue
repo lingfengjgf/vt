@@ -1,9 +1,9 @@
 <template>
     <div>
         <section>
-            <div class="top" :style="`background-image: url(http://localhost:3000/img/user/bg/user_${$store.getters.optUserBg})`">            
+            <div class="top" :style="`background-image: url(${baseUrl}/img/user/bg/user_${$store.getters.optUserBg})`">            
                 <router-link to="/userinfo" class="avatar">
-                    <img :src="`http://localhost:3000${$store.getters.optUserAva}`">
+                    <img :src="`${baseUrl}${$store.getters.optUserAva}`">
                 </router-link>
                 <div>
                     <h2>{{$store.getters.optUname}}</h2>
@@ -29,7 +29,7 @@
 export default { 
     data() {
         return {
-
+            baseUrl:process.env.VUE_APP_IMGURL,
         }
     },
     methods:{
@@ -45,7 +45,7 @@ export default {
     section>div.top{
         width: 100%;
         height: 240px;
-        background: url(http://localhost:3000/img/user/bg/user_bg.jpg) no-repeat;
+        background: url('../assets/img/user/user_bg.jpg') no-repeat;
         background-size: cover;
         text-align: left;
         padding: 60px 0px 0px 20px;
@@ -62,9 +62,6 @@ export default {
         border-radius: 50%;
         box-sizing: border-box;
         overflow: hidden;
-        /* background: url(http://localhost:3000/img/user/icon/0018.gif) no-repeat;
-        background-position: -2px -2px;
-        background-position: -8px -2px; */
     }
     section>div.top>a.avatar>img{
         width: 90px;
@@ -77,11 +74,11 @@ export default {
         margin-left: 10px;
         padding-left: 20px;
         color: #fff;
-        background: url(http://localhost:3000/img/user/icon/pen.png) no-repeat;
+        background: url('../assets/img/icon/pen.png') no-repeat;
         background-position: 0px -4px;
     }
     section>div.top>div>a:hover{
-        background: url(http://localhost:3000/img/user/icon/pen_blue.png) no-repeat;
+        background: url('../assets/img/icon/pen_blue.png') no-repeat;
         background-position: 0px -4px;
     }
     section>div.content{

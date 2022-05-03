@@ -1,22 +1,33 @@
-import axios from 'axios'
-import qs from 'qs';
+import service from '../utils/request';
 
-export function detailsInfo(postData) {
-  postData=qs.stringify(postData);
-  return axios.post('/api/details',postData)
+export function detailsInfo(data) {
+  return service({
+    url:'/details',
+    method:'post',
+    data
+  })
 }
 
-export function addBook(postData) {
-  postData=qs.stringify(postData);
-  return axios.post('/api/details/addBook',postData)
+export function addBook(data) {
+  return service({
+    url:'/details/addBook',
+    method:'post',
+    data
+  })
 }
 
-export function commentInfo(postData) {
-  postData=qs.stringify(postData);
-  return axios.post('/api/details/comment',postData)
+export function commentInfo(data) {
+  return service({
+    url:'/details/comment',
+    method:'post',
+    data
+  })
 }
 
-export function addCom(postData) {
-  postData=qs.stringify(postData);
-  return axios.post('/api/details/addCom',postData)
+export function addCom(data) {
+  return service({
+    url:'/details/addCom',
+    method:'post',
+    data
+  })
 }
