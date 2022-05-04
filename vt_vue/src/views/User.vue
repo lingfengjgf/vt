@@ -5,9 +5,9 @@
                 <router-link to="/userinfo" class="avatar">
                     <img :src="`${baseUrl}${$store.getters.optUserAva}`">
                 </router-link>
-                <div>
+                <div class="edit">
                     <h2>{{$store.getters.optUname}}</h2>
-                    <router-link to="/userset">修改个人信息</router-link>
+                    <router-link to="/userset"><i class="iconfont">&#xe657;</i>修改个人信息</router-link>
                 </div>            
             </div>
             <div class="content">
@@ -72,14 +72,11 @@ export default {
     }
     section>div.top>div>a{
         margin-left: 10px;
-        padding-left: 20px;
-        color: #fff;
-        background: url('../assets/img/icon/pen.png') no-repeat;
-        background-position: 0px -4px;
+        color: #ddd;
     }
-    section>div.top>div>a:hover{
-        background: url('../assets/img/icon/pen_blue.png') no-repeat;
-        background-position: 0px -4px;
+    .edit .iconfont{
+        font-size: 20px;
+        margin-right: 5px;
     }
     section>div.content{
         text-align: left; 

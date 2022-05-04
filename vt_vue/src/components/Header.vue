@@ -16,7 +16,7 @@
             <div class="login">
                 <input type="text" v-model='kwords' @keyup.13='search()' placeholder="书名/作者"/>
                 <a @click='search()' class='search' href="javascript:;">
-                    <img src="../assets/img/icon/search.png">
+                    <i class="iconfont">&#xe60d;</i>
                 </a>
                 <router-link :class="{hide:$store.getters.optIsLogin==1}" to="/login">登录</router-link>
                 <router-link :class="{hide:$store.getters.optIsLogin==1}" to="/register">注册</router-link>
@@ -161,8 +161,12 @@
     header>div>div.login>a.search:hover{
         background: transparent;
     }
-    header>div>div.login>a.search>img{
-        width: 25px;
+    header>div>div.login>a.search>.iconfont{
+        font-size: 20px;
+        color: #bfbfbf;
+        position: relative;
+        right: 4px;
+        top: -2px;
     }
     header>div>div.login>a.avatar{
         display: block;

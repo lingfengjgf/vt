@@ -41,6 +41,13 @@ app.all('*', (req, res, next) => {
 });
 app.listen(3000);
 
+app.use(session({
+	secret:new Date().getTime() +""+ Math.floor(Math.random()*1000),
+	cookie:{maxAge:60*1000*30},//过期时间ms
+	resave:false,
+	saveUninitialized:true
+}));//将服务器的session，放在req.session中
+
 //托管静态资源
 app.use(express.static('public'));
 
@@ -49,12 +56,6 @@ app.use(bodyParser.urlencoded({
 	extended:false   //不使用扩展的模块
 }));
 
-app.use(session({
-	secret:'随机字符串',
-	cookie:{maxAge:60*1000*30},//过期时间ms
-	resave:false,
-	saveUninitialized:true
-  }));//将服务器的session，放在req.session中
   
 //路由器挂载
 app.use('/user',userRouter);
@@ -72,7 +73,7 @@ app.use('/userinfo',userinfo);
 app.use('/topup',topup);
 app.use('/wx',wx);
 
-pool.query("select * from vt_bg",function(err,res){
-	console.log("err:",err);
-	console.log("res:",res);
-})
+// pool.query("select * from vt_bg",function(err,res){
+// 	console.log("err:",err);
+// 	console.log("res:",res);
+// })

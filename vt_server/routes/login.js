@@ -27,7 +27,7 @@ router.post('/',(req,res)=>{
                     if(result.length>0){
                         var uid=result[0].uid;
                         req.session.uid=uid;               
-                        //console.log(uid,req.session.uid);
+                        // console.log("login uid:",req.session.uid);
                         res.send({code:1,msg:'登录成功',data:result[0]});
                     }else{
                         res.send({code:-1,msg:'用户名或密码错误'});            

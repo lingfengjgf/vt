@@ -5,22 +5,22 @@
             <div class="reg">
                 <h2>用户注册</h2>
                 <p :class='{red:unameErr,green:unameSuc}'>
-                    <img src="../assets/img/icon/user.png">
+                    <i class="iconfont">&#xe633;</i>
                     <input type="text" placeholder="昵称" @focus='fHint' v-model='uname' @blur='bHint' data-i='1'>
                     <span>{{unameSpan}}</span>
                 </p>
                 <p :class='{red:upwdErr,green:upwdSuc}'>
-                    <img src="../assets/img/icon/upwd.png">
+                    <i class="iconfont">&#xe669;</i>
                     <input type="password" placeholder="密码" @focus='fHint' v-model='upwd' @blur='bHint' data-i='2'>
                     <span>{{upwdSpan}}</span>
                 </p>
                 <p :class='{red:emailErr,green:emailSuc}'>
-                    <img src="../assets/img/icon/email.png">
+                    <i class="iconfont">&#xe616;</i>
                     <input type="text" placeholder="邮箱" @focus='fHint' v-model='email' @blur='bHint' data-i='3'>
                     <span>{{emailSpan}}</span>
                 </p>
                 <p :class='{red:phoneErr,green:phoneSuc}'>
-                    <img src="../assets/img/icon/phone.png">
+                    <i class="iconfont">&#xe6c7;</i>
                     <input type="text" placeholder="手机号码" @focus='fHint' v-model='phone' @blur='bHint' data-i='4'>
                     <span>{{phoneSpan}}</span>
                 </p>
@@ -73,6 +73,10 @@
         },
         methods: {
             reg(){
+                console.log("unameSuc:",this.unameSuc);
+                console.log("upwdSuc:",this.upwdSuc);
+                console.log("emailSuc:",this.emailSuc);
+                console.log("phoneSuc:",this.phoneSuc);
                 if(this.unameSuc&&this.upwdSuc&&this.emailSuc&&this.phoneSuc){
                     var postData={
                         uname:this.uname,
@@ -95,6 +99,7 @@
             checkU(){
                 var postData={uname:this.uname};
                 checkUname(postData).then(res=>{
+                    console.log('checkUname:',res);
                     if(res.data.code==1){
                         this.unameSuc=true;
                         this.unameErr=false;
@@ -102,6 +107,7 @@
                     }else{
                         this.unameErr=true;
                         this.unameSuc=false;
+
                     }
                     this.unameSpan=res.data.msg;
                 })                
@@ -136,7 +142,7 @@
             },
             fHint(e){
                 var i=e.target.dataset.i;
-                //console.log(i);
+                console.log("fHint:",i);
                 switch(i){
                     case '1':
                         this.unameErr=false;
@@ -274,6 +280,12 @@
     div.reg>p{
         font-size: 24px;
         color: #000;
+    }
+    div.reg .iconfont{
+        position: relative;
+        top: 5px;
+        left: -15px;
+        font-size: 30px;        
     }
     div.reg>p>img{
         width: 40px;

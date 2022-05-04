@@ -45,8 +45,8 @@
                                 <span>{{b.author}}</span>
                                 <router-link :to='`/read/${b.bid}/0`'>试读</router-link>
                             </p>
-                            <div>
-                                <img :src="`${baseUrl}img/classify/eye.png`">
+                            <div class="content-ul-watch">
+                                <i class="iconfont eye">&#xe8c7;</i>
                                 <span>{{b.watch}}</span>
                             </div>
                             <p class="intro">{{b.intro}}</p>
@@ -514,11 +514,9 @@
     .content-ul>li>div>div{
         position: relative;
     }
-    .content-ul>li>div>div>img{
-        width: 20px;
-        position: relative;
-        top: 3px;left: 0px;
-    }
+.content-ul-watch{
+    margin-top: 5px;
+}
     .content-ul>li>div>div>span{
         font-size: 12px;
     }

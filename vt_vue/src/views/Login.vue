@@ -3,11 +3,11 @@
         <div>
             <h2>欢迎登录观品</h2>
             <p>
-                <img src="../assets/img/icon/user.png"> 
+                <i class="iconfont">&#xe633;</i>
                 <input @keyup.13='goLogin()' v-model='uname' type="text" name='uname' placeholder="用户名/手机">
             </p>        
             <p>
-                <img src="../assets/img/icon/upwd.png">
+                <i class="iconfont">&#xe669;</i>
                 <input @keyup.13='goLogin()' v-model='upwd' type="password" name='upwd' placeholder="密码">
                 <span class="hint err">{{hint}}</span>
             </p>
@@ -119,11 +119,11 @@ import {login} from '../api/login'
       margin-bottom: 10px;
       position: relative;
   }
-  div.log>div>p>img{
-    width: 40px;
+  div.log>div>p>.iconfont{
     position: relative;
-    top: 14px;
+    top: 5px;
     left: -15px;
+    font-size: 30px;         
   }
   div.log>div>p>input{
       height: 40px;

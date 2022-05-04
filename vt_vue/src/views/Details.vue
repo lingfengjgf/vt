@@ -8,11 +8,13 @@
                 <div class='right'>
                     <span>{{book.title}}</span>
                     <div class="bookinfor">
-                        <span class="author">作者：{{book.author}}</span>
-                        <span class="genre">类型：{{book.label}}</span>
-                        <span class="words">字数：{{book.words}}万</span>
                         <div>
-                            <img :src="`${baseUrl}/img/classify/eye.png`">
+                            <span class="author">作者：{{book.author}}</span>
+                            <span class="genre">类型：{{book.label}}</span>
+                            <span class="words">字数：{{book.words}}万</span>
+                        </div>
+                        <div class="content-ul-watch">
+                            <i class="iconfont eye">&#xe8c7;</i>
                             <span>{{book.watch}}</span>
                         </div>
                     </div>
@@ -40,8 +42,8 @@
                             </a>
                             <a href="javascript:;" @click='change' :data-id="r.bid" class="name">{{r.title}}</a>
                             <p class="author">{{r.author}}</p>
-                            <div>
-                                <img :src="`${baseUrl}/img/classify/eye.png`">
+                            <div class="content-ul-watch">
+                                <i class="iconfont eye">&#xe8c7;</i>
                                 <span>{{r.watch}}</span>
                             </div>
                         </li>
@@ -182,25 +184,16 @@ export default {
     section>div.top>div.right>span:hover{
         color: #0083ec;
     }
+    section>div.top>div>div.bookinfor{
+        display: flex;
+        justify-content: space-between;
+    }
     section>div.top>div>div.bookinfor span{
         color: #888;
         margin-right: 10px;
     }
-    section>div.top>div>div.bookinfor>div{
-        float: right;
-        position: relative;
-    }
-    section>div.top>div>div.bookinfor>div>img{
-        width: 30px;
-        position: absolute;
-        top:0px;
-        right: 55px;
-    }
     section>div.top>div>div.bookinfor>div>span{
         font-size: 14px;
-        position: absolute;
-        top:0px;
-        right: 2px;
         width: 50px;
         margin: 0;
     }

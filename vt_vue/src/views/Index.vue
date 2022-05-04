@@ -8,13 +8,13 @@
                     <p @mouseover='stopc' @mouseout='startc' class="content">{{c.intro}}</p>
                 </article>        
                 <ul class="showImg list-unstyled">
-                    <li v-for='(c,i) of casels' :class='{show:i>=p&&i<n}'>
+                    <li v-for='(c,i) of casels' :class='{show:i>=p&&i<n}' :key="c.bookId">
                         <a href="javascript:;"  @mouseover='stopi(i)' @mouseout='starti'><img @click="jumpDal" :data-id="c.bookId" :class='{active:ac==i}' :src="`${baseUrl}${c.pic}`"/></a>
                     </li>
                 </ul>             
                 <div class="cNav">
-                    <a @click='prev' href="javascript:;" class="prev"></a>
-                    <a @click='next' href="javascript:;" class="next"></a>
+                    <i @click='prev' class="iconfont prev">&#xe63f;</i>
+                    <i @click='next' class="iconfont next">&#xe63e;</i>
                 </div>
                 <ul class="list-unstyled cIndicators">
                     <li v-for='(a,i) of 4' :key="i"><a :class='{active:p/4==i}' @click='change(i)'  href="javascpipt:;"></a></li>
@@ -55,7 +55,7 @@
                                     <router-link :to='`/details/${r.bookId}`'>{{r.title}}</router-link>
                                     <p>{{r.author}}</p>
                                     <div>
-                                        <img :src="`${baseUrl}/img/classify/eye.png`">
+                                        <i class="iconfont eye">&#xe8c7;</i>
                                         <span>{{r.watch}}</span>
                                     </div>
                                 </div>
@@ -98,7 +98,7 @@
                                     <router-link  :to='`/details/${r.bookId}`'>{{r.title}}</router-link>
                                     <p>{{r.author}}</p>
                                     <div>
-                                        <img :src="`${baseUrl}/img/classify/eye.png`">
+                                        <i class="iconfont eye">&#xe8c7;</i>
                                         <span>{{r.watch}}</span>
                                     </div>
                                 </div>
@@ -141,7 +141,7 @@
                                     <router-link  :to='`/details/${r.bookId}`'>{{r.title}}</router-link>
                                     <p>{{r.author}}</p>
                                     <div>
-                                        <img :src="`${baseUrl}/img/classify/eye.png`">
+                                        <i class="iconfont eye">&#xe8c7;</i>
                                         <span>{{r.watch}}</span>
                                     </div>
                                 </div>
@@ -350,23 +350,13 @@
         position: absolute;
         top: 260px;left: 0px;   
     }
-    #c1>div.cNav>a{
-        display: block;
-        width: 25px;
-        padding: 0;
-        height: 25px;
+    #c1>div.cNav>.iconfont{
+        font-size: 30px;
+        color: #fff;
+        cursor: pointer;
     }
-    div.cNav>a.prev{
-        background: url('../assets/img/icon/left.png') no-repeat;
-    }
-    div.cNav>a.prev:hover{
-        background: url('../assets/img/icon/leftBlue.png') no-repeat;
-    }
-    div.cNav>a.next{
-        background: url('../assets/img/icon/right.png') no-repeat;
-    }
-    div.cNav>a.next:hover{
-        background: url('../assets/img/icon/rightBlue.png') no-repeat;
+    #c1>div.cNav>.iconfont:hover{
+        color: #0083ec;
     }
     #c1>ul.cIndicators{
         display: flex;
@@ -518,9 +508,7 @@
     section>div>div.rank>ul>li>div.book>div>div{
         position: relative;
     }
-    section>div>div.rank>ul>li>div.book>div>div>img{
-        width: 25px;
-        margin:0 5px;
+    section>div>div.rank>ul>li>div.book>div>div>.eye{
         position: relative;
         top:3px;left: 0px;
     }

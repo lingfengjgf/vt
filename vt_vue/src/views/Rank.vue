@@ -15,8 +15,8 @@
                                     <div>
                                         <router-link :to='`/details/${r.bookId}`'>{{r.title}}</router-link>
                                         <p class="d-none">{{r.author}}</p>
-                                        <div>
-                                            <img :src="`${baseUrl}/img/classify/eye.png`">
+                                        <div class="content-ul-watch">
+                                            <i class="iconfont eye">&#xe8c7;</i>
                                             <span>{{r.watch}}</span>
                                         </div>
                                         <p class="intro d-none">{{r.intro}}</p>
@@ -36,8 +36,8 @@
                                     <div>
                                         <router-link :to='`/details/${b.bookId}`'>{{b.title}}</router-link>
                                         <p class="d-none">{{b.author}}</p>
-                                        <div>
-                                            <img :src="`${baseUrl}/img/classify/eye.png`">
+                                        <div class="content-ul-watch">
+                                            <i class="iconfont eye">&#xe8c7;</i>
                                             <span>{{b.watch}}</span>
                                         </div>
                                         <p class="intro d-none">{{b.intro}}</p>
@@ -57,8 +57,8 @@
                                     <div>
                                         <router-link :to='`/details/${n.bookId}`'>{{n.title}}</router-link>
                                         <p class="d-none">{{n.author}}</p>
-                                        <div>
-                                            <img :src="`${baseUrl}/img/classify/eye.png`">
+                                        <div class="content-ul-watch">
+                                            <i class="iconfont eye">&#xe8c7;</i>
                                             <span>{{n.watch}}</span>
                                         </div>
                                         <p class="intro d-none">{{n.intro}}</p>
@@ -85,8 +85,8 @@
                                     <div>
                                         <router-link :to='`/details/${r.bookId}`'>{{r.title}}</router-link>
                                         <p class="d-none">{{r.author}}</p>
-                                        <div>
-                                            <img :src="`${baseUrl}/img/classify/eye.png`">
+                                        <div class="content-ul-watch">
+                                            <i class="iconfont eye">&#xe8c7;</i>
                                             <span>{{r.watch}}</span>
                                         </div>
                                         <p class="intro d-none">{{r.intro}}</p>
@@ -106,8 +106,8 @@
                                     <div>
                                         <router-link :to='`/details/${b.bookId}`'>{{b.title}}</router-link>
                                         <p class="d-none">{{b.author}}</p>
-                                        <div>
-                                            <img :src="`${baseUrl}/img/classify/eye.png`">
+                                        <div class="content-ul-watch">
+                                            <i class="iconfont eye">&#xe8c7;</i>
                                             <span>{{b.watch}}</span>
                                         </div>
                                         <p class="intro d-none">{{b.intro}}</p>
@@ -127,8 +127,8 @@
                                     <div>
                                         <router-link :to='`/details/${n.bookId}`'>{{n.title}}</router-link>
                                         <p class="d-none">{{n.author}}</p>
-                                        <div>
-                                            <img :src="`${baseUrl}/img/classify/eye.png`">
+                                        <div class="content-ul-watch">
+                                            <i class="iconfont eye">&#xe8c7;</i>
                                             <span>{{n.watch}}</span>
                                         </div>
                                         <p class="intro d-none">{{n.intro}}</p>
@@ -155,8 +155,8 @@
                                     <div>
                                         <router-link :to='`/details/${r.bookId}`'>{{r.title}}</router-link>
                                         <p class="d-none">{{r.author}}</p>
-                                        <div>
-                                            <img :src="`${baseUrl}/img/classify/eye.png`">
+                                        <div class="content-ul-watch">
+                                            <i class="iconfont eye">&#xe8c7;</i>
                                             <span>{{r.watch}}</span>
                                         </div>
                                         <p class="intro d-none">{{r.intro}}</p>
@@ -176,8 +176,8 @@
                                     <div>
                                         <router-link :to='`/details/${b.bookId}`'>{{b.title}}</router-link>
                                         <p class="d-none">{{b.author}}</p>
-                                        <div>
-                                            <img :src="`${baseUrl}/img/classify/eye.png`">
+                                        <div class="content-ul-watch">
+                                            <i class="iconfont eye">&#xe8c7;</i>
                                             <span>{{b.watch}}</span>
                                         </div>
                                         <p class="intro d-none">{{b.intro}}</p>
@@ -197,8 +197,8 @@
                                     <div>
                                         <router-link :to='`/details/${n.bookId}`'>{{n.title}}</router-link>
                                         <p class="d-none">{{n.author}}</p>
-                                        <div>
-                                            <img :src="`${baseUrl}/img/classify/eye.png`">
+                                        <div class="content-ul-watch">
+                                            <i class="iconfont eye">&#xe8c7;</i>
                                             <span>{{n.watch}}</span>
                                         </div>
                                         <p class="intro d-none">{{n.intro}}</p>
@@ -318,7 +318,7 @@ export default {
     }
     div.content>div>ul>li{
         display: flex;
-        margin-bottom: 0.5rem;
+        padding-top: 10px;
     }
     div.content>div>ul>li>span.num{
         color: #888;
@@ -331,6 +331,7 @@ export default {
     }
     div.content>div>ul>li>div.book{
         width: 290px;
+        padding-bottom: 10px;
         border-bottom: 1px dashed #ddd;
     }
     div.content>div>ul>li>div.book>div{
@@ -339,7 +340,6 @@ export default {
     div.content>div>ul>li>div.book>div>a{
         display: block;
         width: 190px;
-        margin-bottom: 8px;
     }
     div.content>div>ul>li>div.book>div>div{
         position: relative;

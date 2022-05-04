@@ -1,3 +1,5 @@
+@import './iconfont.css';
+
 *{
     margin:0;
     padding: 0;
@@ -31,4 +33,13 @@ a:hover{
 }
 ul.list-unstyled{
     list-style: none;
+}
+.iconfont.eye{
+    font-size: 20px;
+    color: #bfbfbf;
+    margin-right: 5px;    
+}
+.content-ul-watch{
+    display: flex;
+    align-items: center;
 }

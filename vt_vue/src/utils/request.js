@@ -42,7 +42,7 @@ service.interceptors.request.use(config => {
     if(config.method === 'post') {
         config.data = qs.stringify(config.data);
     }
-    console.log("request config",config);
+    // console.log("request config",config);
     return config
 }, error => {
     // Do something with request error
@@ -50,14 +50,15 @@ service.interceptors.request.use(config => {
     Promise.reject(error)
 })
 
-// respone拦截器
+// response拦截器
 service.interceptors.response.use(response => {
-        const res = response.data
-        if (res.code && res.code != 1) {
-            return Promise.reject(response)
-        } else {
-            return response
-        }
+    return response
+        // const res = response.data
+        // if (res.code && res.code != 1) {
+        //     return Promise.reject(response)
+        // } else {
+        //     return response
+        // }
     },
     error => {
         console.log('err' + error) // for debug
