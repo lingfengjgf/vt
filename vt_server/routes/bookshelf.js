@@ -31,7 +31,6 @@ router.post("/delBook",(req,res)=>{
     var sql="DELETE FROM vt_bookshelf WHERE uid=? AND bookId=?";
     pool.query(sql,[uid,bid],(err,result)=>{
         if(err) throw err;
-        if(err) throw err;
         if(result.affectedRows>0){ //执行sql语句影响的行数
             res.send({code:1,msg:'删除成功'});
         }else{
