@@ -156,7 +156,12 @@
 </template>
 
 <script>
-    import {getIndexInfo} from '../api/index';
+    import {
+        getCarousel,
+        publishTop,
+        publishBooks,
+        publishBest
+    } from '../api/index';
     export default {
         data() {
             return {
@@ -172,20 +177,38 @@
             }
         },
         created() {
-            getIndexInfo().then(res=>{
-                this.casels=res.data.casels;
-                this.cutIntro(this.casels,160);
-                this.pubTop=res.data.pubTop;
-                this.pubBooks=res.data.pubBooks;
-                this.cutIntro(this.pubBooks,110);
-                this.bestRank=res.data.bestRank;
-                this.cutTit(this.bestRank,9);
-            })
-            clearInterval(this.timer),
-            this.timer=null,
-            this.acImg()
+            this.getData();
+            clearInterval(this.timer);
+            this.timer=null;
+            this.acImg();
         },
         methods: {
+            getData(){
+                getCarousel().then(data=>{
+                    console.log('getCarousel:',data);
+                    if(data.data.code==1){
+                        this.casels=data.data.output;
+                        this.cutIntro(this.casels,160);
+                    }
+                });
+                publishTop().then(data=>{
+                    if(data.data.code==1){
+                        this.pubTop=data.data.output;
+                    }
+                });
+                publishBooks().then(data=>{
+                    if(data.data.code==1){
+                        this.pubBooks=data.data.output;
+                        this.cutIntro(this.pubBooks,110);
+                    }
+                });
+                publishBest().then(data=>{
+                    if(data.data.code==1){
+                        this.bestRank=data.data.output;
+                        this.cutTit(this.bestRank,9);
+                    }
+                });
+            },
             acImg(){
                 if(this.timer==null){
                     this.timer=setInterval(()=>{

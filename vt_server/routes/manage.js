@@ -177,4 +177,83 @@ router.post("/setIndexPublish",(req,res)=>{
     })
 })
 
+// 排行配置
+router.post("/setRank",(req,res)=>{
+    if(!req.session.uid){
+        res.send({code:-1,msg:"未登录"});
+        return;
+    }
+    var uid=req.session.uid;
+    var list=req.body.list;
+
+    if(!list||list.length==0){
+        res.send({code:-1,msg:"非法操作！"});
+        return;
+    }
+    var sql='SELECT uname FROM vt_user WHERE uid=?';
+    pool.query(sql,uid,(err,result)=>{
+        if(err) throw err;
+        if(result.length>0){
+            var arr1=list.map(function(){
+                return ' WHEN ? THEN ? '
+            })
+            var arr2=list.map(function(){
+                return ' ? '
+            })
+            var arr3=[];
+            list.forEach(val=>{
+                arr3.push(val.bookId,val.sort);
+            })
+            list.forEach(val=>{
+                arr3.push(val.bookId);
+            })
+            var str1=arr1.join(" ") ;
+            var str2=arr2.join(",") ;
+            var sql="UPDATE vt_publish_best SET sort = CASE bookId "+str1+ "ELSE END WHERE bookId IN ( "+str2+" ) ";
+            pool.query(sql,arr3,(err,result)=>{
+                if(err) throw err;
+                if(result.affectdeRows>0){
+                    res.send({code:1,msg:"修改成功！"});
+                }else{
+                    res.send({code:0,msg:'修改失败，请重试！'});
+                }
+            });             
+        }else{
+            res.send({code:-1,msg:'无权操作！'})
+        }
+    })
+})
+
+// 用户管理
+router.post("/setUser",(req,res)=>{
+    if(!req.session.uid){
+        res.send({code:-1,msg:"未登录"});
+        return;
+    }
+    var uid=req.session.uid;
+    var userId=req.body.userId;
+    var state=req.body.state;
+    if(!userId||!state){
+        res.send({code:-1,msg:"非法操作！"});
+        return;
+    }
+    var sql='SELECT uname FROM vt_user WHERE uid=?';
+    pool.query(sql,uid,(err,result)=>{
+        if(err) throw err;
+        if(result.length>0){
+            var sql="UPDATE vt_user SET state=? WHERE uid=?";
+            pool.query(sql,[state,userId],(err,result)=>{
+                if(err) throw err;
+                if(result.affectdeRows>0){
+                    res.send({code:1,msg:"修改成功！"});
+                }else{
+                    res.send({code:0,msg:'修改失败，请重试！'});
+                }
+            });             
+        }else{
+            res.send({code:-1,msg:'无权操作！'})
+        }
+    })
+})
+
 module.exports=router;
