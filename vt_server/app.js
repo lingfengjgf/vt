@@ -18,6 +18,7 @@ const read=require('./routes/read.js');
 const userinfo=require('./routes/userinfo.js');
 const topup=require('./routes/topup.js');
 const wx=require('./routes/wx.js');
+const manage=require('./routes/manage');
 //引入body-parser中间件
 const bodyParser=require('body-parser');
 const pool = require("./pool.js");
@@ -72,6 +73,7 @@ app.use('/read',read);
 app.use('/userinfo',userinfo);
 app.use('/topup',topup);
 app.use('/wx',wx);
+app.use('/manage',manage);
 
 // pool.query("select * from vt_bg",function(err,res){
 // 	console.log("err:",err);

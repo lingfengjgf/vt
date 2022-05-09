@@ -9,7 +9,7 @@ export default new Vuex.Store({
   //共享数据容器
   state: {
     backPath:"/",
-    headerI:0,
+    headerI:sessionStorage.getItem('headerI')||0,
     isLogin:sessionStorage.getItem('isLogin')||0,
     userShow:0,
     userAva:sessionStorage.getItem('userAva')||'/img/user/icon/default.png',
@@ -26,6 +26,7 @@ export default new Vuex.Store({
     },
     changeHeaderI(state,i){
       state.headerI=i;
+      sessionStorage.setItem('headerI',i);
     },
     changeLogin(state,i){
       state.isLogin=i;

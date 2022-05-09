@@ -64,7 +64,7 @@ router.post("/setBook",(req,res)=>{
     pool.query(sql,uid,(err,result)=>{
         if(err) throw err;
         if(result.length>0){
-            var sql='UPDATE vt_books SET label=? , price=? , isSale=?  WHERE bookId=?';
+            var sql='UPDATE vt_books SET label=? , price=? , isSale=?  WHERE bid=?';
             pool.query(sql,[label,price,isSale,bid],(err,result)=>{
                 if(err) throw err;
                 if(result.affectdeRows==0){
@@ -80,7 +80,7 @@ router.post("/setBook",(req,res)=>{
 })
 
 // 首页轮播配置
-router.post("/setBook",(req,res)=>{
+router.post("/setCarousel",(req,res)=>{
     if(!req.session.uid){
         res.send({code:-1,msg:"未登录"});
         return;

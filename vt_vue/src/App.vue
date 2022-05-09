@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <!-- <transition name="fade-transform" mode="out-in">
+      <router-view :bid="bid" :readed="readed"/>
+    </transition> -->
     <router-view :bid="bid" :readed="readed"/>
   </div>
 </template>
@@ -133,7 +136,7 @@ export default {
           this.$store.commit("changeBg",bg);
         }
       })
-    }
+    },
   },
 }
 </script>

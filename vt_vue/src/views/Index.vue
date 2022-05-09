@@ -24,7 +24,7 @@
         <section>
             <!-- 1f出版图书-->
             <div class="publish">
-                <h2>出版图书</h2>
+                <h2>出版图书</h2>  
                 <div class="top">
                     <ul>
                         <li v-for='(t,i) of pubTop' :key="i"><router-link to="/classify">{{t.label}}</router-link><b>|</b></li>

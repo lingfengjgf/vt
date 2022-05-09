@@ -78,7 +78,7 @@ router.post('/search',(req,res)=>{
     if (!pno) pno=0;
     if(!pageSize) pageSize=9;
     var output={};
-    var sql='SELECT bid,title,author,watch,pic,intro FROM vt_books';
+    var sql='SELECT bid,title,author,watch,pic,intro,label,price,isSale FROM vt_books';
     if(kwords){
         kwords=kwords.split(/\s+/);
         var arr1=kwords.map(function(){
@@ -111,6 +111,21 @@ router.post('/search',(req,res)=>{
             }
             res.send(output);
         })
+    }else{
+        pool.query(sql,(err,result)=>{
+            if(err) throw err;
+            if(result.length>0){
+                var count=result.length;
+                var pageCount=Math.ceil(count/pageSize);
+                var books=result.slice(pno*pageSize,pno*pageSize+pageSize);
+                output={pno,count,pageCount,books};
+            }else{
+                var pageCount=0;
+                var books=[];
+                output={pno,pageCount,books};
+            }
+            res.send(output);
+        })        
     }
 })
 module.exports=router;

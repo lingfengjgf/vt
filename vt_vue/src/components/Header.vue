@@ -24,6 +24,7 @@
                     <img :src="`${baseUrl}${$store.getters.optUserAva}`">
                 </router-link>
                 <a @click='logoutClick' :class="{hide:$store.getters.optIsLogin==0}" href="javascript:;">注销</a>
+                <a @click='manageClick' :class="{hide:$store.getters.optIsLogin==0}" href="javascript:;">管理</a>
             </div>
         </div>
         <div @click='close' class="dialog" v-show='isLogin'>
@@ -83,6 +84,9 @@
                     this.$router.push('/bookshelf');
                 }
             },
+            manageClick(){
+                this.$router.push('/manage')
+            }
         }
     }
 </script>

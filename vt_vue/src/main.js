@@ -3,6 +3,18 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import axios from 'axios'
+import { 
+  Menu,
+  Submenu,
+  MenuItem,
+  Row,
+  Col,
+  Table,
+  TableColumn,
+  Input,
+  Pagination,
+  Message,
+ } from 'element-ui';
 
 Vue.config.productionTip = false
 
@@ -13,6 +25,17 @@ axios.defaults.withCredentials=true;
 //引入第三方库qs,解决axios post请求问题
 // import qs from 'qs';
 // Vue.prototype.qs=qs;
+
+Vue.use(Menu);
+Vue.use(Submenu);
+Vue.use(MenuItem);
+Vue.use(Row);
+Vue.use(Col);
+Vue.use(Table);
+Vue.use(TableColumn);
+Vue.use(Input);
+Vue.use(Pagination);
+// Vue.use(Message);
 
 //自定义截取字符串
 Vue.prototype.cutIntro=function(arr,num){
@@ -55,6 +78,26 @@ Vue.prototype.spLabel=function(arr,i){
 //加载页面返回顶部
 Vue.prototype.loadBackTop=function(){
   document.documentElement.scrollTop=0;
+}
+
+//message
+Vue.prototype.$message={
+  success:(message)=>{
+    return Message({
+      showClose: true,
+      message,
+      type: 'success',
+      duration: 2500
+    })
+  },
+  error:(message)=>{
+    return Message({
+      showClose: true,
+      message,
+      type: 'error',
+      duration: 2500
+    })
+  },
 }
 
 //创建全局日期格式过滤器
