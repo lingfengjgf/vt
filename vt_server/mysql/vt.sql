@@ -129,11 +129,9 @@ CREATE TABLE vt_classify(
 	label VARCHAR(8)          #标签
 );
 INSERT INTO vt_classify VALUES
-(NULL,'频道','全部'),
 (NULL,'频道','出版'),
 (NULL,'频道','经典'),
 (NULL,'频道','国外'),
-(NULL,'类型','全部'),
 (NULL,'类型','文学'),
 (NULL,'类型','传记'),
 (NULL,'类型','武侠'),
@@ -161,7 +159,6 @@ INSERT INTO vt_classify VALUES
 (NULL,'类型','法律'),
 (NULL,'类型','休闲'),
 (NULL,'类型','体育'),
-(NULL,'其它','全部'),
 (NULL,'其它','免费'),
 (NULL,'其它','特价'),
 (NULL,'其它','VIP');

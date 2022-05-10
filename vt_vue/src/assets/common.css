@@ -99,3 +99,8 @@ ul.list-unstyled{
 .manage-container-btn.danger{
     background: #f56c6c;
 }
+.manage-container-btn.plain{
+    border:1px solid #0083ec;
+    background: #f0f0f0;
+    color: #0083ec;
+}

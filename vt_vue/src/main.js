@@ -14,6 +14,9 @@ import {
   Input,
   Pagination,
   Message,
+  Select,
+  Option,
+  Radio,
  } from 'element-ui';
 
 Vue.config.productionTip = false
@@ -35,7 +38,9 @@ Vue.use(Table);
 Vue.use(TableColumn);
 Vue.use(Input);
 Vue.use(Pagination);
-// Vue.use(Message);
+Vue.use(Select);
+Vue.use(Option);
+Vue.use(Radio);
 
 //自定义截取字符串
 Vue.prototype.cutIntro=function(arr,num){

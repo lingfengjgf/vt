@@ -235,10 +235,10 @@
             load(params){
                 classifyInfo(params).then(res=>{
                     if(this.channel.length==0&&this.genre.length==0&&this.others.length==0){
-                        this.channel=res.data.channel;     
-                        this.allGenre=res.data.genre;     
-                        this.genre=res.data.genre.slice(0,12);     
-                        this.others=res.data.others;
+                        this.channel=[{label: "全部"},...res.data.channel];     
+                        this.allGenre=[{label: "全部"},...res.data.genre];     
+                        this.genre=[{label: "全部"},...res.data.genre.slice(0,11)];     
+                        this.others=[{label: "全部"},...res.data.others];
                     }
                     this.pageCount=res.data.content.pageCount;
                     if(this.pageCount>5)
