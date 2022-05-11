@@ -20,6 +20,7 @@ import Layout from './views/Layout'
 import Dashboard from './views/dashboard'
 import SetBooks from './views/SetBooks'
 import SetBooksDetail from './views/SetBooksDetail'
+import SetUser from './views/SetUser'
 import NotFound from './views/NotFound'
 //ES6
 
@@ -58,7 +59,7 @@ var manageRoutes={ path: '/manage', component: Layout,children:[
     { path:"/manage/setWebCarousel", name:'setWebCarousel', meta:{title:'首页轮播',parent:"setWeb"}, component: Userinfo}, 
     { path:"/manage/setWebPublish", name:'setWebPublish', meta:{title:'首页出版图书',parent:"setWeb"}, component: Userinfo}, 
     { path:"/manage/setWebRank", name:'setWebRank', meta:{title:'排行管理',parent:"setWeb"}, component: UserTopUp}, 
-    { path:"/manage/setUser", name:'setUser', meta:{title:'用户管理'}, component: SetBooks },
+    { path:"/manage/setUser", name:'setUser', meta:{title:'用户管理'}, component: SetUser },
   ] 
 }
 var menuRoutes = getMenuRouts(manageRoutes);

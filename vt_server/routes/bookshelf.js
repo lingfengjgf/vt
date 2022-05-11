@@ -4,7 +4,7 @@ const router=express.Router();
 
 router.get("/",(req,res)=>{
     if(!req.session.uid){
-        res.send({code:-1,msg:"未登录"});
+        res.send({code:-1,msg:"登录失效，请重新登录！"});
         return;
     }
     var uid=req.session.uid;
@@ -23,7 +23,7 @@ router.get("/",(req,res)=>{
 
 router.post("/delBook",(req,res)=>{
     if(!req.session.uid){
-        res.send({code:-1,msg:"未登录"});
+        res.send({code:-1,msg:"登录失效，请重新登录！"});
         return;
     }
     var uid=req.session.uid;

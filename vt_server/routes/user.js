@@ -31,7 +31,7 @@ router.post('/register',(req,res)=>{
 	var sql='INSERT INTO vt_user(uid,uname,upwd) VALUES(NULL,?,?)';
 	pool.query(sql,[$uname,$upwd],(err,result)=>{
 		if(err) throw err;
-		if(result.affectdeRows==0){
+		if(result.affectedRows==0){
 			res.send('0');
 		}else{
 			res.send('1');
@@ -39,14 +39,6 @@ router.post('/register',(req,res)=>{
 	});
 });
 
-//查询用户表
-router.get('/list',(req,res)=>{
-	var sql="select * from vt_user";
-	pool.query(sql,(err,result)=>{
-		if(err) throw err;
-		res.send(result);
-	});
-});
 
 //导出路由器
 module.exports=router;

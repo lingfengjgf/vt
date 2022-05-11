@@ -87,7 +87,7 @@ router.post('/addCom',(req,res)=>{
     var bid=req.body.bid;
 	var content=req.body.content;
 	if(!req.session.uid){
-        res.send({code:-2,msg:"未登录"});
+        res.send({code:-2,msg:"登录失效，请重新登录！"});
         return;
     }
     var uid=req.session.uid;
@@ -104,7 +104,7 @@ router.post('/addCom',(req,res)=>{
 //加入书架
 router.post("/addBook",(req,res)=>{
 	if(!req.session.uid){
-        res.send({code:-1,msg:"未登录"});
+        res.send({code:-1,msg:"登录失效，请重新登录！"});
         return;
     }
 	var uid=req.session.uid;

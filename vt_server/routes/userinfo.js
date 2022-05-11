@@ -4,7 +4,7 @@ const router=express.Router();
 
 router.get("/",(req,res)=>{
     if(!req.session.uid){
-        res.send({code:-1,msg:"未登录"});
+        res.send({code:-1,msg:"登录失效，请重新登录！"});
         return;
     }
     var sql='SELECT pic FROM vt_avatar';
@@ -39,7 +39,7 @@ router.get("/",(req,res)=>{
 //修改用户信息
 router.post("/set",(req,res)=>{
     if(!req.session.uid){
-        res.send({code:-1,msg:"未登录"});
+        res.send({code:-1,msg:"登录失效，请重新登录！"});
         return;
     }
     var uid=req.session.uid;
@@ -66,7 +66,7 @@ router.post("/set",(req,res)=>{
 //基本信息
 router.get("/info",(req,res)=>{
     if(!req.session.uid){
-        res.send({code:-1,msg:"未登录"});
+        res.send({code:-1,msg:"登录失效，请重新登录！"});
         return;
     }
     var uid=req.session.uid;
@@ -80,7 +80,7 @@ router.get("/info",(req,res)=>{
 //用户阅读章节信息
 router.post("/readed",(req,res)=>{
     if(!req.session.uid){
-        res.send({code:-1,msg:"未登录"});
+        res.send({code:-1,msg:"登录失效，请重新登录！"});
         return;
     }
     var uid=req.session.uid;
