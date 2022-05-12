@@ -21,6 +21,7 @@ import Dashboard from './views/dashboard'
 import SetBooks from './views/SetBooks'
 import SetBooksDetail from './views/SetBooksDetail'
 import SetUser from './views/SetUser'
+import SetCarousel from './views/SetCarousel'
 import NotFound from './views/NotFound'
 //ES6
 
@@ -56,7 +57,7 @@ var manageRoutes={ path: '/manage', component: Layout,children:[
     { path:"/manage/setBooks", name:'setBooks', meta:{title:'书籍管理'}, component: SetBooks },
     { path:"/manage/setBooksDetail", name:'setBooksDetail', meta:{title:'修改书籍信息',hidden:true}, component: SetBooksDetail },
     { path:"/manage/setWeb", name:'setWeb', meta:{title:'书城管理'}, component: User},
-    { path:"/manage/setWebCarousel", name:'setWebCarousel', meta:{title:'首页轮播',parent:"setWeb"}, component: Userinfo}, 
+    { path:"/manage/setWebCarousel", name:'setWebCarousel', meta:{title:'首页轮播',parent:"setWeb"}, component: SetCarousel}, 
     { path:"/manage/setWebPublish", name:'setWebPublish', meta:{title:'首页出版图书',parent:"setWeb"}, component: Userinfo}, 
     { path:"/manage/setWebRank", name:'setWebRank', meta:{title:'排行管理',parent:"setWeb"}, component: UserTopUp}, 
     { path:"/manage/setUser", name:'setUser', meta:{title:'用户管理'}, component: SetUser },

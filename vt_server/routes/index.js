@@ -4,7 +4,7 @@ const router=express.Router();
 
 //查询轮播图信息
 router.get("/carousel",(req,res)=>{
-    var sql="SELECT c.bookId,b.title,b.pic,b.intro FROM vt_carousel_item c,vt_books b WHERE c.bookId=b.bid";
+    var sql="SELECT c.bookId,b.title,b.author,b.price,b.pic,b.intro FROM vt_carousel_item c,vt_books b WHERE c.bookId=b.bid AND b.isSale=1";
     pool.query(sql,(err,result)=>{
         if(err) throw err;
         var output=[];

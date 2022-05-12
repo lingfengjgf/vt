@@ -8,7 +8,7 @@
                     <p @mouseover='stopc' @mouseout='startc' class="content">{{c.intro}}</p>
                 </article>        
                 <ul class="showImg list-unstyled">
-                    <li v-for='(c,i) of casels' :class='{show:i>=p&&i<n}' :key="c.bookId">
+                    <li v-for='(c,i) of casels' :class='{show:i>=p&&i<=n}' :key="c.bookId">
                         <a href="javascript:;"  @mouseover='stopi(i)' @mouseout='starti'><img @click="jumpDal" :data-id="c.bookId" :class='{active:ac==i}' :src="`${baseUrl}${c.pic}`"/></a>
                     </li>
                 </ul>             
@@ -168,8 +168,10 @@
                 baseUrl:process.env.VUE_APP_IMGURL,
                 casels:[],
                 p:0,
-                n:4,
+                n:3,
                 ac:0,
+                indexList:[],
+                currentIndex:0,
                 timer:null,
                 pubTop:[],
                 pubBooks:[],
@@ -179,8 +181,18 @@
         created() {
             this.getData();
             clearInterval(this.timer);
+            this.currentIndex=0;
+            this.indexList=[];
             this.timer=null;
             this.acImg();
+        },
+        watch:{
+            currentIndex(i){
+                this.p=this.indexList[i][0];
+                this.n=this.indexList[i][1];
+                this.ac=this.p;   
+                this.acImg();             
+            }  
         },
         methods: {
             getData(){
@@ -189,6 +201,15 @@
                     if(data.data.code==1){
                         this.casels=data.data.output;
                         this.cutIntro(this.casels,160);
+                        var i=0;
+                        while(i<this.casels.length-1){
+                            if(i+3<this.casels.length-1){
+                                this.indexList.push([i,i+=3]);
+                                i++;
+                            }else{
+                                this.indexList.push([i,i=this.casels.length-1]);
+                            }
+                        }
                     }
                 });
                 publishTop().then(data=>{
@@ -212,44 +233,31 @@
             acImg(){
                 if(this.timer==null){
                     this.timer=setInterval(()=>{
-                        if(this.ac<this.n-1) this.ac++;
-                        else this.ac=0+this.p;
+                        if(this.ac<this.n) this.ac++;
+                        else this.ac=this.p;
                     },3000)
                 }
             },    
             prev(){
                 clearInterval(this.timer);
                 this.timer=null;
-                if(this.p!=0){
-                    this.p-=4;
-                    this.n-=4;
-                }else{
-                    this.p=12;
-                    this.n=16;
+                this.currentIndex--;
+                if(this.currentIndex<0){
+                    this.currentIndex=this.indexList.length-1;
                 }
-                this.ac=this.p;
-                this.acImg();
             },
             next(){
                 clearInterval(this.timer);
                 this.timer=null;
-                if(this.p!=12){
-                    this.p+=4;
-                    this.n+=4;
-                }else{
-                    this.p=0;
-                    this.n=4;
+                this.currentIndex++;
+                if(this.currentIndex>=this.indexList.length){
+                    this.currentIndex=0;
                 }
-                this.ac=this.p;
-                this.acImg();
             },
             change(i){
                 clearInterval(this.timer);
                 this.timer=null;
-                this.p=i*4;
-                this.n=this.p+4;
-                this.ac=this.p;
-                this.acImg();
+                this.currentIndex=i;
             },
             stopc(){
                 clearInterval(this.timer); 
