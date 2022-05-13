@@ -17,6 +17,7 @@ import {
   Select,
   Option,
   Radio,
+  Dialog,
  } from 'element-ui';
 
 Vue.config.productionTip = false
@@ -41,6 +42,7 @@ Vue.use(Pagination);
 Vue.use(Select);
 Vue.use(Option);
 Vue.use(Radio);
+Vue.use(Dialog);
 
 //自定义截取字符串
 Vue.prototype.cutIntro=function(arr,num){

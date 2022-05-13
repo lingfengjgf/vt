@@ -23,3 +23,11 @@ export function setUser(data) {
     data
   })
 }
+
+export function setCarousel(data) {
+  return service({
+    url:'/manage/setCarousel',
+    method:'post',
+    data
+  })
+}

@@ -79,8 +79,50 @@ router.post("/setBook",(req,res)=>{
     })
 })
 
-// 首页轮播配置
+// 首页轮播新增(type=1)/删除(type=2)
 router.post("/setCarousel",(req,res)=>{
+    if(!req.session.uid){
+        res.send({code:-1,msg:"登录失效，请重新登录！"});
+        return;
+    }
+    var uid=req.session.uid;
+    var bookId=req.body.bookId;
+    var type=req.body.type;
+    if(!bookId||!type){
+        res.send({code:-1,msg:"非法操作！"});
+        return;
+    }
+    var sql='SELECT uname FROM vt_user WHERE uid=?';
+    pool.query(sql,uid,(err,result)=>{
+        if(err) throw err;
+        if(result.length>0){
+            var sql='SELECT cid FROM vt_carousel_item WHERE bookId=?';
+            pool.query(sql,[bookId],(err,result)=>{
+                if(err) throw err;
+                if((result.length==0&&type==1)||(result.length>0&&type==2)){
+                    var sql=type==1?"INSERT INTO vt_carousel_item VALUES (NULL,?)":"DELETE FROM vt_carousel_item WHERE bookId=?";
+                    pool.query(sql,[bookId],(err,result)=>{
+                        if(err) throw err;
+                        if(result.affectedRows>0){
+                            res.send({code:1,msg:`${type==1?"新增":"删除"}成功！`}); 
+                        }else{
+                            res.send({code:0,msg:'操作失败，请重试！'});
+                        } 
+                    }); 
+                }else{
+                    res.send({code:0,msg:type==1?'轮播图中已存在该书！':'轮播图中暂无该书！'});
+                } 
+            }); 
+            
+           
+        }else{
+            res.send({code:-1,msg:'无权操作！'})
+        }
+    })
+})
+
+// 首页轮播排序
+router.post("/rankCarousel",(req,res)=>{
     if(!req.session.uid){
         res.send({code:-1,msg:"登录失效，请重新登录！"});
         return;
@@ -91,10 +133,6 @@ router.post("/setCarousel",(req,res)=>{
         res.send({code:-1,msg:"非法操作！"});
         return;
     }
-    if(list.length>16){
-        res.send({code:-1,msg:"轮播书籍最多可配置16本！"});
-        return;
-    }
     var sql='SELECT uname FROM vt_user WHERE uid=?';
     pool.query(sql,uid,(err,result)=>{
         if(err) throw err;
@@ -103,10 +141,6 @@ router.post("/setCarousel",(req,res)=>{
             pool.query(sql,(err,result)=>{
                 if(err) throw err;
                 if(result.affectedRows>0){
-                    if(list.length==0){
-                        res.send({code:1,msg:"修改成功！"});
-                        return;                
-                    }
                     var arr=list.map(function(){
                         return ' (NULL,?) '
                     })
