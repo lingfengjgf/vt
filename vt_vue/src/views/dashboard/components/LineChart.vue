@@ -33,18 +33,21 @@ export default {
   },
   data() {
     return {
-      chart: null
+      chart: null,
+      week:['周日','周一','周二','周三','周四','周五','周六'],
     }
   },
   watch: {
     chartData: {
       deep: true,
       handler(val) {
-        this.setOptions(val)
+        this.setOptions(val,this.week)
       }
     }
   },
   mounted() {
+    let i=new Date().getDay();
+    this.week=[...this.week.slice(i),...this.week.slice(0,i)]
     this.$nextTick(() => {
       this.initChart()
     })
@@ -59,12 +62,12 @@ export default {
   methods: {
     initChart() {
       this.chart = echarts.init(this.$el, 'macarons')
-      this.setOptions(this.chartData)
+      this.setOptions(this.chartData,this.week)
     },
-    setOptions({ expectedData, actualData } = {}) {
+    setOptions({ expectedData, actualData } = {},xData) {
       this.chart.setOption({
         xAxis: {
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          data: xData,
           boundaryGap: false,
           axisTick: {
             show: false
@@ -90,10 +93,10 @@ export default {
           }
         },
         legend: {
-          data: ['expected', 'actual']
+          data: ['上周', '本周']
         },
         series: [{
-          name: 'expected', itemStyle: {
+          name: '上周', itemStyle: {
             normal: {
               color: '#FF005A',
               lineStyle: {
@@ -109,7 +112,7 @@ export default {
           animationEasing: 'cubicInOut'
         },
         {
-          name: 'actual',
+          name: '本周',
           smooth: true,
           type: 'line',
           itemStyle: {

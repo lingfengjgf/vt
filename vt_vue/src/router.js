@@ -22,6 +22,8 @@ import SetBooks from './views/SetBooks'
 import SetBooksDetail from './views/SetBooksDetail'
 import SetUser from './views/SetUser'
 import SetCarousel from './views/SetCarousel'
+import SetPublishBooks from './views/SetPublishBooks'
+import SetRankBooks from './views/SetRankBooks'
 import NotFound from './views/NotFound'
 //ES6
 
@@ -53,14 +55,14 @@ var routes=[
 
 var manageRoutes={ path: '/manage', component: Layout,children:[
     { path:"/manage", component: Dashboard },
-    { path:"/manage/dashboard", name:'dashboard', meta:{title:'书城概况'}, component: Dashboard },
-    { path:"/manage/setBooks", name:'setBooks', meta:{title:'书籍管理'}, component: SetBooks },
+    { path:"/manage/dashboard", name:'dashboard', meta:{title:'书城概况',icon:'icongaikuang'}, component: Dashboard },
+    { path:"/manage/setBooks", name:'setBooks', meta:{title:'书籍管理',icon:'iconshujiguanli'}, component: SetBooks },
     { path:"/manage/setBooksDetail", name:'setBooksDetail', meta:{title:'修改书籍信息',hidden:true}, component: SetBooksDetail },
-    { path:"/manage/setWeb", name:'setWeb', meta:{title:'书城管理'}, component: User},
+    { path:"/manage/setWeb", name:'setWeb', meta:{title:'书城管理',icon:'iconstore'}, component: User},
     { path:"/manage/setWebCarousel", name:'setWebCarousel', meta:{title:'首页轮播',parent:"setWeb"}, component: SetCarousel}, 
-    { path:"/manage/setWebPublish", name:'setWebPublish', meta:{title:'首页出版图书',parent:"setWeb"}, component: Userinfo}, 
-    { path:"/manage/setWebRank", name:'setWebRank', meta:{title:'排行管理',parent:"setWeb"}, component: UserTopUp}, 
-    { path:"/manage/setUser", name:'setUser', meta:{title:'用户管理'}, component: SetUser },
+    { path:"/manage/setWebPublish", name:'setWebPublish', meta:{title:'首页出版图书',parent:"setWeb"}, component: SetPublishBooks}, 
+    { path:"/manage/setWebRank", name:'setWebRank', meta:{title:'排行管理',parent:"setWeb"}, component: SetRankBooks}, 
+    { path:"/manage/setUser", name:'setUser', meta:{title:'用户管理',icon:'iconyonghu'}, component: SetUser },
   ] 
 }
 var menuRoutes = getMenuRouts(manageRoutes);
@@ -74,13 +76,13 @@ function getMenuRouts(){
         var index=children.findIndex(item=>item.name===child.meta.parent);
         if(index>-1){
           if(children[index].children){
-            children[index].children.push({path:child.path,name:child.name,title:child.meta.title});
+            children[index].children.push({path:child.path,name:child.name,...child.meta});
           }else{
-            children[index].children=[{path:child.path,name:child.name,title:child.meta.title}];
+            children[index].children=[{path:child.path,name:child.name,...child.meta}];
           }
         }
       }else{
-        children.push({path:child.path,name:child.name,title:child.meta.title})
+        children.push({path:child.path,name:child.name,...child.meta})
       }
     }
   })

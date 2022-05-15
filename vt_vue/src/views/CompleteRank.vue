@@ -72,13 +72,15 @@ export default {
     },
     methods: {
         loagPage(){
-            getRankInfo().then(res=>{
-                this.spLabel(res.data.recommend,1);
-                this.spLabel(res.data.best,1);
-                this.spLabel(res.data.new,1);
-                this.allBooks=res.data;
-                //console.log(this.allBooks);
-                this.loadBooks();
+            getRankInfo({}).then(res=>{
+                if(res.data.code==1){
+                    this.spLabel(res.data.output.recommend,1);
+                    this.spLabel(res.data.output.best,1);
+                    this.spLabel(res.data.output.new,1);
+                    this.allBooks=res.data.output;
+                    console.log(this.allBooks);
+                    this.loadBooks();
+                }
             })
         },
         loadBooks(){

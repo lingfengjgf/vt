@@ -230,21 +230,23 @@ export default {
     methods:{
         loadPage(){
             getRankInfo().then(res=>{
-                this.recommend=res.data.recommend;
-                this.cutIntro(this.recommend,41);
-                this.cutTit(this.recommend,11);
-                if(this.recommend.length>10)
-                    this.recommend=this.recommend.slice(0,10);
-                this.best=res.data.best;
-                this.cutIntro(this.best,41);
-                this.cutTit(this.best,11);
-                if(this.best.length>10)
-                    this.best=this.best.slice(0,10);
-                this.news=res.data.new;
-                this.cutIntro(this.news,41);
-                this.cutTit(this.news,11);
-                if(this.news.length>10)
-                    this.news=this.news.slice(0,10);
+                if(res.data.code=1){
+                    this.recommend=res.data.output.recommend;
+                    this.cutIntro(this.recommend,41);
+                    this.cutTit(this.recommend,11);
+                    if(this.recommend.length>10)
+                        this.recommend=this.recommend.slice(0,10);
+                    this.best=res.data.output.best;
+                    this.cutIntro(this.best,41);
+                    this.cutTit(this.best,11);
+                    if(this.best.length>10)
+                        this.best=this.best.slice(0,10);
+                    this.news=res.data.output.new;
+                    this.cutIntro(this.news,41);
+                    this.cutTit(this.news,11);
+                    if(this.news.length>10)
+                        this.news=this.news.slice(0,10);
+                }
                     //console.log(this.recommend);
             })
         },

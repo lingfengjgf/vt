@@ -11,8 +11,8 @@ router.post('/',(req,res)=>{
         return;
     }
     var sql='INSERT INTO vt_user(uid,uname,upwd,email,phone,avatar,bg,readFontF,';
-    sql+=' readFontS,readBg,isVIP) VALUES  (NULL,?,md5(?),?,?, ';
-    sql+=' "/img/user/icon/default.png","bg.jpg",0,18,0,0)';
+    sql+=' readFontS,readBg,isVIP,isAdmin,state) VALUES  (NULL,?,md5(?),?,?, ';
+    sql+=' "/img/user/icon/default.png","bg.jpg",0,18,0,0,0,1)';
     pool.query(sql,[uname,upwd,email,phone],(err,result)=>{
         if(err) throw err;
         if(result.affectedRows>0){

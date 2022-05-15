@@ -7,7 +7,7 @@ const router=express.Router();
 
 router.post('/bookList',(req,res)=>{
     if(!req.session.uid){
-        res.send({code:-1,msg:"登录失效，请重新登录！"});
+        res.send({code:-1,msg:"登录失效，请重新登录"});
         return;
     }
     var pno=parseInt(req.body.pno);
@@ -40,7 +40,7 @@ router.post('/bookList',(req,res)=>{
                 }
             })
         }else{
-            res.send({code:-1,msg:'无权操作！'})
+            res.send({code:-1,msg:'无权操作'})
         }
     })
 })
@@ -48,7 +48,7 @@ router.post('/bookList',(req,res)=>{
 // 修改书籍信息
 router.post("/setBook",(req,res)=>{
     if(!req.session.uid){
-        res.send({code:-1,msg:"登录失效，请重新登录！"});
+        res.send({code:-1,msg:"登录失效，请重新登录"});
         return;
     }
     var uid=req.session.uid;
@@ -68,192 +68,105 @@ router.post("/setBook",(req,res)=>{
             pool.query(sql,[label,price,isSale,bid],(err,result)=>{
                 if(err) throw err;
                 if(result.affectedRows==0){
-                    res.send({code:0,msg:'修改失败，请重试！'});
+                    res.send({code:0,msg:'修改失败，请重试'});
                 }else{
-                    res.send({code:1,msg:'修改成功！'});
+                    res.send({code:1,msg:'修改成功'});
                 }
             });
         }else{
-            res.send({code:-1,msg:'无权操作！'})
+            res.send({code:-1,msg:'无权操作'})
         }
     })
 })
 
-// 首页轮播新增(type=1)/删除(type=2)
-router.post("/setCarousel",(req,res)=>{
+
+const setInfoList=[
+    {db:'vt_carousel_item',id:'cid',name:'轮播图'},
+    {db:'vt_publish',id:'b1_id',name:'首页出版书籍'},
+    {db:'vt_publish_recommend',id:'rid',name:'编辑推荐排行'},
+    {db:'vt_publish_best',id:'bid',name:'观品热销排行'},
+    {db:'vt_publish_new',id:'nid',name:'新书上榜排行'},
+]
+
+// 首页轮播、首页出版书籍、排行书籍新增(type=1)/删除(type=2)
+router.post("/setShowBooks",(req,res)=>{
     if(!req.session.uid){
-        res.send({code:-1,msg:"登录失效，请重新登录！"});
+        res.send({code:-1,msg:"登录失效，请重新登录"});
         return;
     }
     var uid=req.session.uid;
     var bookId=req.body.bookId;
     var type=req.body.type;
-    if(!bookId||!type){
-        res.send({code:-1,msg:"非法操作！"});
+    var setType=req.body.setType;
+    if(!bookId||!type||!setType){
+        res.send({code:-1,msg:"非法操作"});
         return;
     }
     var sql='SELECT uname FROM vt_user WHERE uid=?';
     pool.query(sql,uid,(err,result)=>{
         if(err) throw err;
         if(result.length>0){
-            var sql='SELECT cid FROM vt_carousel_item WHERE bookId=?';
+            var setInfo=setInfoList[setType];
+            var sql=`SELECT ${setInfo.id} FROM ${setInfo.db} WHERE bookId=?`;
             pool.query(sql,[bookId],(err,result)=>{
                 if(err) throw err;
                 if((result.length==0&&type==1)||(result.length>0&&type==2)){
-                    var sql=type==1?"INSERT INTO vt_carousel_item VALUES (NULL,?)":"DELETE FROM vt_carousel_item WHERE bookId=?";
+                    var sql=type==1?`INSERT INTO ${setInfo.db} VALUES (NULL,?,NULL)`:`DELETE FROM ${setInfo.db} WHERE bookId=?`;
                     pool.query(sql,[bookId],(err,result)=>{
                         if(err) throw err;
                         if(result.affectedRows>0){
-                            res.send({code:1,msg:`${type==1?"新增":"删除"}成功！`}); 
+                            res.send({code:1,msg:`${type==1?"新增":"删除"}成功`}); 
                         }else{
-                            res.send({code:0,msg:'操作失败，请重试！'});
+                            res.send({code:0,msg:'操作失败，请重试'});
                         } 
                     }); 
                 }else{
-                    res.send({code:0,msg:type==1?'轮播图中已存在该书！':'轮播图中暂无该书！'});
+                    res.send({code:0,msg:type==1?`${setInfo.name}中已存在该书`:`${setInfo.name}中暂无该书`});
                 } 
             }); 
             
            
         }else{
-            res.send({code:-1,msg:'无权操作！'})
+            res.send({code:-1,msg:'无权操作'})
         }
     })
 })
 
-// 首页轮播排序
-router.post("/rankCarousel",(req,res)=>{
+
+// 首页轮播、首页出版书籍、排行书籍排序
+router.post("/rankShowBooks",(req,res)=>{
     if(!req.session.uid){
-        res.send({code:-1,msg:"登录失效，请重新登录！"});
+        res.send({code:-1,msg:"登录失效，请重新登录"});
         return;
     }
     var uid=req.session.uid;
     var list=req.body.list;
-    if(!list){
-        res.send({code:-1,msg:"非法操作！"});
+    var setType=req.body.setType;
+    if(!list||!setType){
+        res.send({code:-1,msg:"非法操作"});
         return;
     }
     var sql='SELECT uname FROM vt_user WHERE uid=?';
     pool.query(sql,uid,(err,result)=>{
         if(err) throw err;
         if(result.length>0){
-            var sql='TRUNCATE TABLE vt_carousel_item';
-            pool.query(sql,(err,result)=>{
-                if(err) throw err;
-                if(result.affectedRows>0){
-                    var arr=list.map(function(){
-                        return ' (NULL,?) '
-                    })
-                    var str=arr.join(" ");
-                    var sql="INSERT INTO vt_carousel_item VALUES "+str;
-                    pool.query(sql,list,(err,result)=>{
-                        if(err) throw err;
-                        if(result.affectedRows>0){
-                            res.send({code:1,msg:"修改成功！"});
-                        }else{
-                            res.send({code:0,msg:'修改失败，请重试！'});
-                        }
-                    }); 
-                }else{
-                    res.send({code:0,msg:'修改失败，请重试！'});
-                } 
-            });            
-        }else{
-            res.send({code:-1,msg:'无权操作！'})
-        }
-    })
-})
-
-// 首页推荐书籍配置
-router.post("/setIndexPublish",(req,res)=>{
-    if(!req.session.uid){
-        res.send({code:-1,msg:"登录失效，请重新登录！"});
-        return;
-    }
-    var uid=req.session.uid;
-    var list=req.body.list;
-    if(!list){
-        res.send({code:-1,msg:"非法操作！"});
-        return;
-    }
-    var sql='SELECT uname FROM vt_user WHERE uid=?';
-    pool.query(sql,uid,(err,result)=>{
-        if(err) throw err;
-        if(result.length>0){
-            var sql='TRUNCATE TABLE vt_publish';
-            pool.query(sql,(err,result)=>{
-                if(err) throw err;
-                if(result.affectedRows>0){
-                    if(list.length==0){
-                        res.send({code:1,msg:"修改成功！"});
-                        return;                
-                    }
-                    var arr=list.map(function(){
-                        return ' (NULL,?) '
-                    })
-                    var str=arr.join(" ");
-                    var sql="INSERT INTO vt_publish VALUES "+str;
-                    pool.query(sql,(err,result)=>{
-                        if(err) throw err;
-                        if(result.affectedRows>0){
-                            res.send({code:1,msg:"修改成功！"});
-                        }else{
-                            res.send({code:0,msg:'修改失败，请重试！'});
-                        }
-                    }); 
-                }else{
-                    res.send({code:0,msg:'修改失败，请重试！'});
-                } 
-            });            
-        }else{
-            res.send({code:-1,msg:'无权操作！'})
-        }
-    })
-})
-
-// 排行配置
-router.post("/setRank",(req,res)=>{
-    if(!req.session.uid){
-        res.send({code:-1,msg:"登录失效，请重新登录！"});
-        return;
-    }
-    var uid=req.session.uid;
-    var list=req.body.list;
-
-    if(!list||list.length==0){
-        res.send({code:-1,msg:"非法操作！"});
-        return;
-    }
-    var sql='SELECT uname FROM vt_user WHERE uid=?';
-    pool.query(sql,uid,(err,result)=>{
-        if(err) throw err;
-        if(result.length>0){
-            var arr1=list.map(function(){
-                return ' WHEN ? THEN ? '
-            })
-            var arr2=list.map(function(){
-                return ' ? '
-            })
-            var arr3=[];
-            list.forEach(val=>{
-                arr3.push(val.bookId,val.sort);
-            })
-            list.forEach(val=>{
-                arr3.push(val.bookId);
+            var setInfo=setInfoList[setType];
+            var arr1=list.map((item,i)=>{
+                return ` WHEN ${item} THEN ${i+1} `
             })
             var str1=arr1.join(" ") ;
-            var str2=arr2.join(",") ;
-            var sql="UPDATE vt_publish_best SET sort = CASE bookId "+str1+ "ELSE END WHERE bookId IN ( "+str2+" ) ";
-            pool.query(sql,arr3,(err,result)=>{
+            var str2=list.join(",") ;
+            var sql=`UPDATE ${setInfo.db} SET sort = CASE bookId `+str1+ "ELSE sort END WHERE bookId IN( "+str2+" ) ";
+            pool.query(sql,(err,result)=>{
                 if(err) throw err;
                 if(result.affectedRows>0){
-                    res.send({code:1,msg:"修改成功！"});
+                    res.send({code:1,msg:"修改成功"});
                 }else{
-                    res.send({code:0,msg:'修改失败，请重试！'});
+                    res.send({code:0,msg:'修改失败，请重试'});
                 }
-            });             
+            });         
         }else{
-            res.send({code:-1,msg:'无权操作！'})
+            res.send({code:-1,msg:'无权操作'})
         }
     })
 })
@@ -262,7 +175,7 @@ router.post("/setRank",(req,res)=>{
 //查询用户表
 router.post('/userList',(req,res)=>{
     if(!req.session.uid){
-        res.send({code:-1,msg:"登录失效，请重新登录！"});
+        res.send({code:-1,msg:"登录失效，请重新登录"});
         return;
     }
     var pno=parseInt(req.body.pno||0);
@@ -285,14 +198,14 @@ router.post('/userList',(req,res)=>{
 // 用户管理
 router.post("/setUser",(req,res)=>{
     if(!req.session.uid){
-        res.send({code:-1,msg:"登录失效，请重新登录！"});
+        res.send({code:-1,msg:"登录失效，请重新登录"});
         return;
     }
     var uid=req.session.uid;
     var userId=req.body.uid;
     var state=req.body.state;
     if(!userId){
-        res.send({code:-1,msg:"非法操作！"});
+        res.send({code:-1,msg:"非法操作"});
         return;
     }
     var sql='SELECT uname FROM vt_user WHERE uid=?';
@@ -303,13 +216,13 @@ router.post("/setUser",(req,res)=>{
             pool.query(sql,[state,userId],(err,result)=>{
                 if(err) throw err;
                 if(result.affectedRows>0){
-                    res.send({code:1,msg:"修改成功！"});
+                    res.send({code:1,msg:"修改成功"});
                 }else{
-                    res.send({code:0,msg:'修改失败，请重试！'});
+                    res.send({code:0,msg:'修改失败，请重试'});
                 }
             });             
         }else{
-            res.send({code:-1,msg:'无权操作！'})
+            res.send({code:-1,msg:'无权操作'})
         }
     })
 })

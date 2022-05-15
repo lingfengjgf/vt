@@ -32,14 +32,14 @@ router.post("/",(req,res)=>{
     var pageSize=parseInt(req.body.pageSize);
     var order=req.body.order;
     var label=req.body.label;
-    var sql='SELECT bid,title,author,watch,pic,intro FROM vt_books';
+    var sql='SELECT bid,title,author,watch,pic,intro FROM vt_books WHERE isSale=1 ';
     if(label){
         label=label.split(/\s+/);
         var arr=label.map(function(){
             return " label like ? ";
           })
-        var str=arr.join(" and ");
-        sql+=' WHERE '+str;
+        var str=arr.join(" AND ");
+        sql+=' AND '+str;
         label.forEach(function(val,i,arr){
             label[i]=`%${val}%`;
           })
@@ -78,7 +78,7 @@ router.post('/search',(req,res)=>{
     if (!pno) pno=0;
     if(!pageSize) pageSize=9;
     var output={};
-    var sql='SELECT bid,title,author,watch,pic,intro,label,price,isSale FROM vt_books';
+    var sql='SELECT bid,title,author,watch,pic,intro,label,price,isSale FROM vt_books WHERE isSale=1 ';
     if(kwords){
         kwords=kwords.split(/\s+/);
         var arr1=kwords.map(function(){
@@ -89,7 +89,7 @@ router.post('/search',(req,res)=>{
         })
         var str1=arr1.join(" OR ");
         var str2=arr2.join(" ");
-        sql+=' WHERE '+str1+str2;
+        sql+=' AND '+str1+str2;
         var kwordsT=kwords.map(function(val,i,arr){
             return  `%${val}%`;
         })

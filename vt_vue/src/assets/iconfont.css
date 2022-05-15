@@ -13,20 +13,56 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.iconzhanghuchongzhi-copy:before {
+  content: "\e628";
+}
+
+.iconyonghu1:before {
+  content: "\e603";
+}
+
+.iconhuiyuan:before {
+  content: "\e732";
+}
+
+.iconshucheng:before {
+  content: "\e612";
+}
+
+.iconstore:before {
+  content: "\e655";
+}
+
+.icongaikuang:before {
+  content: "\e760";
+}
+
+.iconcaidan:before {
+  content: "\e652";
+}
+
+.iconshujiguanli:before {
+  content: "\e61d";
+}
+
+.iconmove:before {
+  content: "\e629";
+}
+
+.iconyoujiantou_huaban:before {
+  content: "\e63e";
+}
+
+.iconzuojiantou_huaban:before {
+  content: "\e63f";
+}
+
 .iconyonghu:before {
   content: "\e633";
 }
 
 .iconshouji:before {
   content: "\e6c7";
-}
-
-.iconxiangzuo3:before {
-  content: "\e626";
-}
-
-.iconxiangyou3:before {
-  content: "\e62a";
 }
 
 .iconjiesuo:before {
@@ -48,4 +84,3 @@
 .iconyanjing:before {
   content: "\e8c7";
 }
-

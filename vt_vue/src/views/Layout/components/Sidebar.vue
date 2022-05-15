@@ -8,12 +8,12 @@
       active-text-color="#0083ec">
       <template v-for="item in menu">
         <el-menu-item v-if="!item.children" :index="item.path"  :key="item.path">
-          <i class="el-icon-menu mr-10"></i>
+          <i class="iconfont mr-10" :class="[item.icon?item.icon:'iconcaidan']"></i>
           <span slot="title">{{item.title}}</span>
         </el-menu-item>
         <el-submenu v-else :index="item.path" :key="item.path">
           <template slot="title">
-            <i class="el-icon-location mr-10"></i>
+            <i class="iconfont mr-10" :class="[item.icon?item.icon:'iconcaidan']"></i>
             <span>{{item.title}}</span>
           </template>
           <el-menu-item v-for="subItem in item.children" :key="subItem.path" :index="subItem.path">{{subItem.title}}</el-menu-item>

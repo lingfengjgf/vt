@@ -24,9 +24,17 @@ export function setUser(data) {
   })
 }
 
-export function setCarousel(data) {
+export function setShowBooks(data) {
   return service({
-    url:'/manage/setCarousel',
+    url:'/manage/setShowBooks',
+    method:'post',
+    data
+  })
+}
+
+export function rankShowBooks(data) {
+  return service({
+    url:'/manage/rankShowBooks',
     method:'post',
     data
   })

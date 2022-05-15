@@ -40,7 +40,7 @@ service.interceptors.request.use(config => {
         pending.push({ u: config.url + '&' + config.method + JSON.stringify(config.data), f: c, t:(new Date()).getTime() });
     });
     if(config.method === 'post') {
-        config.data = qs.stringify(config.data);
+        config.data = qs.stringify(config.data, {indices: false});
     }
     // console.log("request config",config);
     return config

@@ -18,7 +18,7 @@
           </template>
       </el-table-column>
     </el-table>
-    <el-dialog title="添加首页轮播书籍" :visible.sync="dialogTableVisible">
+    <el-dialog title="添加首页出版书籍" :visible.sync="dialogTableVisible">
       <div class="manage-container-top">
         <el-input v-model="params.kwords" @keyup.enter.native="search" class="manage-container-input" placeholder="请输入书名/作者"></el-input>
         <div @click="search" class="manage-container-btn">搜 索</div>
@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { getCarousel } from "../api/index";
+import { publishBooks } from "../api/index";
 import { setShowBooks, rankShowBooks } from "../api/manage";
 import {classifySearch} from '../api/classify'
 import Sortable from 'sortablejs'
@@ -64,7 +64,7 @@ export default {
   methods: {
       showAddList(){
         if(this.list.length>=16){
-          this.$message.error('轮播书籍最多可配置16本');
+          this.$message.error('首页出版书籍最多可配置9本');
           return ;
         }
         this.addList=[];
@@ -72,7 +72,7 @@ export default {
         this.dialogTableVisible=true;
       },
       getList(){
-          getCarousel({}).then(data=>{
+          publishBooks({}).then(data=>{
               if(data.data.code==1){
                 let list=data.data.output;
                 list.forEach((item,i)=>{
@@ -96,11 +96,11 @@ export default {
         this.getAddList();
       },
       setClick(bookId,type){
-        if(type==2&&this.list.length<=8){
-          this.$message.error('轮播书籍不得少于8本');
+        if(type==2&&this.list.length<=6){
+          this.$message.error('首页出版书籍不得少于6本');
           return ;          
         }
-        setShowBooks({bookId,type,setType:0}).then(data=>{
+        setShowBooks({bookId,type,setType:1}).then(data=>{
           var key=data.data.code==1?'success':'error';
           this.$message[key](data.data.msg);
           if(data.data.code==1){
@@ -139,7 +139,7 @@ export default {
       },
       sortConfirm(){
         let list=this.sortList.map(item=>item.bookId);
-        rankShowBooks({list,setType:0}).then(data=>{
+        rankShowBooks({list,setType:1}).then(data=>{
           if(data.data.code==1){
             this.list=[];
             this.getList();

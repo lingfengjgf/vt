@@ -28,31 +28,32 @@ INSERT INTO vt_navbar_item VALUES
 #轮播图
 CREATE TABLE vt_carousel_item(
 	cid INT PRIMARY KEY AUTO_INCREMENT,
-	bookId INT
+	bookId INT,
+	sort TINYINT,
 );
 INSERT INTO vt_carousel_item VALUES
-(NULL,'3'),
-(NULL,'2'),
-(NULL,'4'),
-(NULL,'5'),
-(NULL,'6'),
-(NULL,'7'),
-(NULL,'8'),
-(NULL,'9'),
-(NULL,'10'),
-(NULL,'1'),
-(NULL,'11'),
-(NULL,'5'),
-(NULL,'12'),
-(NULL,'6'),
-(NULL,'13'),
-(NULL,'14');
+(NULL,'3','1'),
+(NULL,'2','2'),
+(NULL,'4','3'),
+(NULL,'5','4'),
+(NULL,'6','5'),
+(NULL,'7','6'),
+(NULL,'8','7'),
+(NULL,'9','8'),
+(NULL,'10','9'),
+(NULL,'1','10'),
+(NULL,'11','11'),
+(NULL,'5','12'),
+(NULL,'12','13'),
+(NULL,'6','14'),
+(NULL,'13','15'),
+(NULL,'14','16');
 
 #出版图书
 CREATE TABLE vt_publish(
 	b1_id INT PRIMARY KEY AUTO_INCREMENT,
 	bookId INT,
-	sort INT
+	sort TINYINT
 );
 INSERT INTO vt_publish VALUES
 ('1','15','1'),
@@ -78,7 +79,7 @@ INSERT INTO vt_publish_top VALUES
 CREATE TABLE vt_publish_recommend(
 	rid INT PRIMARY KEY AUTO_INCREMENT,
 	bookId INT,
-	sort INT
+	sort TINYINT
 );
 INSERT INTO vt_publish_recommend VALUES
 (NULL,'3','3'),
@@ -90,7 +91,7 @@ INSERT INTO vt_publish_recommend VALUES
 CREATE TABLE vt_publish_best(
 	bid INT PRIMARY KEY AUTO_INCREMENT,
 	bookId INT,
-	sort INT
+	sort TINYINT
 );
 INSERT INTO vt_publish_best VALUES
 (NULL,'12','5'),
@@ -111,7 +112,7 @@ INSERT INTO vt_publish_best VALUES
 CREATE TABLE vt_publish_new(
 	nid INT PRIMARY KEY AUTO_INCREMENT,
 	bookId INT,
-	sort INT
+	sort TINYINT
 );
 INSERT INTO vt_publish_new VALUES
 (NULL,'4','1'),
@@ -176,7 +177,8 @@ CREATE TABLE vt_user(
 	readFontS SMALLINT,
 	readBg SMALLINT,
 	isVIP BOOL,
-	balance INT 
+	balance INT,
+	state TINYINT 
 );
 INSERT INTO vt_user VALUES
 (NULL,'aaa',md5('123456'),'13812345678','aaa@163.com','/img/user/icon/default.png','bg.jpg',0,18,0,0,0);
