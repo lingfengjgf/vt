@@ -22,7 +22,7 @@ export default {
     },
     height: {
       type: String,
-      default: '300px'
+      default: '310px'
     }
   },
   data() {
@@ -62,7 +62,7 @@ export default {
         },
         xAxis: [{
           type: 'category',
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
           axisTick: {
             alignWithLabel: true
           }
@@ -74,25 +74,25 @@ export default {
           }
         }],
         series: [{
-          name: 'pageA',
+          name: '出版',
           type: 'bar',
           stack: 'vistors',
           barWidth: '60%',
-          data: [79, 52, 200, 334, 390, 330, 220],
+          data: [79, 52, 152, 153, 178, 330, 280],
           animationDuration
         }, {
-          name: 'pageB',
+          name: '经典',
           type: 'bar',
           stack: 'vistors',
           barWidth: '60%',
-          data: [80, 52, 200, 334, 390, 330, 220],
+          data: [130, 85, 168, 189, 268, 462, 495],
           animationDuration
         }, {
-          name: 'pageC',
+          name: '国外',
           type: 'bar',
           stack: 'vistors',
           barWidth: '60%',
-          data: [30, 52, 200, 334, 390, 330, 220],
+          data: [30, 21, 36, 45, 88, 111, 106],
           animationDuration
         }]
       })

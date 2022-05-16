@@ -47,7 +47,7 @@
                             </p>
                             <div class="content-ul-watch">
                                 <i class="iconfont eye">&#xe8c7;</i>
-                                <span>{{b.watch}}</span>
+                                <span>{{b.watch|wordsFormat}}</span>
                             </div>
                             <p class="intro">{{b.intro}}</p>
                         </div>
@@ -472,10 +472,11 @@
         height: 235px;
         padding: 15px;
         box-sizing: border-box;
+        border: 1px solid transparent;
     }
     .content-ul>li:hover{
         border: 1px solid #ddd;
-        box-shadow: 2px 2px 10px #000;
+        box-shadow: 0px 2px 8px 5px #ddd;
     }
     .content-ul>li>a>img{
         width: 150px;

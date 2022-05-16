@@ -129,6 +129,16 @@ Vue.filter('datetimeFilter',function(val){
   return `${y}-${m}-${d} ${h}:${mi}:${s}`;
 })
 
+Vue.filter('wordsFormat',function(val){
+  if(!val){
+    return 0;
+  }
+  if(val<=1000){
+    return val;
+  }
+  return (val/1000).toFixed(2)/1+'k';
+})
+
 new Vue({
   router,
   store,

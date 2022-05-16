@@ -12,6 +12,14 @@ export default new Vuex.Store({
     headerI:sessionStorage.getItem('headerI')||0,
     isLogin:sessionStorage.getItem('isLogin')||0,
     userShow:0,
+    userInfo:{
+      userAva:sessionStorage.getItem('userAva')||'/img/user/icon/default.png',
+      userBg:sessionStorage.getItem('userBg')||'bg.jpg',
+      uname:sessionStorage.getItem('uname')||'',
+      fontF:localStorage.getItem('fontF')||0,
+      fontS:localStorage.getItem('fontS')||18,
+      bg:localStorage.getItem('bg')||0
+    },
     userAva:sessionStorage.getItem('userAva')||'/img/user/icon/default.png',
     userBg:sessionStorage.getItem('userBg')||'bg.jpg',
     uname:sessionStorage.getItem('uname')||'',

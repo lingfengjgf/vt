@@ -44,7 +44,7 @@
                             <p class="author">{{r.author}}</p>
                             <div class="content-ul-watch">
                                 <i class="iconfont eye">&#xe8c7;</i>
-                                <span>{{r.watch}}</span>
+                                <span>{{r.watch|wordsFormat}}</span>
                             </div>
                         </li>
                     </ul>        

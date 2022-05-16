@@ -56,7 +56,7 @@
                                     <p>{{r.author}}</p>
                                     <div>
                                         <i class="iconfont eye">&#xe8c7;</i>
-                                        <span>{{r.watch}}</span>
+                                        <span>{{r.watch|wordsFormat}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -99,7 +99,7 @@
                                     <p>{{r.author}}</p>
                                     <div>
                                         <i class="iconfont eye">&#xe8c7;</i>
-                                        <span>{{r.watch}}</span>
+                                        <span>{{r.watch|wordsFormat}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -142,7 +142,7 @@
                                     <p>{{r.author}}</p>
                                     <div>
                                         <i class="iconfont eye">&#xe8c7;</i>
-                                        <span>{{r.watch}}</span>
+                                        <span>{{r.watch|wordsFormat}}</span>
                                     </div>
                                 </div>
                             </div>

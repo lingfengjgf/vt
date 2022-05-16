@@ -54,6 +54,7 @@ import {login} from '../api/login'
                     return;
                 }
                 var postData={uname,upwd}; 
+                this.hint='';
                 login(postData).then(res=>{
                     if(res.data.code==1){
                         this.hint='';
@@ -67,7 +68,11 @@ import {login} from '../api/login'
                         this.$store.commit("changeUname",u);
                         this.jump();
                     }else{
-                        this.hint=res.data.msg;
+                        if(res.data.code==-10){
+                            this.$message.error(res.data.msg);
+                        }else{
+                            this.hint=res.data.msg;
+                        }
                     }
                     //console.log(res.data);
                 })
