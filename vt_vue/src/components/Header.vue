@@ -14,17 +14,17 @@
                 </ul>
             </div>
             <div class="login">
-                <input type="text" v-model='kwords' @keyup.13='search()' placeholder="书名/作者"/>
-                <a @click='search()' class='search' href="javascript:;">
-                    <i class="iconfont">&#xe60d;</i>
-                </a>
-                <router-link :class="{hide:$store.getters.optIsLogin==1}" to="/login">登录</router-link>
-                <router-link :class="{hide:$store.getters.optIsLogin==1}" to="/register">注册</router-link>
+                <div class="login-box">
+                    <input type="text" v-model='kwords' @keyup.13='search()' placeholder="书名/作者"/>
+                    <i @click='search()' class="iconfont search">&#xe60d;</i>
+                </div>
+                <router-link class="vt-btn" :class="{hide:$store.getters.optIsLogin==1}" to="/login">登录</router-link>
+                <router-link class="vt-btn" :class="{hide:$store.getters.optIsLogin==1}" to="/register">注册</router-link>
                 <router-link  to="/user" :class="{hide:$store.getters.optIsLogin==0}" class="avatar">
-                    <img :src="`${baseUrl}${$store.getters.optUserAva}`">
+                    <img :src="`${baseUrl}${userInfo.avatar}`">
                 </router-link>
-                <a @click='logoutClick' :class="{hide:$store.getters.optIsLogin==0}" href="javascript:;">注销</a>
-                <a @click='manageClick' :class="{hide:$store.getters.optIsLogin==0}" href="javascript:;">管理</a>
+                <div class="vt-btn" @click='logoutClick' :class="{hide:$store.getters.optIsLogin==0}">注销</div>
+                <div class="vt-btn" @click='manageClick' v-show="userInfo.isAdmin==1&&$store.getters.optIsLogin==1">管理</div>
             </div>
         </div>
         <div @click='close' class="dialog" v-show='isLogin'>
@@ -41,6 +41,7 @@
 
 <script>
     import {logout} from '../api/login'
+    import { mapState } from 'vuex'
     export default {
         data(){
             return{
@@ -53,6 +54,11 @@
             $route(to,from){
                 this.kwords=this.$route.query.kwords;
             }
+        },
+        computed:{
+            ...mapState({
+                userInfo:state => state.userInfo
+            })
         },
         methods:{
             search(){
@@ -124,7 +130,11 @@
         margin-top: 15px;
         position: relative;
     }
-    header>div>div.login>input{
+    .login .login-box{
+        position: relative;
+        margin-right: 30px;
+    }
+    header>div>div.login input{
         height: 32px;
         width: 200px;
         line-height: 32px;
@@ -137,40 +147,19 @@
         padding-right: 30px;
         box-sizing: border-box;
     }
-    header>div>div.login>input:hover,header>div>div.login>input:focus{
+    header>div>div.login>input:hover,header>div>div.login input:focus{
         border-color:#0083ec;
     }
-    header>div>div.login>a{
-        display: block;
-        width: 60px;
-        height: 30px;
-        text-align: center;
-        line-height: 30px;
-        border: 1px solid #d2d2d2;
-        border-radius: 3px;
-        margin-left: 20px;
-    }
-    header>div>div.login>a:hover{
-        color: #fff !important;
-        background: #0083ec;
-    }
-    header>div>div.login>a.search{
+    header>div>div.login .search{
         position: absolute;
-        top:3px;
-        left: 150px;
+        top:5px;
+        right: 10px;
         border: none;
         width: 25px;
         height: 25px;
-    }
-    header>div>div.login>a.search:hover{
-        background: transparent;
-    }
-    header>div>div.login>a.search>.iconfont{
         font-size: 20px;
         color: #bfbfbf;
-        position: relative;
-        right: 4px;
-        top: -2px;
+        cursor: pointer;
     }
     header>div>div.login>a.avatar{
         display: block;

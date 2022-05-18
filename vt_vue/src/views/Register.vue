@@ -6,7 +6,7 @@
                 <h2>用户注册</h2>
                 <p :class='{red:unameErr,green:unameSuc}'>
                     <i class="iconfont">&#xe633;</i>
-                    <input type="text" placeholder="昵称" @focus='fHint' v-model='uname' @blur='bHint' data-i='1'>
+                    <input type="text" placeholder="昵称" maxlength="9" @focus='fHint' v-model='uname' @blur='bHint' data-i='1'>
                     <span>{{unameSpan}}</span>
                 </p>
                 <p :class='{red:upwdErr,green:upwdSuc}'>
@@ -21,7 +21,7 @@
                 </p>
                 <p :class='{red:phoneErr,green:phoneSuc}'>
                     <i class="iconfont">&#xe6c7;</i>
-                    <input type="text" placeholder="手机号码" @focus='fHint' v-model='phone' @blur='bHint' data-i='4'>
+                    <input type="text" placeholder="手机号码" maxlength="11" @focus='fHint' v-model='phone' @blur='bHint' data-i='4'>
                     <span>{{phoneSpan}}</span>
                 </p>
                 <a class="goReg" @click='reg' href="javascript:;">立 即 注 册</a>
@@ -38,7 +38,7 @@
         <div @click='close' class="dialog" v-show='jump'>
             <div class='maskJump'>
                 <p>注册成功！{{sec}}秒后自动进入</p>
-                <a @click='goPage' href="javascript:;">直接进入>></a>
+                <div @click='goPage' class="dialog-text">直接进入>></div>
             </div>
         </div>
     </div>
@@ -46,6 +46,7 @@
 
 <script>
     import {register,checkUname,checkEmail,checkPhone} from '../api/register'
+    import {getUserInfo} from '../api/user'
     export default{
         data(){
             return{
@@ -89,6 +90,7 @@
                         if(res.data.code==1){
                             this.$store.commit("changeLogin",1);
                             this.jump=true;
+                            this.userInfo();
                             this.jumpSec();
                         }
                     })
@@ -247,6 +249,13 @@
                         this.$router.push(this.$store.getters.optBackPath);
                     }
                 },1000);
+            },
+            userInfo(){
+                getUserInfo().then(data=>{
+                    if(data.data.code==1){
+                        this.$store.commit("changeUserInfo",data.data.userInfo);
+                    }
+                })
             }
         },
     }
@@ -388,8 +397,9 @@
         margin-top: 47px;
         margin-bottom: 10px;
     }
-    div>div.dialog>div.maskJump>a{
+    div>div.dialog>div.maskJump>.dialog-text{
         color: #0083ec;
+        cursor: pointer;
     }
 </style>
  

@@ -7,11 +7,11 @@
         </p>
         <p class="avatar">
             <b>修改头像：</b>
-            <a href="javascript:;" v-for="(ava,i) of avatar" :class="{show:avaShow==i}" :key="i"><img @click="changeAva" :data-i="i" :data-src="ava.pic" :src="`${baseUrl}${ava.pic}`"></a>
+            <a href="javascript:;" v-for="(ava,i) of avaBgInfo.avatar" :class="{show:avaShow==i}" :key="i"><img @click="changeAva" :data-i="i" :data-src="ava.pic" :src="`${baseUrl}${ava.pic}`"></a>
         </p>
         <p class="bg">
             <b>修改背景：</b>
-            <a href="javascript:;" v-for="(b,i) of bg" :class="{show:bgShow==i}" :key="i"><img @click="changeBg" :data-i="i" :data-src="b.pic"  :src="`${baseUrl}/img/user/bg/${b.pic}`"></a>
+            <a href="javascript:;" v-for="(b,i) of avaBgInfo.bg" :class="{show:bgShow==i}" :key="i"><img @click="changeBg" :data-i="i" :data-src="b.pic"  :src="`${baseUrl}/img/user/bg/${b.pic}`"></a>
         </p>
         <p class="email" :class='{red:emailErr,green:emailSuc}'>
             <b>修改邮箱：</b>
@@ -21,7 +21,7 @@
         <a @click="set" href="javascript:;">确定</a>
         <div @click='close' class="dialog" v-show='setSuc'>
             <div class='mask'>
-                <p>修改成功</p>
+                <p>修改成功！</p>
                 <a class="close" @click='close' href="javascript:;">
                     <span>×</span>
                 </a>
@@ -31,8 +31,9 @@
 </template>
 
 <script>
-import {getUserInfo,setUserInfo} from '../api/user'
+import { setUserInfo,getUserInfo } from '../api/user'
 import {checkUname,checkEmail} from '../api/register'
+import { mapState } from 'vuex'
 export default {
     data() {
         return {
@@ -55,7 +56,18 @@ export default {
             emailErr:false,
             unameSuc:false,
             emailSuc:false,
-            setSuc:false
+            setSuc:false,
+        }
+    },
+    computed:{
+        ...mapState({
+            userInfo:state => state.userInfo,
+            avaBgInfo:state => state.avaBgInfo,
+        })
+    },
+    watch:{
+        userInfo(val){
+            console.log('watch userInfo:',val);
         }
     },
     created(){
@@ -63,19 +75,16 @@ export default {
     },
     methods: {
         loadpage(){
-            getUserInfo().then(res=>{
-                //console.log(res.data.info[0]);
-                this.avatar=res.data.avatar;
-                this.bg=res.data.bg;
-                this.uname=res.data.info[0].uname;
-                this.oldUname=this.uname;
-                this.email=res.data.info[0].email;
-                this.oldEmail=this.email;
-                this.oldBg=this.$store.getters.optUserBg;
-                this.bgSrc=this.oldBg;
-                this.oldAva=this.$store.getters.optUserAva;
-                this.avaSrc=this.oldAva;
-            })
+            this.uname=this.userInfo.uname;
+            this.email=this.userInfo.email;
+            this.avatar=this.userInfo.avatar;
+            this.bg=this.userInfo.bg;
+            this.bgSrc=this.bg;
+            this.oldUname=this.uname;
+            this.oldEmail=this.email;
+            this.oldBg=this.bg;
+            this.oldAva=this.avatar;
+            this.avaSrc=this.avatar;
         },
         set(){
             var u=this.uname;
@@ -113,11 +122,12 @@ export default {
                         this.$store.commit("changeUserAva",a);
                         this.$store.commit("changeUserBg",b);
                         this.$store.commit("changeUname",u);
+                        this.$message.success('修改成功');
+                        this.getInfo();
                     }
                 })
             }else{
                 console.log("没有修改");
-                console.log(this.$store.getters.optUserBg+'||'+this.$store.getters.optUserAva);
             }
         },
         changeAva(e){
@@ -219,7 +229,14 @@ export default {
         }, 
         close(){
             this.setSuc=false;
-        },       
+        }, 
+        getInfo(){
+            getUserInfo().then(data=>{
+                if(data.data.code==1){
+                    this.$store.commit("changeUserInfo",data.data.userInfo);
+                }
+            })
+        }      
     }
 }
 </script>
@@ -295,43 +312,5 @@ export default {
     }
     div.main>a:hover{
         color: #fff !important;
-    }
-    div.main>div.dialog{
-        position: fixed;
-        margin: 0;
-        width: 100%;
-        background: rgba(0, 0, 0, 0.6);
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: 100;
-    }
-    div.main>div.dialog>div.mask{
-        width: 400px;
-        height: 150px;
-        background: #ffffff;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        border-radius: 8px;
-        text-align: center;
-        font-size: 22px;
-        color: #000;
-    }
-    div.main>div.dialog>div.mask>p{
-        margin-top: 60px;
-    }
-    div.main>div.dialog>div.mask>a.close{
-        position: absolute;
-        top: 10px;
-        right:20px;
-        display:block;
-        width:20px;
-        height:20px;
-    }
-    div.main>div.dialog>div.mask>a.close>span{
-        font-size: 32px;
     }
 </style>

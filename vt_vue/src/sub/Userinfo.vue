@@ -2,7 +2,7 @@
     <div class="main">
         <ul class="list-unstyled">
             <li>
-                <h3><span>昵称:</span>{{$store.getters.optUname}}</h3>
+                <h3><span>昵称:</span>{{userInfo.uname}}</h3>
             </li>
             <li>
                 <h3>
@@ -14,18 +14,18 @@
             <li>
                 <h3>
                     <span>书币:</span>
-                    0
+                    {{userInfo.balance?userInfo.balance:0}}
                     <router-link to="/userTopUp">充值</router-link>
                 </h3>
             </li>            
             <li>
                 <h3>
-                    <span>绑定手机:</span>{{phone}}
+                    <span>绑定手机:</span>{{userInfo.phone}}
                 </h3>
             </li>            
             <li>
                 <h3>
-                    <span>绑定邮箱:</span>{{email}}
+                    <span>绑定邮箱:</span>{{userInfo.email}}
                 </h3>
             </li>            
         </ul>
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import {getUserInfo} from '../api/user'
+import { mapGetters } from 'vuex'
 export default {
     data() {
         return {
@@ -43,23 +43,12 @@ export default {
             phone:''
         }
     },
-    created() {
-        this.loadPage();
+    computed:{
+        ...mapGetters({
+            userInfo:'optUserInfo'
+        })
     },
     methods: {
-        loadPage(){
-            getUserInfo().then(res=>{
-                if(res.data.code=1){
-                    var p=res.data.data[0].phone;
-                    var e=res.data.data[0].email;
-                    p=p.slice(0,3)+"****"+p.slice(7);
-                    var i=e.lastIndexOf("@"); 
-                    e=e.slice(0,1)+"****"+e.slice(i);
-                    this.phone=p;
-                    this.email=e;
-                }
-            })
-        }
     },
 }
 </script>

@@ -9,7 +9,6 @@
 
 <script>
 import {readed,pageSet} from './api/user';
-import {getReadSet} from './api/read'
 export default {
   data() {
     return {
@@ -26,11 +25,7 @@ export default {
       this.userShow(to.path);
       this.readedChange(to.path,from.path);
       this.getFirstReaded(to.path);
-      this.getReadSet(from.path);
     }
-  },
-  created(){
-    this.readSet();
   },
   methods: {
     getReaded(){
@@ -118,24 +113,6 @@ export default {
       }
       this.$store.commit("changeUserShow",i);
       //console.log(this.$store.getters.optUserShow);
-    },
-    getReadSet(from){
-      var index=from.indexOf("/read/"); 
-      if(index=-1||(from=="/register"||from=="/login"&&this.$store.getters.optIsLogin==1)){
-        this.readSet();
-      }
-    },
-    readSet(){
-      getReadSet().then(res=>{
-        if(res.data.code!=-1){
-          var bg=res.data[0].readBg;
-          var fontF=res.data[0].readFontF;
-          var fontS=res.data[0].readFontS;
-          this.$store.commit("changeFontF",fontF);
-          this.$store.commit("changeFontS",fontS);
-          this.$store.commit("changeBg",bg);
-        }
-      })
     },
   },
 }

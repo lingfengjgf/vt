@@ -1,6 +1,6 @@
 <template>
     <div class="log">
-        <div>
+        <div class="log-box">
             <h2>欢迎登录观品</h2>
             <p>
                 <i class="iconfont">&#xe633;</i>
@@ -22,14 +22,15 @@
         <div @click='close' class="dialog" v-show='showMask'>
             <div class='mask'>
                 <p>登录成功！{{sec}}秒后自动进入</p>
-                <a @click='goPage' href="javascript:;" >直接进入>></a>
+                <div class="dialog-text" @click='goPage'>直接进入>></div>
             </div>
         </div>
     </div> 
 </template>
 
 <script>
-import {login} from '../api/login'
+    import {login} from '../api/login'
+    import {getUserInfo} from '../api/user'
     export default {
         data() {
             return {
@@ -66,6 +67,7 @@ import {login} from '../api/login'
                         this.$store.commit("changeUserAva",a);
                         this.$store.commit("changeUserBg",b);
                         this.$store.commit("changeUname",u);
+                        this.userInfo();
                         this.jump();
                     }else{
                         if(res.data.code==-10){
@@ -93,6 +95,13 @@ import {login} from '../api/login'
                         this.$router.push(this.$store.getters.optBackPath);
                     }
                 },1000);
+            },
+            userInfo(){
+                getUserInfo().then(data=>{
+                    if(data.data.code==1){
+                        this.$store.commit("changeUserInfo",data.data.userInfo);
+                    }
+                })
             }
         },
     }
@@ -108,29 +117,29 @@ import {login} from '../api/login'
     padding: 6rem 10rem 17rem;
     box-sizing: border-box;
   }
-  div.log>div{
+  div.log>.log-box{
       width: 400px;
       padding: 20px;
       background: rgba(0,0,0,0.2);
   }
-  div.log>div>h2{
+  div.log>.log-box>h2{
       color: #0083ec;
       font: italic 60px '华文行楷','kaiti','Simsun','heiti';
       margin-bottom: 20px;
   }
-  div.log>div>p{
+  div.log>.log-box>p{
       font-size: 24px;
       color: #000;
       margin-bottom: 10px;
       position: relative;
   }
-  div.log>div>p>.iconfont{
+  div.log>.log-box>p>.iconfont{
     position: relative;
     top: 5px;
     left: -15px;
     font-size: 30px;         
   }
-  div.log>div>p>input{
+  div.log>.log-box>p>input{
       height: 40px;
       width: 240px;
       line-height: 40px;
@@ -141,7 +150,7 @@ import {login} from '../api/login'
       font-size: 18px;
       padding-left: 10px;
   }
-  div.log>div>p>span.hint{
+  div.log>.log-box>p>span.hint{
       display: block;
       color: green;
       width: 200px;
@@ -151,16 +160,16 @@ import {login} from '../api/login'
       font-size: 18px;
       padding-left: 100px;
   }
-  div.log>div>p>span.hint.err{
+  div.log>.log-box>p>span.hint.err{
       color: red;
   }
-  div.log>div>div>a.forget{
+  div.log>.log-box>div>a.forget{
     text-decoration: underline;
     margin-left: 35px; 
     font-size: 18px;
     color: #666;
   }
-  div.log>div>div>a.login{
+  div.log>.log-box>div>a.login{
       display: block;
       width: 100px;
       height: 30px;
@@ -173,46 +182,17 @@ import {login} from '../api/login'
       float: right;
       font-size: 18px;
   }
-  div.log>div>div>a.login:hover{
+  div.log>.log-box>div>a.login:hover{
       background: #0366ee;
       color: #fff !important;
   }
-  div.log>div>div.goReg{
+  div.log>.log-box>div.goReg{
       margin-top: 20px;
   }
-  div.log>div>div.goReg>p{
+  div.log>.log-box>div.goReg>p{
       color: #000;
   }
-  div.log>div>div.goReg>p>a{
+  div.log>.log-box>div.goReg>p>a{
       color: #0083ec;
   }
-  div.log>div.dialog{
-        position: fixed;
-        width: 100%;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: 100;
-    }
-    div.log>div.dialog>div.mask{
-        width: 400px;
-        height: 150px;
-        background: #ffffff;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        border-radius: 8px;
-        text-align: center;
-        font-size: 18px;
-        color: #000;
-    }
-    div.log>div.dialog>div.mask>p{
-        margin-top: 47px;
-        margin-bottom: 10px;
-    }
-    div.log>div.dialog>div.mask>a{
-        color: #0083ec;
-    }
 </style>

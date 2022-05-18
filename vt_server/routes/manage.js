@@ -7,7 +7,7 @@ const router=express.Router();
 
 router.post('/bookList',(req,res)=>{
     if(!req.session.uid){
-        res.send({code:-1,msg:"登录失效，请重新登录"});
+        res.send({code:-888,msg:"登录失效，请重新登录"});
         return;
     }
     var pno=parseInt(req.body.pno);
@@ -48,7 +48,7 @@ router.post('/bookList',(req,res)=>{
 // 修改书籍信息
 router.post("/setBook",(req,res)=>{
     if(!req.session.uid){
-        res.send({code:-1,msg:"登录失效，请重新登录"});
+        res.send({code:-888,msg:"登录失效，请重新登录"});
         return;
     }
     var uid=req.session.uid;
@@ -91,7 +91,7 @@ const setInfoList=[
 // 首页轮播、首页出版书籍、排行书籍新增(type=1)/删除(type=2)
 router.post("/setShowBooks",(req,res)=>{
     if(!req.session.uid){
-        res.send({code:-1,msg:"登录失效，请重新登录"});
+        res.send({code:-888,msg:"登录失效，请重新登录"});
         return;
     }
     var uid=req.session.uid;
@@ -136,7 +136,7 @@ router.post("/setShowBooks",(req,res)=>{
 // 首页轮播、首页出版书籍、排行书籍排序
 router.post("/rankShowBooks",(req,res)=>{
     if(!req.session.uid){
-        res.send({code:-1,msg:"登录失效，请重新登录"});
+        res.send({code:-888,msg:"登录失效，请重新登录"});
         return;
     }
     var uid=req.session.uid;
@@ -175,7 +175,7 @@ router.post("/rankShowBooks",(req,res)=>{
 //查询用户表
 router.post('/userList',(req,res)=>{
     if(!req.session.uid){
-        res.send({code:-1,msg:"登录失效，请重新登录"});
+        res.send({code:-888,msg:"登录失效，请重新登录"});
         return;
     }
     var pno=parseInt(req.body.pno||0);
@@ -198,7 +198,7 @@ router.post('/userList',(req,res)=>{
 // 用户管理
 router.post("/setUser",(req,res)=>{
     if(!req.session.uid){
-        res.send({code:-1,msg:"登录失效，请重新登录"});
+        res.send({code:-888,msg:"登录失效，请重新登录"});
         return;
     }
     var uid=req.session.uid;

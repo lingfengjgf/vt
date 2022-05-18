@@ -56,6 +56,7 @@ export default {
     width: 30px;
     height: 30px;
     margin-left: 10px;
+    border-radius: 50%;
   }
   .nav-btn{
     display: block;
@@ -65,7 +66,8 @@ export default {
     line-height: 30px;
     border: 1px solid #d2d2d2;
     border-radius: 3px;
-    margin-left: 20px;    
+    margin-left: 20px;   
+    cursor: pointer; 
   }
   .nav-btn:hover{
     color: #fff !important;

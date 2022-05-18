@@ -1,12 +1,12 @@
 <template>
     <div>
         <section>
-            <div class="top" :style="`background-image: url(${baseUrl}/img/user/bg/user_${$store.getters.optUserBg})`">            
+            <div class="top" :style="`background-image: url(${baseUrl}/img/user/bg/user_${userInfo.bg})`">            
                 <router-link to="/userinfo" class="avatar">
-                    <img :src="`${baseUrl}${$store.getters.optUserAva}`">
+                    <img :src="`${baseUrl}${userInfo.avatar}`">
                 </router-link>
                 <div class="edit">
-                    <h2>{{$store.getters.optUname}}</h2>
+                    <h2>{{userInfo.uname}}</h2>
                     <router-link to="/userset"><i class="iconfont">&#xe657;</i>修改个人信息</router-link>
                 </div>            
             </div>
@@ -26,14 +26,28 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import { setInfo } from '../api/user'
 export default { 
     data() {
         return {
             baseUrl:process.env.VUE_APP_IMGURL,
         }
     },
+    computed:{
+        ...mapState({
+            userInfo:state => state.userInfo
+        })
+    },
+    created(){
+        this.getInfo();
+    },
     methods:{
-
+        getInfo(){
+            setInfo().then(data=>{
+                this.$store.commit("changeAvaBgInfo",data.data);
+            })
+        }
     }
 }
 </script>

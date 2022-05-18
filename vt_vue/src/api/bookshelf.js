@@ -10,7 +10,7 @@ export function bookshelfList() {
 
 export function delBook(data) {
   return service({
-    url:'/delBook',
+    url:'/bookshelf/delBook',
     method:'post',
     data
   })

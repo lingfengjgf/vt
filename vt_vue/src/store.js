@@ -12,13 +12,10 @@ export default new Vuex.Store({
     headerI:sessionStorage.getItem('headerI')||0,
     isLogin:sessionStorage.getItem('isLogin')||0,
     userShow:0,
-    userInfo:{
-      userAva:sessionStorage.getItem('userAva')||'/img/user/icon/default.png',
-      userBg:sessionStorage.getItem('userBg')||'bg.jpg',
-      uname:sessionStorage.getItem('uname')||'',
-      fontF:localStorage.getItem('fontF')||0,
-      fontS:localStorage.getItem('fontS')||18,
-      bg:localStorage.getItem('bg')||0
+    userInfo:sessionStorage.getItem('userInfo')?JSON.parse(sessionStorage.getItem('userInfo')):{},
+    avaBgInfo:{
+      avatar:[],
+      bg:[],
     },
     userAva:sessionStorage.getItem('userAva')||'/img/user/icon/default.png',
     userBg:sessionStorage.getItem('userBg')||'bg.jpg',
@@ -69,7 +66,15 @@ export default new Vuex.Store({
       state.bg=i;
       //sessionStorage.setItem('bg',state.bg);
       localStorage.setItem('bg',state.bg);
-    }
+    },
+    changeUserInfo(state,info){
+      state.userInfo=info;
+      sessionStorage.setItem('userInfo',JSON.stringify(info));
+    },
+    changeAvaBgInfo(state,info){
+      state.avaBgInfo=info;
+      sessionStorage.setItem('avaBgInfo',JSON.stringify(info));
+    },
   },
   //获取共享数据方法
   getters:{
@@ -102,7 +107,15 @@ export default new Vuex.Store({
     },
     optBg:function(state){
       return state.bg;
-    }
+    },
+    optUserInfo:function(state){
+      let info=sessionStorage.getItem('userInfo');
+      return info?JSON.parse(info):state.userInfo;
+    },
+    optAvaBgInfo:function(state){
+      let info=sessionStorage.getItem('avaBgInfo');
+      return info?JSON.parse(info):state.avaBgInfo;
+    },
   },
   actions: {
 

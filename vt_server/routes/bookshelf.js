@@ -4,11 +4,11 @@ const router=express.Router();
 
 router.get("/",(req,res)=>{
     if(!req.session.uid){
-        res.send({code:-1,msg:"登录失效，请重新登录！"});
+        res.send({code:-888,msg:"登录失效，请重新登录！"});
         return;
     }
     var uid=req.session.uid;
-    var sql='SELECT b.bid,b.pic,b.title,b.author,b.label,s.readed '
+    var sql='SELECT b.bid,b.pic,b.title,b.author,b.label,s.readed,b.isSale '
     sql+=' FROM vt_books b, vt_bookshelf s WHERE ';
     sql+=' s.uid=? AND s.bookId=b.bid  ORDER BY s.sid DESC LIMIT 0,9';
     pool.query(sql,uid,(err,result)=>{
@@ -23,7 +23,7 @@ router.get("/",(req,res)=>{
 
 router.post("/delBook",(req,res)=>{
     if(!req.session.uid){
-        res.send({code:-1,msg:"登录失效，请重新登录！"});
+        res.send({code:-888,msg:"登录失效，请重新登录！"});
         return;
     }
     var uid=req.session.uid;
@@ -38,6 +38,5 @@ router.post("/delBook",(req,res)=>{
         }
     })
 })
-
 
 module.exports=router;

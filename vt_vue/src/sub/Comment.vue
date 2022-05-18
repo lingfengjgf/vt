@@ -44,7 +44,6 @@
 <script>
 import {addCom,commentInfo} from '../api/details'
 export default {
-    inject:['reload'],
     props:["bid"],
     data() {
         return {
@@ -125,7 +124,6 @@ export default {
             this.isLogin=false;
             this.fCount='';
             this.fontCount=0;
-            this.reload();
         },
     },
 }

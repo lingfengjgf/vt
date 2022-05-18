@@ -2,20 +2,15 @@ const express=require('express');
 const pool=require('../pool.js');
 const router=express.Router();
 
-router.get("/",(req,res)=>{
-    if(!req.session.uid){
-        res.send({code:-1,msg:"登录失效，请重新登录！"});
-        return;
-    }
+router.get("/setInfo",(req,res)=>{
     var sql='SELECT pic FROM vt_avatar';
-    var uid=req.session.uid;
     var progress=0;
     var output={};
     pool.query(sql,(err,result)=>{
         if(err) throw err;
         progress++;
         output.avatar=result;
-        if(progress==3)
+        if(progress==2)
             res.send(output);
     })
     var sql='SELECT pic FROM vt_bg';
@@ -23,15 +18,7 @@ router.get("/",(req,res)=>{
         if(err) throw err;
         progress++;
         output.bg=result;
-        if(progress==3)
-            res.send(output);
-    })
-    var sql='SELECT uname,email FROM vt_user WHERE uid=?';
-    pool.query(sql,uid,(err,result)=>{
-        if(err) throw err;
-        progress++;
-        output.info=result;
-        if(progress==3)
+        if(progress==2)
             res.send(output);
     })
 });
@@ -39,7 +26,7 @@ router.get("/",(req,res)=>{
 //修改用户信息
 router.post("/set",(req,res)=>{
     if(!req.session.uid){
-        res.send({code:-1,msg:"登录失效，请重新登录！"});
+        res.send({code:-888,msg:"登录失效，请重新登录！"});
         return;
     }
     var uid=req.session.uid;
@@ -66,21 +53,21 @@ router.post("/set",(req,res)=>{
 //基本信息
 router.get("/info",(req,res)=>{
     if(!req.session.uid){
-        res.send({code:-1,msg:"登录失效，请重新登录！"});
+        res.send({code:-888,msg:"登录失效，请重新登录！"});
         return;
     }
     var uid=req.session.uid;
-    var sql='SELECT phone,email FROM vt_user WHERE uid=?';
+    var sql='SELECT * FROM vt_user WHERE uid=?';
     pool.query(sql,uid,(err,result)=>{
         if(err) throw err;
-        res.send({code:1,data:result});
+        res.send({code:1,userInfo:result[0]});
     })   
 })
 
 //用户阅读章节信息
 router.post("/readed",(req,res)=>{
     if(!req.session.uid){
-        res.send({code:-1,msg:"登录失效，请重新登录！"});
+        res.send({code:-888,msg:"登录失效，请重新登录！"});
         return;
     }
     var uid=req.session.uid;

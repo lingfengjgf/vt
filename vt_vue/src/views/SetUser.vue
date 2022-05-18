@@ -144,5 +144,6 @@ export default {
 .table-avatar{
   width: 40px;
   height: 40px;
+  border-radius: 50%;
 }
 </style>

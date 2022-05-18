@@ -1,6 +1,6 @@
 <template>
     <div class="main">
-        <div class='balance'>账户余额: <span>{{balance}}</span>书币</div>
+        <div class='balance'>账户余额: <span>{{userInfo.balance?userInfo.balance:0}}</span>书币</div>
         <div>选择充值金额:</div>
         <div class="money">
             <a href="javascript:;" :class="{show:i==showM}" v-for='(m,i) of money' :key="i">
@@ -40,18 +40,23 @@
 
 <script>
     import {topup} from '../api/user'
+    import { mapGetters } from 'vuex'
     export default{
         data() {
             return {
                 showM:0,
                 showV:0,
-                balance:0,
                 money:[],
                 vip:[]
             }
         },
         created(){
             this.loadPage();
+        },
+        computed:{
+            ...mapGetters({
+                userInfo:'optUserInfo'
+            })
         },
         methods:{
             showPay(e){
@@ -79,7 +84,6 @@
             },
             loadPage(){
                 topup().then(res=>{
-                    this.balance=res.data.bal[0].balance;
                     this.money=res.data.money;
                     this.vip=res.data.vip;
                 })

@@ -41,7 +41,7 @@ router.post("/book",(req,res)=>{
 
 router.post("/pageSet",(req,res)=>{
     if(!req.session.uid){
-        res.send({code:-1,msg:"登录失效，请重新登录！"});
+        res.send({code:-888,msg:"登录失效，请重新登录！"});
         return;
     }
     var uid=req.session.uid;
@@ -64,10 +64,25 @@ router.post("/pageSet",(req,res)=>{
     })
 })
 
+//获取用户信息
+router.get('/getReadSet',(req,res)=>{
+    if(!req.session.uid){
+        res.send({code:-888,msg:"登录失效，请重新登录！"});
+        return;
+    }
+    var uid=req.session.uid;
+    var sql="SELECT readFontF,readFontS,readBg FROM vt_user WHERE uid=?";
+    pool.query(sql,uid,(err,result)=>{
+        if(err) throw err;
+        res.send(result);
+
+    })
+})
+
 //获取用户阅读设置
 router.get('/getReadSet',(req,res)=>{
     if(!req.session.uid){
-        res.send({code:-1,msg:"登录失效，请重新登录！"});
+        res.send({code:-888,msg:"登录失效，请重新登录！"});
         return;
     }
     var uid=req.session.uid;
@@ -82,7 +97,7 @@ router.get('/getReadSet',(req,res)=>{
 //修改字体大小
 router.post('/size',(req,res)=>{
     if(!req.session.uid){
-        res.send({code:-1,msg:"登录失效，请重新登录！"});
+        res.send({code:-888,msg:"登录失效，请重新登录！"});
         return;
     }
     var uid=req.session.uid;    
@@ -101,7 +116,7 @@ router.post('/size',(req,res)=>{
 //修改字体样式
 router.post('/family',(req,res)=>{
     if(!req.session.uid){
-        res.send({code:-1,msg:"登录失效，请重新登录！"});
+        res.send({code:-888,msg:"登录失效，请重新登录！"});
         return;
     }
     var uid=req.session.uid;    
@@ -120,7 +135,7 @@ router.post('/family',(req,res)=>{
 //修改背景
 router.post('/bg',(req,res)=>{
     if(!req.session.uid){
-        res.send({code:-1,msg:"登录失效，请重新登录！"});
+        res.send({code:-888,msg:"登录失效，请重新登录！"});
         return;
     }
     var uid=req.session.uid;    

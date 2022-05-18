@@ -36,6 +36,7 @@ export default {
         params:{
             kwords:"",
             pno:0,
+            isSale:-1,
             pageSize:10,
         }
     };

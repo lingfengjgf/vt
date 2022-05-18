@@ -18,7 +18,7 @@ router.post('/',(req,res)=>{
 
 router.post('/vip',(req,res)=>{
     if(!req.session.uid){
-        res.send({code:-1,msg:"登录失效，请重新登录！"});
+        res.send({code:-888,msg:"登录失效，请重新登录！"});
         return;
     }
     var uid=req.session.uid;

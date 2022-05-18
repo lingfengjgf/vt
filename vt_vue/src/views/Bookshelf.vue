@@ -10,9 +10,9 @@
                         <p>{{b.label}}</p>
                     </div>
                     <div>
-                        <router-link :to="`/read/${b.bid}/${b.readed}`" href="javascript:;">继续阅读</router-link>
-                        <router-link :to="`/catalog/${b.bid}`">章节目录</router-link>
-                        <a @click="delClick" :data-id="b.bid"  :data-i="i" href="javascript:;">移出书架</a>
+                        <div @click="checkBooks('goRead',b.isSale,b.bid,b.readed,i)" class="bookshelf-btn">继续阅读</div>
+                        <div @click="checkBooks('goCatalog',b.isSale,b.bid,b.readed,i)" class="bookshelf-btn">章节目录</div>
+                        <div class="bookshelf-btn" @click="delClick(b.bid,i)">移出书架</div>
                     </div>
                 </li>
 
@@ -24,6 +24,18 @@
                 <img :src="`${baseUrl}/img/bookshelf/bookshelf-empty.png`">
                 <h3>书架都空啦</h3>
                 <router-link to="/classify">去找书</router-link>
+            </div>
+            <div @click='close' class="dialog" v-show='showMask'>
+                <div class='mask'>
+                    <p>该书已下架，是否移除？</p>
+                    <div class="dialog-btn">
+                        <div class="dialog-btn-item cancel">取消</div>
+                        <div @click="delClick(currentId,currentI)" class="dialog-btn-item">移除</div>
+                    </div>
+                    <div class="close" @click='close'>
+                        <span>×</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -37,7 +49,10 @@
             return {
                 baseUrl:process.env.VUE_APP_IMGURL,
                 books:[],
-                show:0
+                show:0,
+                showMask:false,
+                currentId:'',
+                currentI:'',
             }
         },
         created() {
@@ -56,9 +71,7 @@
                     console.log(res.data);
                 })
             },
-            delClick(e){
-                var bid=e.target.dataset.id;
-                var i=e.target.dataset.i;
+            delClick(bid,i){
                 delBook({bid}).then(res=>{
                     if(res.data.code==1){
                         this.books.splice(i,1);
@@ -67,9 +80,23 @@
                         console.log("删除失败");
                 })
             },
-            goRead(){
-                this.$router.push("/read/"+this.bid+"/0");
-                //console.log(bid);
+            checkBooks(type,isSale,bid,readed,i){
+                if(isSale!=1){
+                    this.showMask=true;
+                    this.currentId=bid;
+                    this.currentI=i;
+                    return ;
+                }
+                this[type](bid,readed);
+            },
+            goRead(bid,readed){
+                this.$router.push(`/read/${bid}/${readed}`);
+            },
+            goCatalog(bid){
+                this.$router.push(`/catalog/${bid}`);
+            },
+            close(){
+                this.showMask=false;
             }
         },
     }
@@ -87,14 +114,16 @@
     }
     section>div>ul>li{
         display: flex;
+        justify-content: space-between;
         padding: 15px;
         width: 370px;
         height: 145px;
         box-sizing: border-box;
+        border: 1px solid transparent;
     } 
     section>div>ul>li:hover{
-        border: 1px solid #ddd;
-        box-shadow: 2px 2px 10px #000;
+        border-color:#ddd;
+        box-shadow: 0px 2px 8px 5px #ddd;
     }
     section>div>ul>li>img{
         width: 90px;
@@ -121,8 +150,8 @@
         overflow:hidden;
         text-overflow:ellipsis;
     }
-    section>div>ul>li>div>a,section>div>div.noBook>a{
-        display: block;
+    section>div>ul>li>div>.bookshelf-btn,section>div>div.noBook>.bookshelf-btn{
+        cursor: pointer;
         width: 100px;
         height: 30px;
         margin-bottom: 8px;
@@ -130,16 +159,16 @@
         border-radius: 2px;
         background: #ddd;
         color: #0083ec;
+        
     }
-    section>div>ul>li>div>a:first-child{
+    section>div>ul>li>div>.bookshelf-btn:first-child{
         margin-top: 6px;
     }
-    section>div>ul>li>div>a:hover,section>div>div.noBook>a:hover{
+    section>div>ul>li>div>.bookshelf-btn:hover,section>div>div.noBook>.bookshelf-btn:hover{
         background: #0083ec;
         color: #fff !important;
     }
     section>div>ul>li>a{
-        display: block;
         width: 40px;
         height: 40px;
         font-size: 36px;

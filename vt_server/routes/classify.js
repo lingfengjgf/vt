@@ -75,10 +75,12 @@ router.post('/search',(req,res)=>{
     var pno=parseInt(req.body.pno);
     var pageSize=parseInt(req.body.pageSize);
     var kwords=req.body.kwords;
+    var isSale=req.body.isSale;
     if (!pno) pno=0;
     if(!pageSize) pageSize=9;
+    if(!isSale) isSale=1;
     var output={};
-    var sql='SELECT bid,title,author,watch,pic,intro,label,price,isSale FROM vt_books WHERE isSale=1 ';
+    var sql='SELECT bid,title,author,watch,pic,intro,label,price,isSale FROM vt_books ';
     if(kwords){
         kwords=kwords.split(/\s+/);
         var arr1=kwords.map(function(){
@@ -89,7 +91,7 @@ router.post('/search',(req,res)=>{
         })
         var str1=arr1.join(" OR ");
         var str2=arr2.join(" ");
-        sql+=' AND '+str1+str2;
+        sql+=' WHERE '+str1+str2+isSale==1?' AND isSale=1':'';
         var kwordsT=kwords.map(function(val,i,arr){
             return  `%${val}%`;
         })

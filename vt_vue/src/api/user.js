@@ -2,7 +2,15 @@ import service from '../utils/request';
 
 export function getUserInfo() {
   return service({
-    url:'/userinfo',
+    url:'/userinfo/info',
+    method:'get',
+    params:{}
+  })
+}
+
+export function setInfo() {
+  return service({
+    url:'/userinfo/setInfo',
     method:'get',
     params:{}
   })
@@ -26,7 +34,7 @@ export function readed(data) {
 
 export function pageSet(data) {
   return service({
-    url:'/userinfo/pageSet',
+    url:'/read/pageSet',
     method:'post',
     data
   })
