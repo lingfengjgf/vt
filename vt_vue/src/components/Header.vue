@@ -10,7 +10,7 @@
                     <li :class="{active:$store.getters.optHeaderI==1}"><router-link  to="/classify">分类</router-link></li>
                     <li :class="{active:$store.getters.optHeaderI==2}"><router-link  to="/rank">排行</router-link></li>
                     <li :class="{active:$store.getters.optHeaderI==3}"><a @click="goBookShelf" href="javascript:;">书架</a></li>
-                    <li :class="{active:$store.getters.optHeaderI==4}"><a @click="goTopUp" href="javascript:;">充值</a></li>
+                    <!-- <li :class="{active:$store.getters.optHeaderI==4}"><a @click="goTopUp" href="javascript:;">充值</a></li> -->
                 </ul>
             </div>
             <div class="login">

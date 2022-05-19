@@ -14,8 +14,8 @@
                 <ul class="list-unstyled">
                     <li><router-link to="/userinfo" :class="{active:$store.getters.optUserShow==0}">基 本 信 息</router-link></li>
                     <li><router-link to="/userset" :class="{active:$store.getters.optUserShow==1}">修 改 资 料</router-link></li>
-                    <li><router-link to="/userTopUp" :class="{active:$store.getters.optUserShow==2}">充 值 中 心</router-link></li>
-                    <li><router-link to="/userHistory" :class="{active:$store.getters.optUserShow==3}">消 费 记 录</router-link></li>
+                    <!-- <li><router-link to="/userTopUp" :class="{active:$store.getters.optUserShow==2}">充 值 中 心</router-link></li>
+                    <li><router-link to="/userHistory" :class="{active:$store.getters.optUserShow==3}">消 费 记 录</router-link></li> -->
                 </ul>
                 <div class="info">
                     <router-view></router-view>

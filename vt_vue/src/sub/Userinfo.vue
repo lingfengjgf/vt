@@ -8,14 +8,14 @@
                 <h3>
                     <span>会员:</span>
                     普通会员
-                    <router-link to="/userTopUp">成为VIP</router-link>
+                    <!-- <router-link to="/userTopUp">成为VIP</router-link> -->
                 </h3>     
             </li>
             <li>
                 <h3>
                     <span>书币:</span>
                     {{userInfo.balance?userInfo.balance:0}}
-                    <router-link to="/userTopUp">充值</router-link>
+                    <!-- <router-link to="/userTopUp">充值</router-link> -->
                 </h3>
             </li>            
             <li>
