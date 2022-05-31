@@ -73,6 +73,18 @@ router.post("/setBook",(req,res)=>{
                     res.send({code:1,msg:'修改成功'});
                 }
             });
+            if(isSale==0){
+                var sql1='SELECT cid FROM vt_carousel_item WHERE bookId=?';
+                pool.query(sql1,[bid],(err,result)=>{
+                    if(err) throw err;
+                    if(result.length>0){
+                        var sql2="DELETE FROM vt_carousel_item WHERE bookId=? ";
+                        pool.query(sql2,[bid],(err,result)=>{
+                            if(err) throw err;
+                        })
+                    }
+                });
+            }
         }else{
             res.send({code:-1,msg:'无权操作'})
         }
