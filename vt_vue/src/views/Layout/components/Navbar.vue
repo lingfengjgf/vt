@@ -1,7 +1,7 @@
 <template>
   <div class="navbar">
-    {{dateType}}，{{$store.state.uname}}
-    <img class="avatar" :src="`${baseUrl}${$store.getters.optUserAva}`">
+    {{dateType}}，{{userInfo.uname}}
+    <img class="avatar" :src="`${baseUrl}${userInfo.avatar}`">
     <div class="nav-btn" @click='logoutClick' :class="{hide:$store.getters.optIsLogin==0}" href="javascript:;">注销</div>
     <div class="nav-btn" @click='manageClick' :class="{hide:$store.getters.optIsLogin==0}" href="javascript:;">返回书城</div>
   </div>
@@ -9,6 +9,7 @@
 
 <script>
 import {logout} from '@/api/login'
+import { mapState } from 'vuex'
 export default {
   data(){
     return{
@@ -28,6 +29,11 @@ export default {
       this.dateType='晚上好';
     }
   },  
+  computed:{
+      ...mapState({
+          userInfo:state => state.userInfo
+      })
+  },
   methods: {
     logoutClick(){
       this.$store.commit("changeLogin",0);

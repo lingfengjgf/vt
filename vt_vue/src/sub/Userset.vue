@@ -119,10 +119,7 @@ export default {
                         this.oldAva=a;
                         this.oldBg=b;
                         this.setSuc=true;
-                        this.$store.commit("changeUserAva",a);
-                        this.$store.commit("changeUserBg",b);
-                        this.$store.commit("changeUname",u);
-                        this.$message.success('修改成功');
+                        // this.$message.success('修改成功');
                         this.getInfo();
                     }
                 })

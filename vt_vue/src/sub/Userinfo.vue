@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 export default {
     data() {
         return {
@@ -44,8 +44,8 @@ export default {
         }
     },
     computed:{
-        ...mapGetters({
-            userInfo:'optUserInfo'
+        ...mapState({
+            userInfo:state => state.userInfo
         })
     },
     methods: {

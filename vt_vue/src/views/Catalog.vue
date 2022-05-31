@@ -80,15 +80,15 @@ export default {
                 this.isLogin=true;
                 return;
             }
-            readCheck({bid:this.bid}).then(res=>{
-                console.log(res.data);
-                if(res.data.isVIP==0&&res.data.isBuy==0){
-                    this.isVIP=true;
-                }else{
-                    var bid=this.bid;
-                    this.$router.push("/read/"+this.bid+"/"+p);            
-                }
-            })
+            this.isVIP=true;
+            // readCheck({bid:this.bid}).then(res=>{
+            //     console.log(res.data);
+            //     if(res.data.isVIP==0&&res.data.isBuy==0){
+            //     }else{
+            //         var bid=this.bid;
+            //         this.$router.push("/read/"+this.bid+"/"+p);            
+            //     }
+            // })
         },
         close(){
             this.isLogin=false;

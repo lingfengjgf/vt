@@ -77,9 +77,6 @@
                         var u=res.data.data.uname;
                         var b=res.data.data.bg;
                         this.$store.commit("changeLogin",1);
-                        this.$store.commit("changeUserAva",a);
-                        this.$store.commit("changeUserBg",b);
-                        this.$store.commit("changeUname",u);
                         this.userInfo();
                         this.jump();
                     }else{
