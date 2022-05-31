@@ -4,11 +4,11 @@
             <h2>欢迎登录观品</h2>
             <p>
                 <i class="iconfont">&#xe633;</i>
-                <input @keyup.13='goLogin()' v-model='uname' type="text" name='uname' placeholder="用户名/手机">
+                <input @keyup.13='passFocus()' v-model='uname' type="text" name='uname' placeholder="用户名/手机">
             </p>        
             <p>
                 <i class="iconfont">&#xe669;</i>
-                <input @keyup.13='goLogin()' v-model='upwd' type="password" name='upwd' placeholder="密码">
+                <input @keyup.13='goLogin()' ref="upwd" v-model='upwd' type="password" name='upwd' placeholder="密码">
                 <span class="hint err">{{hint}}</span>
             </p>
             <div>        
@@ -25,6 +25,14 @@
                 <div class="dialog-text" @click='goPage'>直接进入>></div>
             </div>
         </div>
+        <div @click='closeErr' class="dialog" v-show='showErrMask'>
+            <div class='mask'>
+                <p>{{errMsg}}</p>
+                <a class="close" @click='closeErr' href="javascript:;">
+                    <span>×</span>
+                </a>
+            </div>
+        </div>
     </div> 
 </template>
 
@@ -37,12 +45,17 @@
                 uname:'',
                 upwd:'',
                 hint:'',
+                errMsg:'',
                 showMask:false,
+                showErrMask:false,
                 sec:3,
                 t:""
             }
         },
         methods: {
+            passFocus(){
+                this.$refs.upwd.focus();
+            },
             goLogin(){
                 var uname=this.uname;
                 var upwd=this.upwd;
@@ -71,7 +84,10 @@
                         this.jump();
                     }else{
                         if(res.data.code==-10){
-                            this.$message.error(res.data.msg);
+                            this.errMsg=res.data.msg;
+                            this.showErrMask=true;
+                            this.uname='';
+                            this.upwd='';
                         }else{
                             this.hint=res.data.msg;
                         }
@@ -81,6 +97,9 @@
             },
             close(){
                 this.showMask=false;
+            },
+            closeErr(){
+                this.showErrMask=false;
             },
             goPage(){
                 //console.log(this.$store.getters.optBackPath);

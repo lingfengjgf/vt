@@ -9,7 +9,7 @@
             </div>
             <div class="choose">
                 <span>类型</span>
-                <ul class="list-unstyled choose-ul">
+                <ul class="list-unstyled choose-ul" :class="{'show':isShow}">
                     <li v-for='(g,i) of genre' :key="i"><a href="javascript:;" @click='change' :data-i='i' data-id='2' class="choose-item" :class='{active:0==i}'>{{g.label}}</a></li>
                 </ul>
                 <a @click='showAll' href="javascript:;">
@@ -294,13 +294,17 @@
                 this.load(params);
             },
             showAll(){
+                // this.isShow=!this.isShow;
+                // this.span=this.isShow?"收起":"更多";
                 if(this.genre.length>12){
                     this.genre=this.genre.slice(0,12);
                     this.span="更多";
                     this.isShow=false;
                 }
                 else{
-                    this.genre=this.allGenre;
+                    setTimeout(()=>{
+                        this.genre=this.allGenre;
+                    },300)
                     this.span="收起";
                     this.isShow=true; 
                 }
@@ -376,7 +380,13 @@
         display: flex;
         flex-wrap: wrap;
         width: 900px;
+        height: 40px;
         margin: 0;
+        transition: height 0.5s;
+        background: #fff;
+    }
+    .choose-ul.show{
+        height: 120px;
     }
     .choose-ul li{
         margin-left:2rem;
@@ -631,7 +641,7 @@
         text-align: center;
         line-height: 120px;
         font-size: 18px;
-        color: #000;
+        color: #888;
     }
     main>div.dialog>div.mask>a{
         position: absolute;

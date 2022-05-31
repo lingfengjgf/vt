@@ -30,11 +30,11 @@
                 </a>
             </div>
         </div>
-        <div @click='close' class="dialog" v-show='isVIP'>
+        <div @click='close' class="catalog-dialog" v-show='isVIP'>
             <div class='mask vip'>
                 <p>该章节需要购买本书或成为VIP后才能阅读哦！</p>
-                <router-link class="login" to="/userTopUp">立即购买</router-link>
-                <router-link class="login" to="/userTopUp">成为VIP</router-link>
+                <!-- <router-link class="login" to="/userTopUp">立即购买</router-link>
+                <router-link class="login" to="/userTopUp">成为VIP</router-link> -->
                 <a class="close" @click='close' href="javascript:;">
                     <span>×</span>
                 </a>
@@ -152,7 +152,7 @@ export default {
         line-height: 20px;
         margin-top: 5px;
     }
-    div.dialog{
+    div.catalog-dialog{
         position: fixed;
         margin: 0;
         width: 100%;
@@ -163,7 +163,7 @@ export default {
         right: 0;
         z-index: 100;
     }
-    div.dialog>div.mask{
+    div.catalog-dialog>div.mask{
         width: 400px;
         height: 150px;
         background: #ffffff;
@@ -176,14 +176,14 @@ export default {
         font-size: 18px;
         color: #000;
     }
-    div.dialog>div.mask>p{
-        margin-top: 47px;
+    div.catalog-dialog>div.mask>p{
+        margin-top: 66px;
         margin-bottom: 10px;
     }
-    div.dialog>div.mask>a.login{
+    div.catalog-dialog>div.mask>a.login{
         color: #0083ec;
     }
-    div.dialog>div.mask>a.close{
+    div.catalog-dialog>div.mask>a.close{
         position: absolute;
         top: 10px;
         right:20px;
@@ -191,13 +191,13 @@ export default {
         width:20px;
         height:20px;
     }
-    div.dialog>div.mask>a.close>span{
+    div.catalog-dialog>div.mask>a.close>span{
         font-size: 32px;
     } 
-    div.dialog>div.mask.vip{
+    div.catalog-dialog>div.mask.vip{
         width: 450px;
     } 
-    div.dialog>div.mask.vip>a+a{
+    div.catalog-dialog>div.mask.vip>a+a{
         margin-left: 20px;
     } 
 </style>

@@ -200,7 +200,7 @@
         color: #000;
     }
     header>div.dialog>div.mask>p{
-        margin-top: 47px;
+        margin-top: 30px;
         margin-bottom: 10px;
     }
     header>div.dialog>div.mask>a.login{

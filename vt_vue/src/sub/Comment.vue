@@ -32,7 +32,7 @@
         <div @click='close' class="dialog" v-show='isLogin'>
             <div class='mask'>
                 <p>您还没有登录哦！</p>
-                <router-link class="login" to="/login">立即登陆>></router-link>
+                <router-link class="dialog-text" to="/login">立即登陆>></router-link>
                 <a class="close" @click='close' href="javascript:;">
                     <span>×</span>
                 </a>
@@ -236,46 +236,4 @@ export default {
         background: #0366ee;
         color: #fff !important;
     } 
-    div>div.dialog{
-        position: fixed;
-        margin: 0;
-        width: 100%;
-        background: rgba(0, 0, 0, 0.6);
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: 100;
-    }
-    div>div.dialog>div.mask{
-        width: 400px;
-        height: 150px;
-        background: #ffffff;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        border-radius: 8px;
-        text-align: center;
-        font-size: 18px;
-        color: #000;
-    }
-    div>div.dialog>div.mask>p{
-        margin-top: 47px;
-        margin-bottom: 10px;
-    }
-    div>div.dialog>div.mask>a.login{
-        color: #0083ec;
-    }
-    div>div.dialog>div.mask>a.close{
-        position: absolute;
-        top: 10px;
-        right:20px;
-        display:block;
-        width:20px;
-        height:20px;
-    }
-    div>div.dialog>div.mask>a.close>span{
-        font-size: 32px;
-    }    
 </style>

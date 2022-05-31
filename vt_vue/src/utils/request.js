@@ -4,6 +4,7 @@ import qs from 'qs'
 const service = axios.create({
     baseURL: process.env.VUE_APP_URL, // api的base_url
     timeout: 60000, // 请求超时时间
+    withCredentials:true,
     headers: {
         "Content-Type": "application/x-www-form-urlencoded", //post请求以form data方式传递
     },

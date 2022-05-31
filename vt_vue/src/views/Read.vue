@@ -29,7 +29,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:;">                        
+                    <a @click="addBook" href="javascript:;">                        
                         <b>加书架</b>
                         <span class="shelf"></span>
                     </a>
@@ -67,10 +67,10 @@
                 <li><a @click="next" class="next" :class="{disabled:pno==txt.length-1}" href="javascript:;">下一章</a></li>
             </ul>
         </div>
-        <div  class="dialog" :class="{hide:showMask}">
+        <div  class="dialog-read" :class="{hide:showMask}">
             <div class='mask'> 
                 <h3>设置</h3>
-                <a @click='close' href="javascript:;">
+                <a @click='readClose' href="javascript:;">
                     <span>×</span>
                 </a>
                 <ul class="list-unstyled">
@@ -98,11 +98,29 @@
                 </ul>
             </div>
         </div>
+        <div @click='close' class="dialog" v-show='isLogin'>
+            <div class='mask'>
+                <p>您还没有登录哦！</p>
+                <router-link class="dialog-text" to="/login">立即登陆>></router-link>
+                <a class="close" @click='close' href="javascript:;">
+                    <span>×</span>
+                </a>
+            </div>
+        </div>
+        <div @click='close' class="dialog" v-show='isAdd'>
+            <div class='mask add'>
+                <p>{{addSpan}}</p>
+                <a class="close" @click='close' href="javascript:;">
+                    <span>×</span>
+                </a>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
-    import {getReadBg,getReadFamily,getReadSize,getReadBook} from '../api/read'
+    import {getReadBg,getReadFamily,getReadSize,getReadBook} from '../api/read';
+    import {addBook} from '../api/details'
     export default {
         props:["bid","p"],
         data() {
@@ -115,7 +133,10 @@
                 s:parseInt(this.$store.getters.optFontS),
                 b:0,
                 showMask:false,
-                fontSize:{fontSize: "18px"}
+                fontSize:{fontSize: "18px"},
+                isLogin:false,
+                isAdd:false,
+                addSpan:''
             }
         },
         created() {
@@ -172,7 +193,7 @@
                     console.log(res);
                 })
             },
-            close(){
+            readClose(){
                 this.showMask=false;
             },
             goDal(){
@@ -180,6 +201,21 @@
             },
             goCatalog(){
                 this.$router.push("/catalog/"+this.bid);
+            },
+            addBook(){
+                if(this.$store.getters.optIsLogin==0){
+                    this.isLogin=true;
+                }else{
+                    addBook({bid:this.bid}).then(res=>{
+                        //console.log(res.data);
+                        this.addSpan=res.data.msg;
+                        this.isAdd=true;
+                    })
+                }
+            },
+            close(){
+                this.isLogin=false;
+                this.isAdd=false;
             },
             prev(){
                 if(this.pno>0){
@@ -474,7 +510,7 @@
         color:#888 !important;
         border-color: #555;
     }
-    div.main>div.dialog{
+    div.main>div.dialog-read{
         position: fixed;
         top: 0;
         bottom: 0;
@@ -484,10 +520,10 @@
         z-index: 100;
         display: none;
     }
-    div.main>div.dialog.hide{
+    div.main>div.dialog-read.hide{
         display: block;
     }
-    div.main>div.dialog>div.mask{
+    div.main>div.dialog-read>div.mask{
         width: 500px;
         height: 260px;
         padding: 20px;
@@ -501,11 +537,11 @@
         font-size: 18px;
         color: #000;
     }
-    div.main>div.dialog>div.mask>h3{
+    div.main>div.dialog-read>div.mask>h3{
         width: 50px;
         font-size: 18px;
     }
-    div.main>div.dialog>div.mask>a{
+    div.main>div.dialog-read>div.mask>a{
         position: absolute;
         top: 10px;
         right: 20px;
@@ -513,16 +549,16 @@
         width:20px;
         height:20px;
     }
-    div.main>div.dialog>div.mask>a>span{
+    div.main>div.dialog-read>div.mask>a>span{
         font-size: 32px;
     }
-    div.main>div.dialog>div.mask>ul{
+    div.main>div.dialog-read>div.mask>ul{
         width: 400px;
         height: 180px;
         margin: 0 auto;
         margin-top: 30px;
     }
-    div.main>div.dialog>div.mask>ul>li{
+    div.main>div.dialog-read>div.mask>ul>li{
         width: 100%;
         height: 30px;
         padding: 15px 0;
@@ -531,41 +567,41 @@
         line-height: 30px;
         position: relative;
     }
-    div.main>div.dialog>div.mask>ul>li.bg>span{
+    div.main>div.dialog-read>div.mask>ul>li.bg>span{
         position: relative;
         top: -10px;
         left: 0px;
     }
-    div.main>div.dialog>div.mask>ul>li>a{
+    div.main>div.dialog-read>div.mask>ul>li>a{
         display: inline-block;
         height: 30px;
         margin: 0 10px;
     }
-    div.main>div.dialog>div.mask>ul>li.bg>a{
+    div.main>div.dialog-read>div.mask>ul>li.bg>a{
         width: 30px;
         border-radius: 50%;       
         box-shadow: 0 1px 1px #BBB;
         background: #f6f1e7;
     }
-    div.main>div.dialog>div.mask>ul>li.bg>a.style1{
+    div.main>div.dialog-read>div.mask>ul>li.bg>a.style1{
         background: #e2eee2;
     }
-    div.main>div.dialog>div.mask>ul>li.bg>a.style2{
+    div.main>div.dialog-read>div.mask>ul>li.bg>a.style2{
         background: #f3e9c6;
     }
-    div.main>div.dialog>div.mask>ul>li.bg>a.style3{
+    div.main>div.dialog-read>div.mask>ul>li.bg>a.style3{
         background: #e2eff3;
     }
-    div.main>div.dialog>div.mask>ul>li.bg>a.style4{
+    div.main>div.dialog-read>div.mask>ul>li.bg>a.style4{
         background: #f5e4e4;
     }
-    div.main>div.dialog>div.mask>ul>li.bg>a.style5{
+    div.main>div.dialog-read>div.mask>ul>li.bg>a.style5{
         background: #666;
     }
-    div.main>div.dialog>div.mask>ul>li.bg>a.show,div.main>div.dialog>div.mask>ul>li.bg>a:hover{
+    div.main>div.dialog-read>div.mask>ul>li.bg>a.show,div.main>div.dialog-read>div.mask>ul>li.bg>a:hover{
         box-shadow: 1px 3px 5px #aaa;
     }
-    div.main>div.dialog>div.mask>ul>li.ff>a{
+    div.main>div.dialog-read>div.mask>ul>li.ff>a{
         width: 55px;
         box-sizing: border-box;
         border: 1px solid #d9d9d9;
@@ -575,16 +611,16 @@
         border-radius: 2px;
         font-family: "Microsoft YaHei", sans-serif, Tahoma, Helvetica, Arial, "\5b8b\4f53";
     }
-    div.main>div.dialog>div.mask>ul>li.ff>a.kai{
+    div.main>div.dialog-read>div.mask>ul>li.ff>a.kai{
         font-family: kaiti;
     }
-    div.main>div.dialog>div.mask>ul>li.ff>a.xing{
+    div.main>div.dialog-read>div.mask>ul>li.ff>a.xing{
         font-family: "华文行楷","方正行楷简体","方正硬笔行书简体";
     }
-    div.main>div.dialog>div.mask>ul>li.ff>a.show,div.main>div.dialog>div.mask>ul>li.ff>a:hover{
+    div.main>div.dialog-read>div.mask>ul>li.ff>a.show,div.main>div.dialog-read>div.mask>ul>li.ff>a:hover{
         color: #0083ec;
     }
-    div.main>div.dialog>div.mask>ul>li.fs>a{
+    div.main>div.dialog-read>div.mask>ul>li.fs>a{
         width: 80px;
         box-sizing: border-box;
         border: 1px solid #d9d9d9;
@@ -593,10 +629,10 @@
         margin: 0;
         text-align: center;
     }
-    div.main>div.dialog>div.mask>ul>li.fs>a:nth-child(2){
+    div.main>div.dialog-read>div.mask>ul>li.fs>a:nth-child(2){
         margin-left: 10px;
     }
-    div.main>div.dialog>div.mask>ul>li.fs>a:nth-child(3){
+    div.main>div.dialog-read>div.mask>ul>li.fs>a:nth-child(3){
         border-left: 0;
         border-right: 0;
         color: #0083ec;
