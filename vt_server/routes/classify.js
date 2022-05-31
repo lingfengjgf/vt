@@ -81,7 +81,6 @@ router.post('/search',(req,res)=>{
     if(!isSale) isSale=1;
     var output={};
     var sql='SELECT bid,title,author,watch,pic,intro,label,price,isSale FROM vt_books ';
-    console.log('kwords:',kwords);
     if(kwords){
         kwords=kwords.split(/\s+/);
         var arr1=kwords.map(function(){
@@ -90,12 +89,8 @@ router.post('/search',(req,res)=>{
         var arr2=kwords.map(function(){
             return " OR author like ? ";
         })
-        console.log('arr1:',arr1);
-        console.log('arr2:',arr2);
         var str1=arr1.join(" OR ");
         var str2=arr2.join(" ");
-        console.log('str1:',str1);
-        console.log('str2:',str2);
         sql+=' WHERE '+str1+str2+(isSale==1?' AND isSale=1':'');
         var kwordsT=kwords.map(function(val,i,arr){
             return  `%${val}%`;
@@ -104,7 +99,6 @@ router.post('/search',(req,res)=>{
             return `%${val}%`;
         })
         kwords=[...kwordsA,...kwordsT];
-        console.log('search sql:',sql);
         pool.query(sql,kwords,(err,result)=>{
             if(err) throw err;
             if(result.length>0){
