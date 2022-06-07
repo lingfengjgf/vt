@@ -195,7 +195,7 @@ export default {
     section>div.top>div>div.bookinfor>div>span{
         font-size: 14px;
         width: 50px;
-        margin: 0;
+        margin-right: 20px;
     }
     section>div.top>div>div{
         margin-bottom: 10px;

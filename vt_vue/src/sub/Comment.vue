@@ -79,7 +79,7 @@ export default {
             var content = this.$refs.count.value;
             var bid=this.bid;
             //去除评论两端空格
-            var size=textVal.trim().length;
+            var size=content.trim().length;
             //判断评论内容是否为空
             if(size==0){
                 return;
@@ -161,6 +161,8 @@ export default {
     }
     div.comment>ul.show>li>div>img{
         width: 60px;
+        height: 60px;
+        border-radius: 50%;
     }
     div.comment>ul.show>li>div>div{
         width: 100%;

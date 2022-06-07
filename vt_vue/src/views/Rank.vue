@@ -17,7 +17,7 @@
                                         <p class="d-none">{{r.author}}</p>
                                         <div class="content-ul-watch">
                                             <i class="iconfont eye">&#xe8c7;</i>
-                                            <span>{{r.watch}}</span>
+                                            <span>{{r.watch|wordsFormat}}</span>
                                         </div>
                                         <p class="intro d-none">{{r.intro}}</p>
                                     </div>
@@ -38,7 +38,7 @@
                                         <p class="d-none">{{b.author}}</p>
                                         <div class="content-ul-watch">
                                             <i class="iconfont eye">&#xe8c7;</i>
-                                            <span>{{b.watch}}</span>
+                                            <span>{{b.watch|wordsFormat}}</span>
                                         </div>
                                         <p class="intro d-none">{{b.intro}}</p>
                                     </div>
@@ -59,7 +59,7 @@
                                         <p class="d-none">{{n.author}}</p>
                                         <div class="content-ul-watch">
                                             <i class="iconfont eye">&#xe8c7;</i>
-                                            <span>{{n.watch}}</span>
+                                            <span>{{n.watch|wordsFormat}}</span>
                                         </div>
                                         <p class="intro d-none">{{n.intro}}</p>
                                     </div>
@@ -87,7 +87,7 @@
                                         <p class="d-none">{{r.author}}</p>
                                         <div class="content-ul-watch">
                                             <i class="iconfont eye">&#xe8c7;</i>
-                                            <span>{{r.watch}}</span>
+                                            <span>{{r.watch|wordsFormat}}</span>
                                         </div>
                                         <p class="intro d-none">{{r.intro}}</p>
                                     </div>
@@ -108,7 +108,7 @@
                                         <p class="d-none">{{b.author}}</p>
                                         <div class="content-ul-watch">
                                             <i class="iconfont eye">&#xe8c7;</i>
-                                            <span>{{b.watch}}</span>
+                                            <span>{{b.watch|wordsFormat}}</span>
                                         </div>
                                         <p class="intro d-none">{{b.intro}}</p>
                                     </div>
@@ -129,7 +129,7 @@
                                         <p class="d-none">{{n.author}}</p>
                                         <div class="content-ul-watch">
                                             <i class="iconfont eye">&#xe8c7;</i>
-                                            <span>{{n.watch}}</span>
+                                            <span>{{n.watch|wordsFormat}}</span>
                                         </div>
                                         <p class="intro d-none">{{n.intro}}</p>
                                     </div>
@@ -157,7 +157,7 @@
                                         <p class="d-none">{{r.author}}</p>
                                         <div class="content-ul-watch">
                                             <i class="iconfont eye">&#xe8c7;</i>
-                                            <span>{{r.watch}}</span>
+                                            <span>{{r.watch|wordsFormat}}</span>
                                         </div>
                                         <p class="intro d-none">{{r.intro}}</p>
                                     </div>
@@ -178,7 +178,7 @@
                                         <p class="d-none">{{b.author}}</p>
                                         <div class="content-ul-watch">
                                             <i class="iconfont eye">&#xe8c7;</i>
-                                            <span>{{b.watch}}</span>
+                                            <span>{{b.watch|wordsFormat}}</span>
                                         </div>
                                         <p class="intro d-none">{{b.intro}}</p>
                                     </div>
@@ -199,7 +199,7 @@
                                         <p class="d-none">{{n.author}}</p>
                                         <div class="content-ul-watch">
                                             <i class="iconfont eye">&#xe8c7;</i>
-                                            <span>{{n.watch}}</span>
+                                            <span>{{n.watch|wordsFormat}}</span>
                                         </div>
                                         <p class="intro d-none">{{n.intro}}</p>
                                     </div>
