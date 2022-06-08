@@ -64,7 +64,7 @@ export default {
     },
     backPage(to,from){
       if(to=="/login"){
-        this.$store.commit("changePath",from);
+        this.$store.commit("changePath",from=="/register"?'/':from);
         //console.log(this.$store.getters.optBackPath);
       }else if(to=="/register"&&from!="/login"){
         this.$store.commit("changePath",from);
