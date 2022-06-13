@@ -256,12 +256,14 @@ export default {
     }
     section>div.content>div.recommend{
         width: 320px;
+        height: 535px;
         margin-left: 20px;
-        padding: 10px;
+        padding: 15px 10px;
     }
     section>div.content>div.recommend>h5{
         font-size: 20px;
         margin-left: 10px;
+        margin-bottom: 15px;
         font-weight: 400;
     }
     section>div.content>div.recommend>ul{

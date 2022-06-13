@@ -61,11 +61,12 @@ export default {
     methods: {
         loadPage(){
             catalogList({bid:this.bid}).then(res=>{
-                this.spLabel(res.data.data,2);
                 this.list=res.data.data[0];
                 var arr=this.list.catalogs.split("@");
                 this.list.catalogs=arr;
-                if(this.list.label=='免费'){
+                console.log("list:",this.list);
+                console.log("免费:",this.list.label.indexOf('免费'));
+                if(this.list.label.indexOf('免费')>-1){
                     this.num=this.list.catalogs.length;
                 }else{
                     this.num=4;
@@ -76,11 +77,15 @@ export default {
         goRead(e){
             var isLog=this.$store.getters.optIsLogin;
             var p=e.target.dataset.p;
-            if(this.num==4&&isLog==0&&p>4){
-                this.isLogin=true;
-                return;
+            if(p>this.num){
+                if(isLog==0){
+                    this.isLogin=true;
+                }else{
+                    this.isVIP=true;
+                }
+            }else{
+                this.$router.push("/read/"+this.bid+"/"+p); 
             }
-            this.isVIP=true;
             // readCheck({bid:this.bid}).then(res=>{
             //     console.log(res.data);
             //     if(res.data.isVIP==0&&res.data.isBuy==0){
