@@ -120,7 +120,8 @@
 
 <script>
     import {getReadBg,getReadFamily,getReadSize,getReadBook} from '../api/read';
-    import {addBook} from '../api/details'
+    import {addBook} from '../api/details';
+    import { mapState } from 'vuex';
     export default {
         props:["bid","p"],
         data() {
@@ -130,7 +131,7 @@
                 title:'',
                 pno:0,
                 f:0,
-                s:parseInt(this.$store.getters.optFontS),
+                s:18,
                 b:0,
                 showMask:false,
                 fontSize:{fontSize: "18px"},
@@ -139,11 +140,17 @@
                 addSpan:''
             }
         },
+        computed:{
+            ...mapState({
+                userInfo:state => state.userInfo
+            })
+        },
         created() {
             this.loadpage();
-            this.f=this.$store.getters.optFontF;
-            //console.log(this.$store.getters.optFontS,this.s);
-            this.b=this.$store.getters.optBg;
+            console.log('userInfo:',this.userInfo);
+            this.f=this.userInfo.readFontF?this.userInfo.readFontF:0;
+            this.s=this.userInfo.readFontS?this.userInfo.readFontS:18;
+            this.b=this.userInfo.readBg?this.userInfo.readBg:0;
             this.loadBackTop();
         },
         methods: {
@@ -162,7 +169,9 @@
                 var i=e.target.dataset.i;
                 this.b=i;
                 var bg=this.b;
-                this.$store.commit("changeBg",bg);
+                let userInfo=JSON.parse(JSON.stringify(this.userInfo));
+                userInfo.readBg=bg;
+                this.$store.commit("changeUserInfo",userInfo);
                 var postData={bg};
                 getReadBg(postData).then(res=>{
                     console.log(res);
@@ -171,7 +180,9 @@
             changeFf(e){
                 var i=e.target.dataset.i;
                 this.f=i;
-                this.$store.commit("changeFontF",i);
+                let userInfo=JSON.parse(JSON.stringify(this.userInfo));
+                userInfo.readFontF=i;
+                this.$store.commit("changeUserInfo",userInfo);
                 var postData={fontF:this.f};
                 getReadFamily(postData).then(res=>{
                     console.log(res);
@@ -186,8 +197,9 @@
                     this.s=30;
                 }
                 this.fontSize.fontSize=this.s+'px';
-                this.$store.commit("changeFontS",this.s);
-                console.log(this.$store.getters.optFontS);
+                let userInfo=JSON.parse(JSON.stringify(this.userInfo));
+                userInfo.readFontS=this.s;
+                this.$store.commit("changeUserInfo",userInfo);
                 var postData={fontS:this.s};
                 getReadSize(postData).then(res=>{
                     console.log(res);

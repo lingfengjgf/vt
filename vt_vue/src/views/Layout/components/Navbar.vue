@@ -37,6 +37,7 @@ export default {
   methods: {
     logoutClick(){
       this.$store.commit("changeLogin",0);
+      this.$store.commit("changeUserInfo",{});
       this.$router.push('/');
       logout();      
     },
