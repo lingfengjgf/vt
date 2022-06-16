@@ -23,7 +23,7 @@
                         <a @click="goRead" href="javascript:;">开始阅读</a>
                         <a @click="goCatalog" href="javascript:;">章节目录</a>
                         <a @click="addBook" href="javascript:;">加入书架</a>
-                        <a href="javascript:;">购买本书</a>
+                        <!-- <a href="javascript:;">购买本书</a> -->
                     </div>
                     <div class="intro" :class='{show:isShow||hideSpan}'>{{book.intro}}</div>
                     <a @click='showIntro' href="javascript:;" :class='{hide:hideSpan}'>

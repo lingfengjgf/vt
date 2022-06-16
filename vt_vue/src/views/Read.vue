@@ -7,7 +7,7 @@
                 </span>
                 <span>-&nbsp;&nbsp;</span>
                 <span>{{catalogs[pno]}}</span>
-                <a href="javascript:;">购买本书</a>     
+                <!-- <a href="javascript:;">购买本书</a>      -->
             </div>
             <div class="content">
                 <h3>{{catalogs[pno]}}</h3>
@@ -87,7 +87,7 @@
                         <span>正文字体：</span>
                         <a @click="changeFf" :class="{show:f==0}" data-i="0" class="ya" href="javascript:;">雅黑</a>
                         <a @click="changeFf" :class="{show:f==1}" data-i="1" class="kai" href="javascript:;">楷书</a>
-                        <a @click="changeFf" :class="{show:f==2}" data-i="2" class="xing" href="javascript:;">行书</a>
+                        <a @click="changeFf" :class="{show:f==2}" data-i="2" class="xing" href="javascript:;">宋体</a>
                     </li>
                     <li class="fs">
                         <span>字体大小：</span>
@@ -367,7 +367,8 @@
         font-family: kaiti;
     }
     section>div.content>p.xing{
-        font-family: "华文行楷","方正行楷简体","方正硬笔行书简体";
+        font-family: SimSun;
+        /* font-family: "华文行楷","方正行楷简体","方正硬笔行书简体"; */
     }
     nav{
         width: 600px;
