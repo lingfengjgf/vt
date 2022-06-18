@@ -41,6 +41,7 @@ app.all('*', (req, res, next) => {
   }
 });
 app.listen(3000);
+console.log("服务器已启动")
 
 app.use(session({
 	secret:new Date().getTime() +""+ Math.floor(Math.random()*1000),
