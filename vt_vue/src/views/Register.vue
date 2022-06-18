@@ -269,7 +269,7 @@
     section>a.logo{
         position: absolute;
         top: 0px;
-        left: -125px;
+        left: -88px;
     }
     section>img{
         position:absolute;

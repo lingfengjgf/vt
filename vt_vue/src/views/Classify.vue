@@ -224,6 +224,7 @@
                         this.minP=this.pno-3;
                     }                
                     this.backTop();
+                    this.loadPage();
                 }else{
                     this.showMask=true;
                     this.jumpP='';

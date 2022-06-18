@@ -91,6 +91,7 @@ div.dialog>div.mask>p{
 }
 div.dialog>div.mask>.dialog-text{
     color: #0083ec;
+    cursor: pointer;
     margin-top: 10px;
 }
 div.dialog>div.mask>.close{

@@ -100,6 +100,10 @@ export default {
           this.$message.error('轮播书籍不得少于8本');
           return ;          
         }
+        if(type==1&&this.list.length>=16){
+          this.$message.error('轮播书籍最多可配置16本');
+          return ;
+        }
         setShowBooks({bookId,type,setType:0}).then(data=>{
           var key=data.data.code==1?'success':'error';
           this.$message[key](data.data.msg);

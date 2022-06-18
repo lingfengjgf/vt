@@ -11,7 +11,7 @@
             </div>
             <div class="content">
                 <h3>{{catalogs[pno]}}</h3>
-                <p :class="{kai:f==1,xing:f==2}" :style="`fontSize:${parseInt($store.getters.optFontS)}px`" v-for="(t,i) of txt[pno]" :key="i">{{t}}</p>
+                <p :class="{kai:f==1,xing:f==2}" :style="`fontSize:${parseInt(s)}px`" v-for="(t,i) of txt[pno]" :key="i">{{t}}</p>
             </div>
         </section>
         <nav>
